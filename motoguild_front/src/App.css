@@ -39,3 +39,44 @@
 .read-the-docs {
   color: #888;
 }
+
+.create-ride-body{
+  background: #F5F5F5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  display: grid;
+  grid-template: auto auto / 1fr 1fr;
+  gap: 17px;
+  margin: auto;
+  align-self: center;
+}
+
+.standard-input {
+  border-radius: 5px;
+  border: 1px solid #D5D4D8;
+  text-indent: 5px;
+  display: block;
+  margin-left: 5%;
+  height: 50px;
+  width: 90%;
+}
+label {
+  display: block;
+  margin-left: 5%;
+  margin-top: 5%;
+  font-size: large;
+}
+
+.standard-button{
+  display: block;
+  max-height: 50px;
+  max-width: 100px;
+  margin-left: 15%;
+  margin-bottom: 20px;
+  background: #D9D9D9;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+
+
+}
