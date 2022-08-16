@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Homepage from "./components/Homepage";
+
 
 function App() {
   const [allUsers, setAllUsers] = useState([]);
@@ -23,8 +25,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <h1>Get 1st user</h1>
-      <p>{!isLoading && `${allUsers[0].userName}`}</p>
+      <Homepage />
     </div>
   );
 }
