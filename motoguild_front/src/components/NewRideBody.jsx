@@ -28,13 +28,13 @@ export default function NewRideBody(){
       <form onSubmit={handleSubmit} className="create-ride-body">
         <div className="left-column">
           <label name="rideName" >Nazwa przejazdu</label>
-          <input className="standard-input" name="rideName" value={newRide.rideName} onChange={handleChange} placeholder="Nazwa" ></input>
+          <input className="standard-input" type="text" name="rideName" value={newRide.rideName} onChange={handleChange} placeholder="Nazwa" ></input>
           <label name="rideDate" >Data przejazdu</label>
-          <input className="standard-input" name="rideDate" value={newRide.rideDate} onChange={handleChange} placeholder="Data" ></input>
+          <input className="standard-input" type="date" name="rideDate" value={newRide.rideDate} onChange={handleChange} placeholder="Data" ></input>
           <label name="rideHour" >Godzina przejazdu</label>
-          <input className="standard-input" name="rideHour" value={newRide.rideHour} onChange={handleChange} placeholder="Godzina" ></input>
+          <input className="standard-input" type="time" name="rideHour" value={newRide.rideHour} onChange={handleChange} placeholder="Godzina" ></input>
           <label name="astimatedSpeed">Orientacyjna prędkość przejazdu [km/h]</label>
-          <input className="standard-input" name="astimatedSpeed" value={newRide.astimatedSpeed} onChange={handleChange} placeholder="Prędkość" ></input>
+          <input className="standard-input" type="number" name="astimatedSpeed" value={newRide.astimatedSpeed} onChange={handleChange} placeholder="Prędkość" ></input>
         </div>
         <div className="right-column">
           <label name="existingRoute">Wyszukaj istniejącą trasę</label>
