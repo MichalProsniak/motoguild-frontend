@@ -1,4 +1,7 @@
 import {useState} from "react"
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
+
+// require('dotenv').config();
 
 export default function NewRouteBody()
 {
@@ -9,6 +12,22 @@ export default function NewRouteBody()
         description: ""
     })
 
+    const [coordinates, setCoordinates] = useState({
+        lat: 52.237049,
+        lng: 21.017532
+    })
+
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+        // googleMapsApiKey: "AIzaSyDDsZTbO5bTvUcwcekMbGgZLwKe6YN-TL4"
+
+    })
+    console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY )
+
+    function Map() {
+        return <GoogleMap zoom={7} center={coordinates} mapContainerClassName="googlemap"></GoogleMap>
+    }
 
     function handleChange(event)
       {
@@ -27,7 +46,7 @@ export default function NewRouteBody()
     return (
         <div>
             <h1 className="page-title">Dodaj trasę</h1>
-
+                   
             <form onSubmit={handleSubmit} className="create-ride-body">
                 <div className="left-column">
                     <label name="name">Nazwa trasy</label>
@@ -40,9 +59,11 @@ export default function NewRouteBody()
                 <div className="right-column">
                     <label name="description">Krótki opis</label>
                     <textarea className="description-input" type="text" name="description" value={newRoute.description} onChange={handleChange}></textarea>
+                   
                 </div>
                 <button className="standard-button">Stwórz</button>
             </form>
+            {isLoaded && <Map />}
 
         </div>
     )
