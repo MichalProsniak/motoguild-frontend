@@ -1,4 +1,5 @@
 import {useState} from "react"
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function NewRideBody(){
     
@@ -7,7 +8,8 @@ export default function NewRideBody(){
         rideDate: "",
         rideHour: "",
         astimatedSpeed: "",
-        existingRoute: "" 
+        existingRoute: "",
+        isUsingExistingRoute: true
       })
     
       function handleChange(event)
@@ -24,23 +26,35 @@ export default function NewRideBody(){
         console.log(newRide)
       }
 
+      function changeToCreateNewRoute()
+      {
+        setNewRide(prevState => ({
+          ...prevState,
+          isUsingExistingRoute: false,
+          existingRoute: ""
+        })) 
+      }
+
     return (
-      <form onSubmit={handleSubmit} className="create-ride-body">
-        <div className="left-column">
-          <label name="rideName" >Nazwa przejazdu</label>
-          <input className="standard-input" type="text" name="rideName" value={newRide.rideName} onChange={handleChange} placeholder="Nazwa" ></input>
-          <label name="rideDate" >Data przejazdu</label>
-          <input className="standard-input" type="date" name="rideDate" value={newRide.rideDate} onChange={handleChange} placeholder="Data" ></input>
-          <label name="rideHour" >Godzina przejazdu</label>
-          <input className="standard-input" type="time" name="rideHour" value={newRide.rideHour} onChange={handleChange} placeholder="Godzina" ></input>
-          <label name="astimatedSpeed">Orientacyjna prędkość przejazdu [km/h]</label>
-          <input className="standard-input" type="number" name="astimatedSpeed" value={newRide.astimatedSpeed} onChange={handleChange} placeholder="Prędkość" ></input>
-        </div>
-        <div className="right-column">
-          <label name="existingRoute">Wyszukaj istniejącą trasę</label>
-          <input className="standard-input" name="existingRoute" value={newRide.existingRoute} onChange={handleChange} placeholder="Trasa" ></input>
-        </div>
-        <button className="standard-button">Stwórz</button>
-      </form>
+      <div>
+        <form onSubmit={handleSubmit} className="create-ride-body">
+          <div className="left-column">
+            <label name="rideName" >Nazwa przejazdu</label>
+            <input className="standard-input" type="text" name="rideName" value={newRide.rideName} onChange={handleChange}></input>
+            <label name="rideDate" >Data przejazdu</label>
+            <input className="standard-input" type="date" name="rideDate" value={newRide.rideDate} onChange={handleChange}></input>
+            <label name="rideHour" >Godzina przejazdu</label>
+            <input className="standard-input" type="time" name="rideHour" value={newRide.rideHour} onChange={handleChange}></input>
+            <label name="astimatedSpeed">Orientacyjna prędkość przejazdu [km/h]</label>
+            <input className="standard-input" type="number" min="30" max="300" name="astimatedSpeed" value={newRide.astimatedSpeed} onChange={handleChange}></input>
+          </div>
+          <div className="right-column">
+            <label name="existingRoute">Wyszukaj istniejącą trasę</label>
+            <input className="standard-input" name="existingRoute" value={newRide.existingRoute} onChange={handleChange}></input>
+          </div>
+          <button className="standard-button">Stwórz</button>
+        </form>
+        {newRide.isUsingExistingRoute && <button onClick={changeToCreateNewRoute}>Dodaj nową trasę lub wybierz istniejącą w wyszukiwarce powyżej</button>}
+      </div>
     )
 }
