@@ -1,9 +1,11 @@
 import React from 'react';
+import Posts from './Posts'
 
-const Homepage = () => {
+const Homepage = ({posts}) => {
     return (
         <div>
-            <h1>HOMEPAGE</h1>
+            <h1>HOMEPAGE!</h1>
+            <Posts posts={posts} />
         </div>
     )
 }
