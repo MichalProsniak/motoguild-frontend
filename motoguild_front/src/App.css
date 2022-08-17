@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.page-title {
+  margin: 20px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -47,7 +51,7 @@
   display: grid;
   grid-template: auto auto / 1fr 1fr;
   gap: 17px;
-  margin-top: 100px;
+  margin-top: 50px;
   align-self: center;
 }
 
@@ -60,6 +64,17 @@
   height: 50px;
   width: 90%;
 }
+.description-input {
+  border-radius: 5px;
+  border: 1px solid #D5D4D8;
+  text-indent: 5px;
+  display: block;
+  margin-left: 5%;
+  height: 300px;
+  width: 90%;
+  resize: none;
+}
+
 label {
   display: block;
   margin-left: 5%;

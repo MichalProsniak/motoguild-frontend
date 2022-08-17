@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
-
+import CreateRoutePage from "./pages/CreateRoutePage";
 
 function App() {
   // const [allUsers, setAllUsers] = useState([]);
@@ -31,6 +31,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Homepage />}></Route>
           <Route exact path="/create-ride" element={<CreateRidePage />}></Route>
+          <Route exact path="/create-route" element={<CreateRoutePage />}></Route>
         </Routes>
       </Router>
     </div>
