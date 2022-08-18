@@ -4,6 +4,9 @@ import React from "react";
 export default function CreateRoutePage()
 {
     return (
-        <NewRouteBody />
+        <div>
+            <h1 className="page-title">Dodaj trasę</h1> 
+            <NewRouteBody />
+        </div>
     )
 }

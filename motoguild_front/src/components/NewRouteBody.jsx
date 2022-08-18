@@ -50,7 +50,6 @@ export default function NewRouteBody()
 
     return (
         <div>
-            <h1 className="page-title">Dodaj trasę</h1> 
             <form onSubmit={handleSubmit} className="create-ride-body">
                 <div className="left-column">
                     <label name="name">Nazwa trasy</label>

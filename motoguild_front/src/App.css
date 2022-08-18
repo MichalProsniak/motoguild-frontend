@@ -99,3 +99,16 @@ label {
   height: 300px;
   margin: 5%;
 }
+.googlemap-small {
+  width: 30%;
+  height: 150px;
+  margin: 5%;
+}
+
+.group-container {
+  background-color: #888;
+}
+
+.group-name {
+  text-align: left;
+}

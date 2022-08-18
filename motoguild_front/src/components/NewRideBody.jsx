@@ -38,7 +38,6 @@ export default function NewRideBody(){
 
     return (
       <div>
-        <h1 className="page-title" >Dodaj przejazd</h1>
         <form onSubmit={handleSubmit} className="create-ride-body">
           <div className="left-column">
             <label name="rideName" >Nazwa przejazdu</label>
