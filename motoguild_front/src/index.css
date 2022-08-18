@@ -15,6 +15,12 @@ body {
   min-height: 100vh;
 }
 
+.post {
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 10px 20px;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
