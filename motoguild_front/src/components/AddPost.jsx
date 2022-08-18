@@ -20,7 +20,6 @@ const AddPost = ({loggedUser, addPost}) => {
         addPost({content,author})
 
         setContent('')
-        setAuthor('')
     }
     return(
         <Container className="post">

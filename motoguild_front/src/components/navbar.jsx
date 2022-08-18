@@ -39,7 +39,7 @@ function OffcanvasExample() {
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
-            <Image className='img fluid rounded-circle' style={{height: '50px'}} src={pictres}/>
+            <Image className='img fluid rounded-circle' style={{height: '50px', width: '50px'}} src={pictres}/>
           </Container>
         </Navbar>
       ))}
