@@ -4,9 +4,8 @@ import pictres from '../images/piesek.jpg'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import Comments from "./Comments"
 
-const Post = ({post}) => {
+const Comment = ({comment}) => {
     const dateTime = post.createTime.split('T')
     const fulltime = dateTime[1].split('.')
     const correktTime = dateTime[0]+' '+ fulltime[0]
@@ -28,13 +27,10 @@ const Post = ({post}) => {
                     <Row>
                         <h4>{post.content}</h4>
                     </Row>
-                    {/* <Row>
-                        <Comments postId={post.id}/>
-                    </Row> */}
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default Post
+export default Comment

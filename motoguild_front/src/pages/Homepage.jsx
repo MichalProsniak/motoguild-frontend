@@ -3,6 +3,7 @@ import Posts from '../components/Posts'
 
 const Homepage = ({loggedUser}) => {
     const [posts,setPosts] = useState([])
+
     useEffect(()=>{
         const getPosts = async () => {
           const postsFromServer = await fetchPosts()
@@ -12,15 +13,20 @@ const Homepage = ({loggedUser}) => {
       },[])
     
       const addPost = async (post) =>{
+        try{
         const res = await fetch('https://localhost:3333/api/feeds/1/posts',{
             method: 'POST',
+            // mode: 'cors',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(post)
         })
-        const data = await res.json()
-        setPosts([...posts, data])
+        const postsFromServer = await fetchPosts()
+        setPosts(postsFromServer)
+      }catch (error){
+        console.log(error)
+      }
       }
       const fetchPosts = async () =>{
         const res = await fetch('https://localhost:3333/api/feeds/1/posts')
@@ -34,7 +40,7 @@ const Homepage = ({loggedUser}) => {
             <Posts
             loggedUser={loggedUser}
             posts={posts}
-            addPost={addPost}
+            onAdd={addPost}
             />
         </div>
     )

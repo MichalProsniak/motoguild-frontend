@@ -2,9 +2,8 @@ import React from "react"
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useState } from "react"
-import Container from 'react-bootstrap/Container'
 
-const AddPost = ({loggedUser, addPost}) => {
+const AddComment = ({loggedUser, addPost}) => {
     const [content, setContent] = useState('')
     const [author, setAuthor] = useState({
         id: loggedUser.id
@@ -17,19 +16,17 @@ const AddPost = ({loggedUser, addPost}) => {
             return
         }
 
-        addPost({content,author})
+        addPost(content,author)
 
         setContent('')
         setAuthor('')
     }
     return(
-        <Container className="post">
             <form onSubmit={onSubmit}>
                 <Row>
-                    <Col sm={10} style={{borderRadius:'15px', backgroundColor:'white'}}>
+                    <Col>
                         <div>
-                            <input className="cos"
-                                style={{  float: 'left', border: 'none', width:'100%' }}
+                            <input 
                                 type="text" 
                                 placeholder="Add Post"
                                 value={content}
@@ -37,13 +34,12 @@ const AddPost = ({loggedUser, addPost}) => {
                             />
                         </div>
                     </Col>
-                    <Col sm={2}>
-                        <input type="submit" value='Add Post'/>
+                    <Col>
+                        <input type="submit" value='Save Post'/>
                     </Col>
                 </Row>
             </form>
-        </Container>
     )
 }
 
-export default AddPost
+export default AddComment
