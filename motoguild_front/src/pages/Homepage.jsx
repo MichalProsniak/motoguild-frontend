@@ -1,9 +1,12 @@
 import React from 'react';
+import Posts from '../components/Posts'
 
-const Homepage = () => {
+const Homepage = ({loggedUser}) => {
     return (
         <div>
-            <h1>HOMEPAGE</h1>
+            <Posts
+            loggedUser={loggedUser}
+            />
         </div>
     )
 }

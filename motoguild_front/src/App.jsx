@@ -7,9 +7,11 @@ import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
 
 function App() {
-  // const [allUsers, setAllUsers] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-
+  const [loggedUser,setLogedUser] = useState([{
+    id:1,
+    UserName:"LoggedUser"
+  }])
+  const [isLoading, setIsLoading] = useState(true)
   // useEffect(() => {
   //   async function getUsers() {
   //     try {
@@ -23,13 +25,14 @@ function App() {
   //   }
   //   getUsers();
   // }, []);
-
   return (
     <div className="App">
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path='/' element={<Homepage />}></Route>
+          <Route exact path='/' element={<Homepage 
+          loggedUser={loggedUser}
+          />}></Route>
           <Route exact path="/create-ride" element={<CreateRidePage />}></Route>
           <Route exact path="/create-route" element={<CreateRoutePage />}></Route>
         </Routes>
