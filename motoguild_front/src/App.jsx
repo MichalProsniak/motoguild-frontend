@@ -7,10 +7,9 @@ import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
 
 function App() {
-  const [loggedUser,setLogedUser] = useState([{
-    id:1,
-    UserName:"LoggedUser"
-  }])
+  const [loggedUser,setLogedUser] = useState({
+    id:2,
+  })
   const [isLoading, setIsLoading] = useState(true)
   // useEffect(() => {
   //   async function getUsers() {

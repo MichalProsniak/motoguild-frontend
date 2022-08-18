@@ -4,30 +4,50 @@ import Row from 'react-bootstrap/Row'
 import { useState } from "react"
 
 const AddPost = ({loggedUser, addPost}) => {
-    const [text, setText] = useState('')
-    const [authorId, setAuthorId] = useState(loggedUser[0].id)
+    const [post,setPost] = useState({
+        content: "",
+        author: {
+            id: loggedUser.id
+        }
+    })
+    // const [content, setContent] = useState('')
+    // const [author, setAuthor] = useState({
+    //     id: loggedUser.id
+    // })
 
     const onSubmit = (e) =>{
         e.preventDefoult()
-        if(text !== ''){
+        console.log(post)
+        if(post.content !== ''){
 
-            addPost({ authorId,text})
+            addPost(post)
 
-            setText('')
+            setContent('')
         }
 
     }
-    console.log(loggedUser[0].id)
+
+    function handleChange(event)
+      {
+        console.log(post)
+        const {name, value} = event.target
+        setPost(prevState => ({
+            ...prevState,
+            content: value
+          })) 
+
+      }
     return(
             <form onSubmit={onSubmit}>
                 <Row>
                     <Col>
                         <div>
                             <input 
+                            name="content"
                             type="text" 
                             placeholder="Add Post"
-                            value={text}
-                            onChange={(e)=> setText(e.target.value)}/>
+                            value={post.content}
+                            onChange={handleChange}/>
                         </div>
                     </Col>
                     <Col>
