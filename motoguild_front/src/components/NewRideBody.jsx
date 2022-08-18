@@ -1,5 +1,6 @@
 import {useState} from "react"
 import "bootstrap/dist/css/bootstrap.css";
+import NewRouteBody from "./NewRouteBody";
 
 export default function NewRideBody(){
     
@@ -50,12 +51,16 @@ export default function NewRideBody(){
             <input className="standard-input" type="number" min="30" max="300" name="astimatedSpeed" value={newRide.astimatedSpeed} onChange={handleChange}></input>
           </div>
           <div className="right-column">
-            <label name="existingRoute">Wyszukaj istniejącą trasę</label>
-            <input className="standard-input" name="existingRoute" value={newRide.existingRoute} onChange={handleChange}></input>
+            {newRide.isUsingExistingRoute && <div>
+              <label name="existingRoute">Wyszukaj istniejącą trasę</label>
+              <input className="standard-input" name="existingRoute" value={newRide.existingRoute} onChange={handleChange}></input></div>
+            }
+            
           </div>
           <button className="standard-button">Stwórz</button>
         </form>
         {newRide.isUsingExistingRoute && <button onClick={changeToCreateNewRoute}>Dodaj nową trasę lub wybierz istniejącą w wyszukiwarce powyżej</button>}
+        {!newRide.isUsingExistingRoute && <NewRouteBody />}
       </div>
     )
 }
