@@ -29,7 +29,7 @@ const Homepage = ({loggedUser}) => {
       }
       }
       const fetchPosts = async () =>{
-        const res = await fetch('https://localhost:3333/api/feeds/1/posts')
+        const res = await fetch('https://localhost:3333/api/feeds/1/posts?orderByDate=true')
         const data = await res.json()
 
         return data

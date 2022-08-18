@@ -14,7 +14,7 @@ const Post = ({post}) => {
         <Container className="post">
             <Row>
                 <Col sm={2}>
-                    <Image className='img fluid rounded-circle' style={{height: '50px'}} src={pictres} />
+                    <Image className='img fluid rounded-circle' style={{height: '100px', width: '100px'}} src={pictres} />
                 </Col>
                 <Col sm={10}>
                     <Row >

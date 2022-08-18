@@ -9,7 +9,7 @@ import AllGroupsPage from "./pages/AllGroupsPage";
 
 function App() {
   const [loggedUser,setLogedUser] = useState({
-    id:2,
+    id:1,
   })
   const [isLoading, setIsLoading] = useState(true)
   // useEffect(() => {
