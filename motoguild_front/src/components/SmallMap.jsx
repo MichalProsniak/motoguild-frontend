@@ -1,5 +1,5 @@
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api"
-import {useState, useRef} from "react"
+import {useState, useRef, useEffect} from "react"
 
 const libraries = ['places']
 
@@ -10,11 +10,22 @@ export default function SmallMap(props)
         libraries
     })
 
-    const [directionsResponse, setDirectionsResponse] = useState({
-        origin: props.origin,
-        destination: props.destination,
-        travelMode: google.maps.TravelMode.DRIVING
-    })
+    const [directionsResponse, setDirectionsResponse] = useState(null)
+    useEffect(() => {
+            async function calculateRoute() {
+                if (props.originPoint === '' || props.destinationPoint === '')
+                {
+                    return
+                }
+                const directionsService = new google.maps.DirectionsService()
+                const results = await directionsService.route({
+                    origin: props.originPoint,
+                    destination: props.destinationPoint,
+                    travelMode: google.maps.TravelMode.DRIVING
+                })
+            setDirectionsResponse(results)}
+            
+        calculateRoute()}, [])
 
 
     return (<div>{isLoaded && <GoogleMap zoom={7} center={props.coordinates} mapContainerClassName="googlemap-small" options={{

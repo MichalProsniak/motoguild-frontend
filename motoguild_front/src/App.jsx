@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
 import AllGroupsPage from "./pages/AllGroupsPage";
+import AllRidesPage from "./pages/AllRidesPage";
 
 function App() {
   const [loggedUser,setLogedUser] = useState({
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/create-ride" element={<CreateRidePage />}></Route>
           <Route exact path="/create-route" element={<CreateRoutePage />}></Route>
           <Route exact path="/groups" element={<AllGroupsPage />}></Route>
+          <Route exact path="/rides" element={<AllRidesPage />}></Route>
         </Routes>
       </Router>
     </div>

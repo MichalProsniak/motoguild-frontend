@@ -1,6 +1,9 @@
 import {useState, useRef} from "react"
 import { useLoadScript, Autocomplete} from "@react-google-maps/api"
 import BigMap from './BigMap.jsx'
+import usePlacesAutocomplete from "use-places-autocomplete"
+
+
 
 const libraries = ['places']
 export default function NewRouteBody()
@@ -48,6 +51,22 @@ export default function NewRouteBody()
         console.log(newRoute)
       }
 
+      function changePlace(event)
+      {
+        console.log(event)
+      }
+
+      const PlacesAutocomplete = ( { setSelected }) => {
+        const {
+            ready,
+            value,
+            setValue,
+            suggestions: { status, data },
+            clearSuggestions,
+        } = usePlacesAutocomplete();
+        return <div></div>
+      }
+
     return (
         <div>
             <form onSubmit={handleSubmit} className="create-ride-body">
@@ -55,8 +74,10 @@ export default function NewRouteBody()
                     <label name="name">Nazwa trasy</label>
                     <input className="standard-input" type="text" name="name" value={newRoute.name} onChange={handleChange}></input>
                     <label name="startPoint">Początek trasy</label>
+
+                    {/* <PlacesAutocomplete setSelected={setSelected} /> */}
                     {isLoaded && <Autocomplete >
-                        <input className="standard-input" type="text" name="startPoint" value={newRoute.startPoint} onChange={handleChange} ref={originRef} ></input>
+                        <input className="standard-input" type="text" name="startPoint" value={newRoute.startPoint} onChange={handleChange} ref={originRef}></input>
                     </Autocomplete>}
                     <label name="endPoint">Koniec trasy</label>
                     {isLoaded && <Autocomplete>

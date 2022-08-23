@@ -23,7 +23,7 @@ export default function GroupForList(props)
             </Col>
             <Col sm={5}>
                 <h3>Właściciel: {props.owner.userName}</h3>
-                <h4>Group members: {props.participants.length}</h4>
+                <h4>Członkowie: {props.participants.length}</h4>
                 {props.isPrivate ? 
                     <button style={{margin:'40px 0px'}} >Poproś o dostęp</button> : 
                     <button style={{margin:'40px 0px'}} >Dołącz</button>
