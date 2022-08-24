@@ -101,7 +101,7 @@ label {
   margin: 5%;
 }
 .googlemap-small {
-  width: 30%;
+  width: 90%;
   height: 150px;
   margin: 5%;
 }
@@ -112,4 +112,18 @@ label {
 
 .group-name {
   text-align: left;
+}
+.text-container{
+  text-align: left;
+  padding-top: 10px;
+}
+
+.ride-for-list {
+  background-color: #888;
+  margin: 50px;
+  padding-bottom: 20px;
+}
+
+.normal-container {
+  margin-bottom: 10px;
 }

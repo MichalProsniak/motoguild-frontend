@@ -28,9 +28,10 @@ export default function SmallMap(props)
         calculateRoute()}, [])
 
 
-    return (<div>{isLoaded && <GoogleMap zoom={7} center={props.coordinates} mapContainerClassName="googlemap-small" options={{
+    return (<div>{isLoaded && <GoogleMap mapContainerClassName="googlemap-small" options={{
         streetViewControl: false,
-        mapTypeControl: false }}>
+        mapTypeControl: false,
+        fullscreenControl: false }}>
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>}

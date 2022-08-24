@@ -74,8 +74,6 @@ export default function NewRouteBody()
                     <label name="name">Nazwa trasy</label>
                     <input className="standard-input" type="text" name="name" value={newRoute.name} onChange={handleChange}></input>
                     <label name="startPoint">Początek trasy</label>
-
-                    {/* <PlacesAutocomplete setSelected={setSelected} /> */}
                     {isLoaded && <Autocomplete >
                         <input className="standard-input" type="text" name="startPoint" value={newRoute.startPoint} onChange={handleChange} ref={originRef}></input>
                     </Autocomplete>}
