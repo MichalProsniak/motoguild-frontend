@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { Rating } from 'react-simple-star-rating'
+import {Link} from "react-router-dom";
+import ImportantRideInfo from './ImportantRideInfo';
 
 
 const libraries = ['places']
@@ -16,30 +18,23 @@ export default function RideForList(props)
         libraries
 
     })
-    // console.log(props.startPlace)
-    // console.log(props.startTime)
 
-    const dayMonthYear = props.startTime.slice(0,10).split("-").reverse().join(".")
-    const hourMinutes = props.startTime.split("T")[1].slice(0,5)
+    
     
     return (
         <div className="ride-for-list" >
             <Container>
                 <Row>
                 <Col sm={12} className="normal-container" >
-                    <h2>{props.name}</h2>
+                    <Link to={`/rides/${props.id}`}><h2>{props.name}</h2></Link>
                 </Col>
                 </Row>
                 <Row>
                     <Col sm={5}>
-                    {isLoaded && <SmallMap originPoint={props.startPlace} destinationPoint={props.endingPlace} />}
+                    {isLoaded && <SmallMap small={true} originPoint={props.startPlace} destinationPoint={props.endingPlace} />}
                     </Col>
                     <Col className="text-container" sm={4}>
-                        <p><i className="bi bi-record-circle"></i> {props.startPlace}</p>
-                        <p><i className="bi bi-caret-right-fill"></i> {props.endingPlace}</p>
-                        <p><i className="bi bi-calendar-check"></i> {dayMonthYear}</p>
-                        <p><i className="bi bi-alarm"></i> {hourMinutes}</p>
-                
+                        <ImportantRideInfo startPlace={props.startPlace} endingPlace={props.endingPlace} startTime={props.startTime} />
                     </Col>
                     <Col>
                         <h3><i className="bi bi-person-circle"></i></h3>

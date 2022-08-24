@@ -29,6 +29,7 @@ export default function RideList()
         {/* {allRides && isLoaded && allRides.map(ride => <SmallMap key={ride.id} originPoint={ride.startPlace} destinationPoint={ride.endingPlace} />)} */}
         {!isLoading && allRides.map(ride => <RideForList 
         key={ride.id} 
+        id={ride.id} 
         name={ride.name} 
         startPlace={ride.startPlace} 
         endingPlace={ride.endingPlace} 

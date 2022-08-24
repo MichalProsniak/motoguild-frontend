@@ -28,13 +28,26 @@ export default function SmallMap(props)
         calculateRoute()}, [])
 
 
-    return (<div>{isLoaded && <GoogleMap mapContainerClassName="googlemap-small" options={{
+    return (<div>
+        {props.small ? isLoaded && <GoogleMap mapContainerClassName="googlemap-small" options={{
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: false }}>
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
-        </GoogleMap>}
+        </GoogleMap>
+        :
+        isLoaded && <GoogleMap mapContainerClassName="googlemap-normal" options={{
+        streetViewControl: false,
+        mapTypeControl: false,
+        fullscreenControl: false }}>
+            <MarkerF/>
+            {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+        </GoogleMap>
+        }
+        
+        
+        
         </div>)
 
 }
