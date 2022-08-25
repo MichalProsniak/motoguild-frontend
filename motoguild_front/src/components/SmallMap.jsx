@@ -40,8 +40,8 @@ export default function SmallMap(props)
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>
-        <p><i className="bi bi-binoculars"></i> {distance}</p>
-        <p><i className="bi bi-browser-safari"></i> {duration}</p>
+        <p><i className="bi bi-browser-safari"></i> {distance}</p>
+        <p><i className="bi bi-clock-history"></i> {duration}</p>
         </div>
         :
         isLoaded && <div><GoogleMap mapContainerClassName="googlemap-normal" options={{
@@ -51,8 +51,8 @@ export default function SmallMap(props)
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>
-        <p><i className="bi bi-binoculars"></i> {distance}</p>
-        <p><i className="bi bi-browser-safari"></i> {duration}</p>
+        <p><i className="bi bi-browser-safari"></i> {distance}</p>
+        <p><i className="bi bi-clock-history"></i> {duration}</p>
         </div>
         }
         
