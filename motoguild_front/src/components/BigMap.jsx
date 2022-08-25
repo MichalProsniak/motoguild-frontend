@@ -32,7 +32,6 @@ export default function BigMap(props)
         mapTypeControl: false }}>
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
-            {console.log(directionsResponse)}
         </GoogleMap>}
         {isLoaded && <button type="button" onClick={calculateRoute}>Zaktualizuj mapę</button>}
         </div>)

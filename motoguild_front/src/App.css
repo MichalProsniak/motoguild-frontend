@@ -140,3 +140,7 @@ label {
   overflow-x: hidden;
   max-height: 500px;
 }
+
+.error-message {
+  color: red;
+}
