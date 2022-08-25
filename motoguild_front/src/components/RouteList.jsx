@@ -28,9 +28,8 @@ export default function RouteList()
             name={route.name} 
             startPlace={route.startPlace} 
             endingPlace={route.endingPlace} 
-            startTime={route.startTime}
             owner={route.owner}
-            minimumRating={route.minimumRating}/>)}
+            rating={route.rating}/>)}
         </div>
     )
 }

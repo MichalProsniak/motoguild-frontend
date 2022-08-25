@@ -22,7 +22,7 @@ export default function RideForList(props)
     
     
     return (
-        <div className="ride-for-list" >
+        <div className="for-list" >
             <Container>
                 <Row>
                 <Col sm={12} className="normal-container" >

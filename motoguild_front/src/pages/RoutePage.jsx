@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {Route, Link, Routes, useParams} from 'react-router-dom';
+import RouteBody from '../components/RouteBody';
 
 export default function RoutePage()
 {
@@ -25,6 +26,7 @@ export default function RoutePage()
     return (
         <div>
             {!isLoading && <h1 className="page-title" >{route.name}</h1>}
+            {!isLoading && <RouteBody route={route}/>}
         </div>
     )
 }
