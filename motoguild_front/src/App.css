@@ -134,3 +134,9 @@ label {
 .normal-container {
   margin-bottom: 10px;
 }
+
+.posts {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 500px;
+}

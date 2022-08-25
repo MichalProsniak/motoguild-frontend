@@ -36,7 +36,7 @@ const Homepage = ({loggedUser}) => {
       }
 
     return (
-        <div>
+        <div className="posts" >
             <Posts
             loggedUser={loggedUser}
             posts={posts}
