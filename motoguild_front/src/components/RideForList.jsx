@@ -4,7 +4,7 @@ import { useLoadScript} from "@react-google-maps/api"
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { Rating } from 'react-simple-star-rating'
+
 import {Link} from "react-router-dom";
 import ImportantRideInfo from './ImportantRideInfo';
 
@@ -34,7 +34,7 @@ export default function RideForList(props)
                     {isLoaded && <SmallMap small={true} originPoint={props.startPlace} destinationPoint={props.endingPlace} />}
                     </Col>
                     <Col className="text-container" sm={4}>
-                        <ImportantRideInfo startPlace={props.startPlace} endingPlace={props.endingPlace} startTime={props.startTime} />
+                        <ImportantRideInfo startPlace={props.startPlace} endingPlace={props.endingPlace} startTime={props.startTime} minimumRating={props.minimumRating} />
                     </Col>
                     <Col>
                         <h3><i className="bi bi-person-circle"></i></h3>
@@ -42,11 +42,6 @@ export default function RideForList(props)
                         <h3>OWNER NAME</h3>
                     </Col>
 
-                </Row>
-                <Row>
-                    <Col sm={5}>
-                    <Rating initialValue={props.minimumRating} readonly={true} />
-                    </Col>
                 </Row>
                 
             </Container>

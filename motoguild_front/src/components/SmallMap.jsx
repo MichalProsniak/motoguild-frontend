@@ -1,5 +1,5 @@
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api"
-import {useState, useRef, useEffect} from "react"
+import {useState, useEffect} from "react"
 
 const libraries = ['places']
 
@@ -9,6 +9,8 @@ export default function SmallMap(props)
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
         libraries
     })
+    const [distance, setDistance] = useState('')
+    const [duration, setDuration] = useState('')
 
     const [directionsResponse, setDirectionsResponse] = useState(null)
     useEffect(() => {
@@ -23,27 +25,35 @@ export default function SmallMap(props)
                     destination: props.destinationPoint,
                     travelMode: google.maps.TravelMode.DRIVING
                 })
-            setDirectionsResponse(results)}
+            setDirectionsResponse(results)
+            setDistance(results.routes[0].legs[0].distance.text)
+            setDuration(results.routes[0].legs[0].duration.text)}
             
         calculateRoute()}, [])
 
 
     return (<div>
-        {props.small ? isLoaded && <GoogleMap mapContainerClassName="googlemap-small" options={{
+        {props.small ? isLoaded && <div><GoogleMap mapContainerClassName="googlemap-small" options={{
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: false }}>
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>
+        <p><i className="bi bi-binoculars"></i> {distance}</p>
+        <p><i className="bi bi-browser-safari"></i> {duration}</p>
+        </div>
         :
-        isLoaded && <GoogleMap mapContainerClassName="googlemap-normal" options={{
+        isLoaded && <div><GoogleMap mapContainerClassName="googlemap-normal" options={{
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: false }}>
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>
+        <p><i className="bi bi-binoculars"></i> {distance}</p>
+        <p><i className="bi bi-browser-safari"></i> {duration}</p>
+        </div>
         }
         
         

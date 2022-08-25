@@ -1,4 +1,4 @@
-
+import { Rating } from 'react-simple-star-rating'
 
 export default function ImportantRideInfo(props)
 {
@@ -12,6 +12,7 @@ export default function ImportantRideInfo(props)
             <p><i className="bi bi-caret-right-fill"></i> {props.endingPlace}</p>
             <p><i className="bi bi-calendar-check"></i> {dayMonthYear}</p>
             <p><i className="bi bi-alarm"></i> {hourMinutes}</p>
+            <Rating initialValue={props.minimumRating} readonly={true} />
         </div>
         
     )

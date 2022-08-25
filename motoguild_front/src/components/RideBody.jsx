@@ -32,8 +32,7 @@ export default function RideBody(props)
                     <Row>
                         <Col sm={6}  >
                             <h4><i className="bi bi-person-circle"></i> {props.owner}OWNER NAME</h4><br></br>
-                            <ImportantRideInfo startPlace={props.ride.startPlace} endingPlace={props.ride.endingPlace} startTime={props.ride.startTime} />
-                            <Rating initialValue={props.ride.minimumRating} readonly={true} />
+                            <ImportantRideInfo startPlace={props.ride.startPlace} endingPlace={props.ride.endingPlace} startTime={props.ride.startTime}  minimumRating={props.minimumRating}/>
                         </Col>
                         <Col sm={6}>
                             <br></br>
