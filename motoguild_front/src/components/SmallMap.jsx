@@ -45,7 +45,6 @@ export default function SmallMap(props)
         </div>
         :
         isLoaded && <div><GoogleMap mapContainerClassName="googlemap-normal" options={{
-        streetViewControl: false,
         mapTypeControl: false }}>
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}

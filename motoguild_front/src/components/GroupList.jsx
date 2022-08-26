@@ -23,6 +23,7 @@ export default function GroupList()
     return(<div>
         {allGroups && allGroups.map(group => <GroupForList 
         key={group.id} 
+        id={group.id}
         name={group.name}
         owner={group.owner}
         isPrivate={group.isPrivate}

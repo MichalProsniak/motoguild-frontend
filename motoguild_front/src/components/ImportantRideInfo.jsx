@@ -1,10 +1,12 @@
 import { Rating } from 'react-simple-star-rating'
+import GetDayMonthYear from '../helpnigFunctions/GetDayMonthYear'
+import GetHourMinutes from '../helpnigFunctions/GetHourMinutes'
 
 export default function ImportantRideInfo(props)
 {
 
-    const dayMonthYear = props.startTime.slice(0,10).split("-").reverse().join(".")
-    const hourMinutes = props.startTime.split("T")[1].slice(0,5)
+    const dayMonthYear = GetDayMonthYear(props.startTime)
+    const hourMinutes = GetHourMinutes(props.startTime)
 
     return (
         <div>
