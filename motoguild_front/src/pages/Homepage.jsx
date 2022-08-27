@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Posts from '../components/Posts'
+import BestRoutes from "../components/BestRoutes"
 
 const Homepage = ({loggedUser}) => {
     const [posts,setPosts] = useState([])
@@ -36,6 +37,8 @@ const Homepage = ({loggedUser}) => {
       }
 
     return (
+      <div>
+        <BestRoutes />
         <div className="posts" >
             <Posts
             loggedUser={loggedUser}
@@ -43,6 +46,8 @@ const Homepage = ({loggedUser}) => {
             onAdd={addPost}
             />
         </div>
+      </div>
+        
     )
 }
 
