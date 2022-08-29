@@ -6,6 +6,11 @@ import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
 import AllGroupsPage from "./pages/AllGroupsPage";
+import AllRidesPage from "./pages/AllRidesPage";
+import RidePage from "./pages/RidePage";
+import AllRoutesPage from "./pages/AllRoutesPage";
+import RoutePage from "./pages/RoutePage";
+import GroupPage from "./pages/GroupPage";
 
 function App() {
   const [loggedUser,setLogedUser] = useState({
@@ -36,6 +41,12 @@ function App() {
           <Route exact path="/create-ride" element={<CreateRidePage />}></Route>
           <Route exact path="/create-route" element={<CreateRoutePage />}></Route>
           <Route exact path="/groups" element={<AllGroupsPage />}></Route>
+          <Route exact path="/groups/:id" element={<GroupPage />}></Route>
+          <Route exact path="/rides" element={<AllRidesPage />}></Route>
+          <Route exact path="/rides/:id" element={<RidePage />}></Route>
+          <Route exact path="/routes" element={<AllRoutesPage />}></Route>
+          <Route exact path="/routes/:id" element={<RoutePage />}></Route>
+          
         </Routes>
       </Router>
     </div>

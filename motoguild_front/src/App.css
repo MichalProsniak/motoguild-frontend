@@ -101,15 +101,91 @@ label {
   margin: 5%;
 }
 .googlemap-small {
-  width: 30%;
+  width: 90%;
   height: 150px;
   margin: 5%;
 }
 
+.googlemap-normal {
+  width: 90%;
+  height: 400px;
+  margin: 5%;
+}
+
 .group-container {
-  background-color: #888;
+  background-color: #D9D9D9;
 }
 
 .group-name {
   text-align: left;
+}
+.text-container{
+  text-align: left;
+  padding-top: 10px;
+  margin-left: 5%;
+}
+
+.for-list {
+  background-color: #D9D9D9;
+  margin: 50px;
+  padding-bottom: 20px;
+}
+
+.normal-container {
+  margin-bottom: 10px;
+}
+
+.posts {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 500px;
+}
+
+.error-message {
+  color: red;
+}
+
+
+
+/* Slideshow */
+
+.slideshow {
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 500px;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+  transition: ease 1000ms;
+}
+
+.slide {
+  display: inline-block;
+
+  height: 250px;
+  width: 100%;
+  border-radius: 40px;
+}
+
+/* Buttons */
+
+.slideshowDots {
+  text-align: center;
+}
+
+.slideshowDot {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  margin: 15px 7px 0px;
+
+  background-color: #c4c4c4;
+}
+
+.slideshowDot.active {
+  background-color: #6a0dad;
 }

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react"
-import Posts from '../components/Posts'
-import BestRoutes from "../components/BestRoutes"
+import Posts from "./Posts";
+import {useState, useEffect} from 'react'
+import {Route, Link, Routes, useParams} from 'react-router-dom';
 
-const Homepage = ({loggedUser}) => {
+
+export default function GroupPosts(props)
+{
+    const currentGroup = useParams().id;
+    const loggedUser={id: 1}
     const [posts,setPosts] = useState([])
 
     useEffect(()=>{
@@ -12,10 +16,17 @@ const Homepage = ({loggedUser}) => {
         }
         getPosts()
       },[])
-    
+
+      const fetchPosts = async () =>{
+        const res = await fetch(`https://localhost:3333/api/groups/${currentGroup}/posts?OrderByDate=true`)
+        const data = await res.json()
+
+        return data
+      }
+
       const addPost = async (post) =>{
         try{
-        const res = await fetch('https://localhost:3333/api/feeds/1/posts',{
+        const res = await fetch(`https://localhost:3333/api/groups/${currentGroup}/posts`,{
             method: 'POST',
             // mode: 'cors',
             headers: {
@@ -29,16 +40,11 @@ const Homepage = ({loggedUser}) => {
         console.log(error)
       }
       }
-      const fetchPosts = async () =>{
-        const res = await fetch('https://localhost:3333/api/feeds/1/posts?orderByDate=true')
-        const data = await res.json()
 
-        return data
-      }
+    
+
 
     return (
-      <div>
-        <BestRoutes />
         <div className="posts" >
             <Posts
             loggedUser={loggedUser}
@@ -46,9 +52,5 @@ const Homepage = ({loggedUser}) => {
             onAdd={addPost}
             />
         </div>
-      </div>
-        
     )
 }
-
-export default Homepage
