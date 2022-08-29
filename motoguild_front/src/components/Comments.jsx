@@ -1,15 +1,12 @@
 import Comment from './Comment'
-import AddComment from "./AddComment"
+import Row from 'react-bootstrap/Row'
 
-const Comments = ({postsId }) => {
-    
-
+const Comments = ({comments }) => {
     return(
-        <>
-            <AddComment loggedUser={loggedUser} addPost={onAdd}/>
-            {posts&&posts.map((post)=> (<Comment key={post.id} post={post} />
+        <Row style={{border: '2px solid black'}}>
+            {comments.map((comment)=> (<Comment key={comment.id} comment={comment} />
             ))}
-        </>
+        </Row>
     )
 }
 

@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useState } from "react"
 
-const AddComment = ({loggedUser, addPost}) => {
+const AddComment = ({loggedUser, addComment}) => {
     const [content, setContent] = useState('')
     const [author, setAuthor] = useState({
         id: loggedUser.id
@@ -12,30 +12,31 @@ const AddComment = ({loggedUser, addPost}) => {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(!content){
-            alert('Please add Post')
+            alert('Please add Comment')
             return
         }
 
-        addPost(content,author)
+        addComment({content,author})
 
         setContent('')
-        setAuthor('')
     }
+
     return(
             <form onSubmit={onSubmit}>
                 <Row>
                     <Col>
                         <div>
                             <input 
+                                style={{float:'left', width:'100%'}}
                                 type="text" 
-                                placeholder="Add Post"
+                                placeholder="Add Comment"
                                 value={content}
                                 onChange={(e)=> setContent(e.target.value)}
                             />
                         </div>
                     </Col>
-                    <Col>
-                        <input type="submit" value='Save Post'/>
+                    <Col sm ={2}>
+                        <input style={{float:'right'}} type="submit" value='Add Comment'/>
                     </Col>
                 </Row>
             </form>

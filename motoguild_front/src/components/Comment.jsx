@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 
 const Comment = ({comment}) => {
-    const dateTime = post.createTime.split('T')
+    const dateTime = comment.createTime.split('T')
     const fulltime = dateTime[1].split('.')
     const correktTime = dateTime[0]+' '+ fulltime[0]
     return(
@@ -18,14 +18,14 @@ const Comment = ({comment}) => {
                 <Col sm={10}>
                     <Row >
                         <Col>
-                            <h3 style={{float:'left'}}>{post.author.userName}</h3>
+                            <h3 style={{float:'left'}}>{comment.author.userName}</h3>
                         </Col>
                         <Col>
                             <h4 style={{float:'right'}}>{correktTime}</h4>
                         </Col>
                     </Row>
                     <Row>
-                        <h4>{post.content}</h4>
+                        <h4>{comment.content}</h4>
                     </Row>
                 </Col>
             </Row>

@@ -5,8 +5,45 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Comments from "./Comments"
+import AddComment from "./AddComment"
+import { useState, useEffect } from 'react'
 
-const Post = ({post}) => {
+const Post = ({post, loggedUser}) => {
+    const [comments,setComments] = useState([])
+
+    useEffect(()=>{
+        const getComments = async () => {
+          const commentsFromServer = await fetchComments()
+          setComments(commentsFromServer)
+        }
+        getComments()
+      },[])
+    
+      const addComment = async (comments) =>{
+        try{
+        const res = await fetch(`https://localhost:3333/api/feeds/1/posts/${post.id}/comments`,{
+            method: 'POST',
+            // mode: 'cors',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(comments)
+        })
+        const commentsFromServer = await fetchComments()
+        setComments(commentsFromServer)
+        }
+        catch (error){
+            console.log(error)
+        }
+        }
+        const fetchComments = async () =>{
+            const res = await fetch(`https://localhost:3333/api/feeds/1/posts/${post.id}/comments`)
+            const data = await res.json()
+
+            return data
+        }
+
+
     const dateTime = post.createTime.split('T')
     const fulltime = dateTime[1].split('.')
     const correktTime = dateTime[0]+' '+ fulltime[0]
@@ -28,9 +65,10 @@ const Post = ({post}) => {
                     <Row>
                         <h4>{post.content}</h4>
                     </Row>
-                    {/* <Row>
-                        <Comments postId={post.id}/>
-                    </Row> */}
+                    <Row>
+                        <AddComment loggedUser={loggedUser} addComment={addComment}/>
+                    </Row>
+                       {comments.length > 0 &&<Comments comments={comments}/>}
                 </Col>
             </Row>
         </Container>
