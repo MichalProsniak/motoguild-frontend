@@ -10,35 +10,7 @@ import { Rating } from 'react-simple-star-rating'
 const libraries = ['places']
 export default function RouteForList(props)
 {
-    const colors = ["#0088FE", "#00C49F", "#FFBB28"];
-    const delay = 2500;
-
-    const [index, setIndex] = React.useState(0);
-    const timeoutRef = React.useRef(null);
-
-    function resetTimeout() {
-        if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        }
-    }
-
-    React.useEffect(() => {
-        resetTimeout();
-        timeoutRef.current = setTimeout(
-        () =>
-            setIndex((prevIndex) =>
-            prevIndex === colors.length - 1 ? 0 : prevIndex + 1
-            ),
-        delay
-        );
-
-    return () => {
-      resetTimeout();
-    };
-  }, [index]);
-
-///////////////////////////////////
-
+    
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
