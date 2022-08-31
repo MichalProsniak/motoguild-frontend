@@ -11,7 +11,7 @@ export default function BestRoutes()
     useEffect(() => {
         async function getAllRoutes() {
         try {
-            const res = await fetch("https://localhost:3333/api/routes?orderByRating=true");
+            const res = await fetch("https://localhost:3333/api/routes?page=1&itemsperpage=5&orderByRating=true");
             const data = await res.json();
             setAllRoutes(data);
             setIsLoading(false);
