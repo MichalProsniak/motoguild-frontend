@@ -19,7 +19,10 @@ export default function NewRouteBody()
         endingPlace: "",
         description: "",
         rating: 0,
-        owner: {"id": 2}
+        owner: {"id": 1,
+            "userName": "b-man",
+            "email": "www@665.pl",
+            "rating": 0}
     })
     
     const [coordinates, setCoordinates] = useState({

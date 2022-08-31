@@ -11,7 +11,7 @@ export default function RidePage()
     useEffect(() => {
         async function getRide() {
         try {
-            const res = await fetch(`https://localhost:3333/api/ride/${currentRide}`);
+            const res = await fetch(`https://localhost:3333/api/rides/${currentRide}`);
             const data = await res.json();
             setRide(data);
             setIsLoading(false);

@@ -21,7 +21,7 @@ export default function RideBody(props)
                 <Container>
                     <Row>
                         <Col sm={6}>
-                            {isLoaded && <SmallMap small={false} originPoint={props.ride.startPlace} destinationPoint={props.ride.endingPlace} />}
+                            {isLoaded && <SmallMap small={false} originPoint={props.ride.route.startPlace} destinationPoint={props.ride.route.endingPlace} />}
                         </Col>
                         <Col sm={6}  >
                             <h3>Opis przejazdu</h3>
@@ -30,8 +30,8 @@ export default function RideBody(props)
                     </Row>
                     <Row>
                         <Col sm={6}  >
-                            <h4><i className="bi bi-person-circle"></i> {props.owner}OWNER NAME</h4><br></br>
-                            <ImportantRideInfo startPlace={props.ride.startPlace} endingPlace={props.ride.endingPlace} startTime={props.ride.startTime}  minimumRating={props.minimumRating}/>
+                            <h4><i className="bi bi-person-circle"></i> {props.ride.owner.userName}</h4><br></br>
+                            <ImportantRideInfo startPlace={props.ride.route.startPlace} endingPlace={props.ride.route.endingPlace} startTime={props.ride.startTime}  minimumRating={props.minimumRating}/>
                         </Col>
                         <Col sm={6}>
                             <br></br>

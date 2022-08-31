@@ -24,10 +24,23 @@ export default function SmallMap(props)
                     origin: props.originPoint,
                     destination: props.destinationPoint,
                     travelMode: google.maps.TravelMode.DRIVING
+                }, (result, status) => {
+                    
+                    if (status === google.maps.DirectionsStatus.OK)
+                    {
+                        setDirectionsResponse(result)
+                        setDistance(result.routes[0].legs[0].distance.text)
+                        setDuration(result.routes[0].legs[0].duration.text)
+                    }
+                    else if(status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT)
+                    {
+                       
+                        
+                    }
+                    
                 })
-            setDirectionsResponse(results)
-            setDistance(results.routes[0].legs[0].distance.text)
-            setDuration(results.routes[0].legs[0].duration.text)}
+
+           }
             
         calculateRoute()}, [])
 
@@ -38,7 +51,7 @@ export default function SmallMap(props)
         mapTypeControl: false,
         fullscreenControl: false }}>
             <MarkerF/>
-            {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+            {directionsResponse && <DirectionsRenderer directions={directionsResponse} /> }
         </GoogleMap>
         <p><i className="bi bi-browser-safari"></i> {distance}</p>
         <p><i className="bi bi-clock-history"></i> {duration}</p>

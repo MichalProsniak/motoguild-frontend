@@ -38,13 +38,12 @@ export default function RideForList(props)
                     </Col>
                     <Col>
                         <h3><i className="bi bi-person-circle"></i></h3>
-                        <h3>{props.owner}</h3>
-                        <h3>OWNER NAME</h3>
+                        <h3>{props.owner.userName}</h3>
                     </Col>
 
                 </Row>
                 
-            </Container>
+            </Container> 
         </div>
     )
 }
