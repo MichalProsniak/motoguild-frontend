@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import SmallMap from './SmallMap';
 import { useLoadScript} from "@react-google-maps/api"
 import RideForList from './RideForList';
+import Pagination from './Pagination';
 
 
 
@@ -18,7 +19,7 @@ export default function RideList()
             const res = await fetch(`https://localhost:3333/api/rides?page=${currentPage}&itemsperpage=${itemsPerPage}`);
             const data = await res.json();
             const headers = res.headers
-            setPaginationData(headers.get('X-Pagination'))
+            setPaginationData(JSON.parse(headers.get('X-Pagination')))
             setAllRides(data);
             setIsLoading(false);
         } catch (error) {
@@ -27,21 +28,9 @@ export default function RideList()
         }
         getRides(); 
     }, [currentPage]);
-    function plus()
-    {
-        setCurrentPage(prevState => {
-            return (prevState + 1)
-        })
-    }
-    function minus()
-    {
-        setCurrentPage(prevState => {
-            return (prevState - 1)
-        })
-    }
+
 
     return(<div>
-        {!isLoading && console.log(paginationData)}
         {!isLoading && allRides.map(ride => <RideForList 
         key={ride.id} 
         id={ride.id} 
@@ -51,8 +40,7 @@ export default function RideList()
         startTime={ride.startTime}
         owner={ride.owner}
         minimumRating={ride.minimumRating}/>)}
-        <button onClick={minus} >minus</button>
-        <button onClick={plus} >plus</button>
+        {!isLoading && <Pagination pagination={paginationData} setCurrentPage={setCurrentPage}/>}
         </div>
     );
 
