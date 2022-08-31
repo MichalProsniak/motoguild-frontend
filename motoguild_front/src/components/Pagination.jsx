@@ -2,11 +2,14 @@ import ReactPaginate from "react-paginate"
 
 export default function Pagination(params)
 {
-function handlePageClick(data)
-{
-    let currentPage = data.selected + 1
-    params.setCurrentPage(currentPage)
-}
+
+    
+    function handlePageClick(data)
+    {
+        let currentPage = data.selected + 1
+        params.setCurrentPage(currentPage)
+    }
+
     return (
         <div>
             <ReactPaginate 
