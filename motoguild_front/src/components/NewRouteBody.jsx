@@ -1,7 +1,6 @@
 import {useState, useRef} from "react"
 import { useLoadScript, Autocomplete} from "@react-google-maps/api"
 import BigMap from './BigMap.jsx'
-import usePlacesAutocomplete from "use-places-autocomplete"
 
 
 
@@ -45,12 +44,6 @@ export default function NewRouteBody()
           })) 
       }
 
-      function handleSelect(event)
-      {
-        event.preventDefault()
-        const {name, value} = event.target
-        console.log(value)
-      }
 
       async function handleSubmit(event)
       {
@@ -76,22 +69,23 @@ export default function NewRouteBody()
           }
 
       }
-
-      function changePlace(event)
+      function handleSelectOrigin()
       {
-        console.log(event)
+        setNewRoute(prevState => ({
+            ...prevState,
+            startPlace: originRef.current.value
+          })) 
       }
 
-      const PlacesAutocomplete = ( { setSelected }) => {
-        const {
-            ready,
-            value,
-            setValue,
-            suggestions: { status, data },
-            clearSuggestions,
-        } = usePlacesAutocomplete();
-        return <div></div>
+      function handleSelectDestination()
+      {
+        setNewRoute(prevState => ({
+            ...prevState,
+            endingPlace: destinationRef.current.value
+          })) 
       }
+
+     
 
     return (
         <div>
@@ -100,11 +94,11 @@ export default function NewRouteBody()
                     <label name="name">Nazwa trasy</label>
                     <input className="standard-input" type="text" name="name" value={newRoute.name} onChange={handleChange}></input>
                     <label name="startPoint">Początek trasy</label>
-                    {isLoaded && <Autocomplete >
+                    {isLoaded && <Autocomplete onPlaceChanged={handleSelectOrigin} >
                         <input className="standard-input" type="text" name="startPlace" value={newRoute.startPlace} onChange={handleChange} ref={originRef}></input>
                     </Autocomplete>}
                     <label name="endPoint">Koniec trasy</label>
-                    {isLoaded && <Autocomplete>
+                    {isLoaded && <Autocomplete  onPlaceChanged={handleSelectDestination}>
                         <input className="standard-input" type="text" name="endingPlace" value={newRoute.endingPlace} onChange={handleChange} ref={destinationRef}></input>
                     </Autocomplete>}
                 </div>
