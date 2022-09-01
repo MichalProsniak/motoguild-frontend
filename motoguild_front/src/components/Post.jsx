@@ -68,7 +68,7 @@ const Post = ({ post, loggedUser }) => {
 
           {/* <AddComment loggedUser={loggedUser} addComment={addComment}/> */}
 
-          {comments.length > 0 && <Comments comments={comments} />}
+          {/* {comments.length > 0 && <Comments comments={comments} />} */}
         </div>
       </div>
     </Container>
