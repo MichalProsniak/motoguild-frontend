@@ -163,15 +163,21 @@ label {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 16px;
 }
 
 .logo-navbar {
   width: 80px;
 }
 
+.nav-link {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
 .navbar-search {
   display: flex;
-  gap: 15px;
+  gap: 50px;
   margin-right: 15px;
 }
 
@@ -231,17 +237,31 @@ label {
 }
 
 .posts {
+  border: 1px solid lightgray;
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 300px;
-  margin: auto;
   width: 500px;
-  padding-right: 10px;
+  padding: 10px;
+  padding-right: 15px;
+  box-shadow: inset 0px 0px 10px -4px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
 }
 
 .post {
   border-radius: 5px;
   font-size: 12px;
+}
+
+.upcoming-events-card {
+  box-shadow: inset 0px 0px 10px -4px rgba(0, 0, 0, 1);
+  height: 300px;
+  width: 500px;
+  border-radius: 10px;
+  background-image: url("https://thumbs.dreamstime.com/b/under-construction-10012274.jpg");
+  background-size: cover;
 }
 
 .post-details {
@@ -251,6 +271,27 @@ label {
 }
 
 .post-avatar {
+}
+
+.navbar-profile-pic {
+  margin-left: 10px;
+}
+
+.dropdown-item-custom {
+  border: 1px solid lightgray;
+  box-shadow: 5px 5px 1px -14px rgba(66, 68, 90, 1);
+  border-radius: 5px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 5px;
+  width: 150px;
+}
+.dropdown-item-custom-link:hover {
+  color: white;
+}
+
+.dropdown-item-custom:hover {
+  background-color: lightgray;
 }
 
 .post-time {
@@ -314,14 +355,14 @@ label {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
+  background-color: lightgray;
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a8bbbf;
+  background-color: #000000;
 }
 
 .error-message {
@@ -333,7 +374,12 @@ label {
 .slideshow {
   margin: 0 auto;
   overflow: hidden;
-  max-width: 500px;
+  max-width: 1025px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 1px solid lightgray;
+  box-shadow: inset 0px 0px 10px -4px rgba(0, 0, 0, 1);
+  border-radius: 15px;
 }
 
 .slideshowSlider {
@@ -369,4 +415,17 @@ label {
 
 .slideshowDot.active {
   background-color: black;
+}
+
+.homepage-col1 {
+  display: flex;
+  justify-content: flex-end;
+}
+.homepage-col2 {
+  display: flex;
+}
+
+.homepage-best-routes {
+  padding: 30px;
+  margin-bottom: 30px;
 }

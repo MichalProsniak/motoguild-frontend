@@ -9,63 +9,41 @@ import pictres from "../images/piesek.jpg";
 import logo from "../images/logo.png";
 import { useState } from "react";
 
-// function xx() {
-//   return (
-//     <>
-//       {["sm"].map((expand) => (
-//         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
-//           <Container fluid>
-//             <Image style={{ height: "50px" }} src={logo} />
-//             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-//             <Navbar.Offcanvas
-//               id={`offcanvasNavbar-expand-${expand}`}
-//               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-//               placement="end"
-//             >
-//               <Offcanvas.Body>
-//                 <Nav className="justify-content-end flex-grow-1 pe-3">
-//                   <Nav.Link href="routes">Trasy</Nav.Link>
-//                   <Nav.Link href="rides">Jedż</Nav.Link>
-//                   <Nav.Link href="#action3">Wydarzenia</Nav.Link>
-//                 </Nav>
-//               </Offcanvas.Body>
-//             </Navbar.Offcanvas>
-//             <Image
-//               className="img fluid rounded-circle"
-//               style={{ height: "50px", width: "50px" }}
-//               src={pictres}
-//             />
-//           </Container>
-//         </Navbar>
-//       ))}
-//     </>
-//   );
-// }
-
 function OffcanvasExample() {
   const [isClickedRoutes, setIsClickedRoutes] = useState(false);
   const [classNameRoutes, setClassNameRoutes] = useState("dropdown-menu");
   const [classNameRoutes2, setClassNameRoutes2] = useState("nav-item dropdown");
-  function handleClickRoutes() {
-    setIsClickedRoutes((prevState) => !prevState);
-    isClickedRoutes
-      ? setClassNameRoutes("dropdown-menu show")
-      : setClassNameRoutes("dropdown-menu");
-    isClickedRoutes
-      ? setClassNameRoutes2("nav-item dropdown show")
-      : setClassNameRoutes2("nav-item dropdown");
-  }
   const [isClickedRides, setIsClickedRides] = useState(false);
   const [classNameRides, setClassNameRides] = useState("dropdown-menu");
   const [classNameRides2, setClassNameRides2] = useState("nav-item dropdown");
+  function handleClickRoutes() {
+    setIsClickedRoutes((prevState) => !prevState);
+    if (isClickedRides) {
+      setIsClickedRides((prevState) => !prevState);
+      setClassNameRides("dropdown-menu");
+      setClassNameRides2("nav-item dropdown");
+    }
+    isClickedRoutes
+      ? setClassNameRoutes("dropdown-menu")
+      : setClassNameRoutes("dropdown-menu show");
+    isClickedRoutes
+      ? setClassNameRoutes2("nav-item dropdown")
+      : setClassNameRoutes2("nav-item dropdown show");
+  }
+
   function handleClickRides() {
     setIsClickedRides((prevState) => !prevState);
+    if (isClickedRoutes) {
+      setIsClickedRoutes((prevState) => !prevState);
+      setClassNameRoutes("dropdown-menu");
+      setClassNameRoutes2("nav-item dropdown");
+    }
     isClickedRides
-      ? setClassNameRides("dropdown-menu show")
-      : setClassNameRides("dropdown-menu");
+      ? setClassNameRides("dropdown-menu")
+      : setClassNameRides("dropdown-menu show");
     isClickedRides
-      ? setClassNameRides2("nav-item dropdown show")
-      : setClassNameRides2("nav-item dropdown");
+      ? setClassNameRides2("nav-item dropdown")
+      : setClassNameRides2("nav-item dropdown show");
   }
   return (
     <Navbar className="navbar navbar-expand-lg navbar-custom">
@@ -93,6 +71,11 @@ function OffcanvasExample() {
               Home
             </Nav.Link>
           </li>
+          <li className="nav-item active">
+            <Nav.Link className="nav-link" href="/groups">
+              Group
+            </Nav.Link>
+          </li>
           <li className={classNameRides2}>
             <Nav.Link
               className="nav-link dropdown-toggle"
@@ -107,11 +90,11 @@ function OffcanvasExample() {
               Rides
             </Nav.Link>
             <div className={classNameRides} aria-labelledby="navbarDropdown">
-              <Nav.Link className="dropdown-item" href="/rides">
-                Explore Rides
+              <Nav.Link className="dropdown-item-custom" href="/rides">
+                <span className="dropdown-item-custom-link">Explore Rides</span>
               </Nav.Link>
-              <Nav.Link className="dropdown-item" href="/create-ride">
-                Create Ride
+              <Nav.Link className="dropdown-item-custom" href="/create-ride">
+                <span className="dropdown-item-custom-link">Create Ride</span>
               </Nav.Link>
               {/* <Nav.Link className="dropdown-item" href="#">Another action</a> */}
               {/* <div className="dropdown-divider"></div>
@@ -133,11 +116,13 @@ function OffcanvasExample() {
               Routes
             </Nav.Link>
             <div className={classNameRoutes} aria-labelledby="navbarDropdown">
-              <Nav.Link className="dropdown-item" href="/routes">
-                Explore Routes
+              <Nav.Link className="dropdown-item-custom" href="/routes">
+                <span className="dropdown-item-custom-link">
+                  Explore Routes
+                </span>
               </Nav.Link>
-              <Nav.Link className="dropdown-item" href="/create-route">
-                Create Route
+              <Nav.Link className="dropdown-item-custom" href="/create-route">
+                <span className="dropdown-item-custom-link">Create Route</span>
               </Nav.Link>
             </div>
           </li>
@@ -159,7 +144,7 @@ function OffcanvasExample() {
           </button>
         </form>
         <Image
-          className="img fluid rounded-circle"
+          className="img fluid rounded-circle navbar-profile-pic"
           style={{ height: "50px", width: "50px" }}
           src={pictres}
         />

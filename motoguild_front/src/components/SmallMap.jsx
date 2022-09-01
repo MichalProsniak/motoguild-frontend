@@ -28,6 +28,16 @@ export default function SmallMap(props) {
           origin: props.originPoint,
           destination: props.destinationPoint,
           travelMode: google.maps.TravelMode.DRIVING,
+          waypoints: [
+            // {
+            //   location: "Warszawa",
+            //   stopover: true,
+            // },
+            // {
+            //   location: "Poznań",
+            //   stopover: true,
+            // },
+          ],
         },
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
