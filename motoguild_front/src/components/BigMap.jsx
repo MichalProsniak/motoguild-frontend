@@ -1,5 +1,5 @@
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-google-maps/api"
-import {useState, useRef} from "react"
+import {useState, useEffect} from "react"
 
 const libraries = ['places']
 
@@ -12,19 +12,28 @@ export default function BigMap(props)
 
     const [directionsResponse, setDirectionsResponse] = useState(null)
 
-    async function calculateRoute() {
-        if (props.originRef.current.value === '' || props.destinationRef.current.value === '')
-        {
-            return
+    useEffect(() => {
+        async function calculateRoute() {
+            if (props.originRef.current.value === '' || props.destinationRef.current.value === '' )
+            {
+                return
+            }
+            if (props.isOrigin && props.isDestination)
+            {
+                const directionsService = new google.maps.DirectionsService()
+                const results = await directionsService.route({
+                    origin: props.originRef.current.value,
+                    destination: props.destinationRef.current.value,
+                    travelMode: google.maps.TravelMode.DRIVING
+                })
+                setDirectionsResponse(results)
+            }
+            
         }
-        const directionsService = new google.maps.DirectionsService()
-        const results = await directionsService.route({
-            origin: props.originRef.current.value,
-            destination: props.destinationRef.current.value,
-            travelMode: google.maps.TravelMode.DRIVING
-        })
-        setDirectionsResponse(results)
-    }
+        calculateRoute()
+    }, [props.isOrigin, props.isDestination])
+
+    
 
 
     return (<div>{isLoaded && <GoogleMap zoom={7} center={props.coordinates} mapContainerClassName="googlemap" options={{
@@ -33,7 +42,7 @@ export default function BigMap(props)
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>}
-        {isLoaded && <button type="button" onClick={calculateRoute}>Zaktualizuj mapę</button>}
+        {/* {isLoaded && <button type="button" onClick={calculateRoute}>Zaktualizuj mapę</button>} */}
         </div>)
 
 }

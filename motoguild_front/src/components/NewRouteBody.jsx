@@ -9,6 +9,8 @@ export default function NewRouteBody()
 {
     const originRef = useRef()
     const destinationRef = useRef()
+    const [isOrigin, setIsOrigin] = useState(false)
+    const [isDestination, setIsDestination] = useState(false)
 
     const [allInputsCorrect, setAllInputsCorrect] = useState(true)
 
@@ -38,6 +40,15 @@ export default function NewRouteBody()
     function handleChange(event)
       {
         const {name, value} = event.target
+        if ([name] == 'startPlace' )
+        {
+            setIsOrigin(false)
+        }
+        if ([name] == 'endingPlace' )
+        {
+            setIsDestination(false)
+        }
+        
         setNewRoute(prevState => ({
             ...prevState,
             [name]: value
@@ -55,7 +66,6 @@ export default function NewRouteBody()
             return
         }
         setAllInputsCorrect(true)
-        console.log(newRoute)
         try{
             const res = await fetch('https://localhost:3333/api/routes/',{
                 method: 'POST',
@@ -75,6 +85,7 @@ export default function NewRouteBody()
             ...prevState,
             startPlace: originRef.current.value
           })) 
+          setIsOrigin(true)
       }
 
       function handleSelectDestination()
@@ -83,6 +94,7 @@ export default function NewRouteBody()
             ...prevState,
             endingPlace: destinationRef.current.value
           })) 
+          setIsDestination(true)
       }
 
      
@@ -112,7 +124,7 @@ export default function NewRouteBody()
                 </div>
                 
             </form>
-            {isLoaded && <BigMap coordinates={coordinates} originRef={originRef} destinationRef={destinationRef} />}
+            {isLoaded && <BigMap coordinates={coordinates} originRef={originRef} destinationRef={destinationRef} isOrigin={isOrigin} isDestination={isDestination}/>}
         </div>
     )
 }
