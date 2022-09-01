@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from "react"
-import Posts from '../components/Posts'
-import BestRoutes from "../components/BestRoutes"
-import PostsForPage from "../components/PostsForPage"
+import Posts from "./Posts";
+import {useState, useEffect} from 'react'
+import {Route, Link, Routes, useParams} from 'react-router-dom';
 
-const Homepage = ({loggedUser}) => {
+
+export default function PostsForPage(props)
+{
+    const currentRide = useParams().id;
+    const loggedUser= {
+      id: 2,
+      userName: "Fineasz",
+      email: "fin@gmail.com",
+      rating: 0
+  }
     const [posts,setPosts] = useState([])
 
     useEffect(()=>{
@@ -13,12 +21,19 @@ const Homepage = ({loggedUser}) => {
         }
         getPosts()
       },[])
-    
+
+      const fetchPosts = async () =>{
+        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`)
+        const data = await res.json()
+
+        return data
+      }
+
       const addPost = async (post) =>{
         try{
-
-        const res = await fetch('https://localhost:3333/api/feed/1/post',{
+        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`,{
             method: 'POST',
+            // mode: 'cors',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -30,16 +45,11 @@ const Homepage = ({loggedUser}) => {
         console.log(error)
       }
       }
-      const fetchPosts = async () =>{
-        const res = await fetch(`https://localhost:3333/api/feed/1/post?orderByDate=true`)
-        const data = await res.json()
 
-        return data
-      }
+    
+
 
     return (
-      <div>
-        <BestRoutes />
         <div className="posts" >
             <Posts
             loggedUser={loggedUser}
@@ -47,9 +57,5 @@ const Homepage = ({loggedUser}) => {
             onAdd={addPost}
             />
         </div>
-      </div>
-        
     )
 }
-
-export default Homepage
