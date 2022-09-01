@@ -1,10 +1,8 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  margin: auto;
   text-align: center;
 }
-
 
 .page-title {
   margin: 20px;
@@ -41,12 +39,17 @@
   padding: 2em;
 }
 
+.container-custom {
+  max-width: 1100px;
+  margin: auto;
+}
+
 .read-the-docs {
   color: #888;
 }
 
-.create-ride-body{
-  background: #F5F5F5;
+.create-ride-body {
+  background: #f5f5f5;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   display: grid;
@@ -58,7 +61,7 @@
 
 .standard-input {
   border-radius: 5px;
-  border: 1px solid #D5D4D8;
+  border: 1px solid #d5d4d8;
   text-indent: 5px;
   display: block;
   margin-left: 5%;
@@ -67,7 +70,7 @@
 }
 .description-input {
   border-radius: 5px;
-  border: 1px solid #D5D4D8;
+  border: 1px solid #d5d4d8;
   text-indent: 5px;
   display: block;
   margin-left: 5%;
@@ -83,13 +86,13 @@ label {
   font-size: large;
 }
 
-.standard-button{
+.standard-button {
   display: block;
   max-height: 50px;
   max-width: 100px;
   margin-left: 15%;
   margin-bottom: 20px;
-  background: #D9D9D9;
+  background: #d9d9d9;
   border: 1px solid #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -101,9 +104,31 @@ label {
   margin: 5%;
 }
 .googlemap-small {
-  width: 90%;
+  width: 200px;
   height: 150px;
-  margin: 5%;
+  margin: 10px;
+  margin-left: 0px;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
+.googlemap-slides {
+  width: 70%;
+  height: 220px;
+  margin: auto;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.googlemap-slides-containter-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: black;
+}
+
+.googlemap-slides-containter-text > p {
+  margin: 10px;
 }
 
 .googlemap-normal {
@@ -113,39 +138,195 @@ label {
 }
 
 .group-container {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 
 .group-name {
   text-align: left;
 }
-.text-container{
+.text-container {
   text-align: left;
   padding-top: 10px;
-  margin-left: 5%;
+  margin-left: 20px;
+  width: 200px;
+}
+
+.navbar-custom {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-navbar {
+  width: 80px;
+}
+
+.navbar-search {
+  display: flex;
+  gap: 15px;
+  margin-right: 15px;
+}
+
+.red {
+  display: flex;
+  justify-content: center;
+}
+
+.ride-info-text > p {
+  margin: 2px;
+}
+
+.ride-info-text-stars {
+  margin-top: -15px;
+}
+
+.small-map-info > p {
+  margin: 0px;
+}
+
+.small-map-info {
+  width: 200px;
 }
 
 .for-list {
-  background-color: #D9D9D9;
-  margin: 50px;
+  background-color: #ffffff;
+  margin: auto;
+  margin-bottom: 50px;
+  margin-top: 25px;
   padding-bottom: 20px;
+  border-radius: 5px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  width: 574px;
+}
+
+.for-list-user-text {
+  font-size: 12px;
+}
+
+.for-list-user-avatar {
+  font-size: 50px;
+  margin-top: 10px;
+  margin: auto;
+  width: 50px;
+}
+
+.for-list-participants {
+  font-size: 20px;
+}
+
+.for-list-name {
+  font-size: 12px;
 }
 
 .normal-container {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .posts {
   overflow-y: scroll;
   overflow-x: hidden;
-  max-height: 500px;
+  max-height: 300px;
+  margin: auto;
+  width: 500px;
+  padding-right: 10px;
+}
+
+.post {
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.post-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.post-avatar {
+}
+
+.post-time {
+  width: 30%;
+}
+.post-username {
+  width: 64%;
+  text-align: start;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.post-content {
+  margin-left: 15px;
+  margin-right: 5px;
+  text-align: start;
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-add-card {
+}
+
+.add-post-card {
+}
+
+.add-post-input {
+  border: 1px solid grey;
+  border-radius: 15px;
+  text-indent: 10px;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  height: 26px;
+}
+
+.add-post-button {
+  border-radius: 15\px;
+  border: 1px solid grey;
+  background-color: white;
+  font-size: 12px;
+  width: 100%;
+  height: 26px;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 
 .error-message {
   color: red;
 }
-
-
 
 /* Slideshow */
 
@@ -158,11 +339,11 @@ label {
 .slideshowSlider {
   white-space: nowrap;
   transition: ease 1000ms;
+  height: 250px;
 }
 
 .slide {
   display: inline-block;
-
   height: 250px;
   width: 100%;
   border-radius: 40px;
@@ -176,8 +357,8 @@ label {
 
 .slideshowDot {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
 
   cursor: pointer;
@@ -187,5 +368,5 @@ label {
 }
 
 .slideshowDot.active {
-  background-color: #6a0dad;
+  background-color: black;
 }

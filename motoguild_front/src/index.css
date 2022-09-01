@@ -1,4 +1,3 @@
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -9,20 +8,17 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
+  margin: 0%;
 }
 
 .cos {
-  float: 'left';
-  border: 'none';
+  float: "left";
+  border: "none";
 }
 
 .cos:focus {
-  float: 'left';
-  border: 'none';
+  float: "left";
+  border: "none";
 }
 
 .post {

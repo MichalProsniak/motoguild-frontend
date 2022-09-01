@@ -1,10 +1,9 @@
 import NewRideBody from "../components/NewRideBody";
 
 function CreateRidePage() {
-
   return (
-    <div>
-      <h1 className="page-title" >Dodaj przejazd</h1>
+    <div className="container-custom">
+      <h1 className="page-title">Dodaj przejazd</h1>
       <NewRideBody />
     </div>
   );
