@@ -7,7 +7,10 @@ import Container from 'react-bootstrap/Container'
 const AddPost = ({loggedUser, addPost}) => {
     const [content, setContent] = useState('')
     const [author, setAuthor] = useState({
-        id: loggedUser.id
+        id: 2,
+        userName: "Fineasz",
+        email: "fin@gmail.com",
+        rating: 0
     })
 
     const onSubmit = (e) =>{

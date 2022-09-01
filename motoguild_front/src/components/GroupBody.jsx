@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image'
 import {useState, useEffect} from 'react';
 import {Route, Link, Routes, useParams} from 'react-router-dom';
 import GroupImportantInfo from './GroupImportantInfo';
-import GroupPosts from './GroupPosts';
+import PostsForPage from './PostsForPage';
 import GroupMembers from './GroupMembers';
 
 
@@ -47,7 +47,7 @@ export default function GroupBody()
                     {!isLoading && <GroupMembers members={group.participants} />}
                 </Col>
                 <Col sm={6}>
-                    {!isLoading &&<GroupPosts/>}
+                    {!isLoading &&<PostsForPage link="group" />}
                     
                 </Col>
             </Row>

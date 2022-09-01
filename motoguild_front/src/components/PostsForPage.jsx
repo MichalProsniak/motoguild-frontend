@@ -3,10 +3,15 @@ import {useState, useEffect} from 'react'
 import {Route, Link, Routes, useParams} from 'react-router-dom';
 
 
-export default function GroupPosts(props)
+export default function PostsForPage(props)
 {
-    const currentGroup = useParams().id;
-    const loggedUser={id: 1}
+    const currentRide = useParams().id;
+    const loggedUser= {
+      id: 2,
+      userName: "Fineasz",
+      email: "fin@gmail.com",
+      rating: 0
+  }
     const [posts,setPosts] = useState([])
 
     useEffect(()=>{
@@ -18,7 +23,7 @@ export default function GroupPosts(props)
       },[])
 
       const fetchPosts = async () =>{
-        const res = await fetch(`https://localhost:3333/api/groups/${currentGroup}/posts?OrderByDate=true`)
+        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`)
         const data = await res.json()
 
         return data
@@ -26,7 +31,7 @@ export default function GroupPosts(props)
 
       const addPost = async (post) =>{
         try{
-        const res = await fetch(`https://localhost:3333/api/groups/${currentGroup}/posts`,{
+        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`,{
             method: 'POST',
             // mode: 'cors',
             headers: {

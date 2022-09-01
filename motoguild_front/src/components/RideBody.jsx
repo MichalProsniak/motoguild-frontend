@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import { useLoadScript} from "@react-google-maps/api"
 import SmallMap from './SmallMap';
 import ImportantRideInfo from './ImportantRideInfo';
+import PostsForPage from './PostsForPage';
 
 const libraries = ['places']
 export default function RideBody(props)
@@ -34,10 +35,7 @@ export default function RideBody(props)
                             <ImportantRideInfo startPlace={props.ride.route.startPlace} endingPlace={props.ride.route.endingPlace} startTime={props.ride.startTime}  minimumRating={props.minimumRating}/>
                         </Col>
                         <Col sm={6}>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <h1>POSTY</h1>
+                            <PostsForPage link="ride" />
                         </Col>
                     </Row>
                 </Container>

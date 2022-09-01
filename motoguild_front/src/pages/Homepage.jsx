@@ -5,7 +5,7 @@ import BestRoutes from "../components/BestRoutes"
 import { Col, Row } from "react-bootstrap"
 
 const Homepage = ({loggedUser}) => {
-    const [posts,setPosts] = useState([])
+    const [posts,setPosts] = useState()
 
     useEffect(()=>{
         const getPosts = async () => {
@@ -17,6 +17,7 @@ const Homepage = ({loggedUser}) => {
     
       const addPost = async (post) =>{
         try{
+
         const res = await fetch('https://localhost:3333/api/feed/1/post',{
             method: 'POST',
             headers: {
@@ -45,7 +46,6 @@ const Homepage = ({loggedUser}) => {
         <Row>
           <Col>
             <div className="posts" >
-
                 <Posts
                 loggedUser={loggedUser}
                 posts={posts}

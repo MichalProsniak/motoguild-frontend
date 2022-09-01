@@ -1,5 +1,6 @@
 import { useLoadScript} from "@react-google-maps/api"
 import SmallMap from './SmallMap';
+import PostsForPage from "./PostsForPage";
 
 
 const libraries = ['places']
@@ -15,6 +16,7 @@ export default function RouteBody(props)
     return (
     <div>
         {isLoaded && <SmallMap small={false} originPoint={props.route.startPlace} destinationPoint={props.route.endingPlace} />}
+        <PostsForPage link="route" />
     </div>
         
     )

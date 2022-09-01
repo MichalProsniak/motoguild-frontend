@@ -6,7 +6,10 @@ import { useState } from "react"
 const AddComment = ({loggedUser, addComment}) => {
     const [content, setContent] = useState('')
     const [author, setAuthor] = useState({
-        id: loggedUser.id
+        id: 2,
+        userName: "Fineasz",
+        email: "fin@gmail.com",
+        rating: 0
     })
 
     const onSubmit = (e) =>{
