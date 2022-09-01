@@ -64,7 +64,7 @@ const Post = ({post, loggedUser}) => {
                         <h4>{post.content}</h4>
                     </Row>
                     <Row>
-                        <AddComment loggedUser={loggedUser} addComment={addComment}/>
+                        {/* <AddComment loggedUser={loggedUser} addComment={addComment}/> */}
                     </Row>
                        {comments.length > 0 &&<Comments comments={comments}/>}
                 </Col>
