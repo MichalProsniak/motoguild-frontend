@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 const Post = ({ post, loggedUser }) => {
   const [comments, setComments] = useState([]);
 
+
   useEffect(() => {
     const getComments = async () => {
       const commentsFromServer = await fetchComments();
@@ -29,6 +30,7 @@ const Post = ({ post, loggedUser }) => {
             "Content-type": "application/json",
           },
           body: JSON.stringify(comments),
+
         }
       );
       const commentsFromServer = await fetchComments();
@@ -69,11 +71,44 @@ const Post = ({ post, loggedUser }) => {
 
           {/* <AddComment loggedUser={loggedUser} addComment={addComment}/> */}
 
+<<<<<<< HEAD
           {comments.length > 0 && <Comments comments={comments} />}
         </div>
       </div>
     </Container>
   );
 };
+=======
+    const dateTime = post.createTime.split('T')
+    const fulltime = dateTime[1].split('.')
+    const correktTime = dateTime[0]+' '+ fulltime[0]
+    return(
+        <Container className="post">
+            <Row>
+                <Col sm={2}>
+                    <Image className='img fluid rounded-circle' style={{height: '100px', width: '100px'}} src={pictres} />
+                </Col>
+                <Col sm={10}>
+                    <Row >
+                        <Col>
+                            <h3 style={{float:'left'}}>{post.author.userName}</h3>
+                        </Col>
+                        <Col>
+                            <h4 style={{float:'right'}}>{correktTime}</h4>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <h4>{post.content}</h4>
+                    </Row>
+                    <Row>
+                        <AddComment loggedUser={loggedUser} addComment={addComment}/> 
+                    </Row>
+                       {comments.length > 0 &&<Comments comments={comments}/>}
+                </Col>
+            </Row>
+        </Container>
+    )
+}
+>>>>>>> 2268d892c2c6003e21e0ca9ed11a01e663e9c0bb
 
 export default Post;

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import Posts from '../components/Posts'
+import UpcomingEvents from '../components/UpcomingEvents'
 import BestRoutes from "../components/BestRoutes"
-import PostsForPage from "../components/PostsForPage"
+import { Col, Row } from "react-bootstrap"
 
 const Homepage = ({loggedUser}) => {
-    const [posts,setPosts] = useState([])
+    const [posts,setPosts] = useState()
 
     useEffect(()=>{
         const getPosts = async () => {
@@ -39,14 +40,23 @@ const Homepage = ({loggedUser}) => {
 
     return (
       <div>
+        <Row>
         <BestRoutes />
-        <div className="posts" >
-            <Posts
-            loggedUser={loggedUser}
-            posts={posts}
-            onAdd={addPost}
-            />
-        </div>
+        </Row>
+        <Row>
+          <Col>
+            <div className="posts" >
+                <Posts
+                loggedUser={loggedUser}
+                posts={posts}
+                onAdd={addPost}
+                />
+            </div>
+          </Col>
+          <Col>
+            <UpcomingEvents />
+          </Col>
+        </Row>
       </div>
         
     )
