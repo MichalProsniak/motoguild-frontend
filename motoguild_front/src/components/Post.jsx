@@ -21,9 +21,8 @@ const Post = ({post, loggedUser}) => {
     
       const addComment = async (comments) =>{
         try{
-        const res = await fetch(`https://localhost:3333/api/feeds/1/posts/${post.id}/comments`,{
+        const res = await fetch(`https://localhost:3333/api/post/${post.id}/comment`,{
             method: 'POST',
-            // mode: 'cors',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -37,9 +36,8 @@ const Post = ({post, loggedUser}) => {
         }
         }
         const fetchComments = async () =>{
-            const res = await fetch(`https://localhost:3333/api/feeds/1/posts/${post.id}/comments`)
+            const res = await fetch(`https://localhost:3333/api/post/${post.id}/comment`)
             const data = await res.json()
-
             return data
         }
 

@@ -15,9 +15,9 @@ const Homepage = ({loggedUser}) => {
     
       const addPost = async (post) =>{
         try{
-        const res = await fetch('https://localhost:3333/api/feeds/1/posts',{
+
+        const res = await fetch('https://localhost:3333/api/feed/1/post',{
             method: 'POST',
-            // mode: 'cors',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -30,7 +30,7 @@ const Homepage = ({loggedUser}) => {
       }
       }
       const fetchPosts = async () =>{
-        const res = await fetch(`https://localhost:3333/api/feeds/1/posts?orderByDate=true`)
+        const res = await fetch(`https://localhost:3333/api/feed/1/post?orderByDate=true`)
         const data = await res.json()
 
         return data
@@ -39,13 +39,13 @@ const Homepage = ({loggedUser}) => {
     return (
       <div>
         <BestRoutes />
-        {/* <div className="posts" >
+        <div className="posts" >
             <Posts
             loggedUser={loggedUser}
             posts={posts}
             onAdd={addPost}
             />
-        </div> */}
+        </div>
       </div>
         
     )

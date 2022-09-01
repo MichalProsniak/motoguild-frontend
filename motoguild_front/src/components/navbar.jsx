@@ -28,15 +28,6 @@ function OffcanvasExample() {
                   <Nav.Link href="rides">Jedż</Nav.Link>
                   <Nav.Link href="#action3">Wydarzenia</Nav.Link>
                 </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
             <Image className='img fluid rounded-circle' style={{height: '50px', width: '50px'}} src={pictres}/>
