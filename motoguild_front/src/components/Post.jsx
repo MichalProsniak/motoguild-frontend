@@ -20,6 +20,7 @@ const Post = ({post, loggedUser}) => {
       },[])
     
       const addComment = async (comments) =>{
+        console.log(comments)
         try{
         const res = await fetch(`https://localhost:3333/api/post/${post.id}/comment`,{
             method: 'POST',
@@ -30,15 +31,21 @@ const Post = ({post, loggedUser}) => {
         })
         const commentsFromServer = await fetchComments()
         setComments(commentsFromServer)
+        console.log(comments)
         }
         catch (error){
             console.log(error)
         }
         }
         const fetchComments = async () =>{
+            try{
             const res = await fetch(`https://localhost:3333/api/post/${post.id}/comment`)
             const data = await res.json()
             return data
+            }
+            catch (error){
+                console.log(error)
+            }
         }
 
 
