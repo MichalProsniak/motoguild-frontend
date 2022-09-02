@@ -13,16 +13,6 @@ body {
   overflow-x: hidden;
 }
 
-.cos {
-  float: "left";
-  border: "none";
-}
-
-.cos:focus {
-  float: "left";
-  border: "none";
-}
-
 .post {
   background: #f4f4f4;
   margin: 5px;
@@ -33,6 +23,8 @@ body {
   background: #f4f4f4;
   margin: 5px;
   padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
 }
 
 h1 {

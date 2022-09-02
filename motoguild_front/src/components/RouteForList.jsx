@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import ImportantRouteInfo from "./ImportantRouteInfo";
+import pictures from "../images/piesek.jpg";
+import Image from "react-bootstrap/Image";
 
 const libraries = ["places"];
 export default function RouteForList(props) {
@@ -45,9 +47,10 @@ export default function RouteForList(props) {
           </Col>
           <Col>
             <div className="for-list-user">
-              <h3 className="for-list-user-avatar">
-                <i className="bi bi-person-circle"></i>
-              </h3>
+              <Image
+                className="img fluid rounded-circle for-list-user-avatar"
+                src={pictures}
+              />
               <h3 className="for-list-user-text">{props.owner.userName}</h3>
             </div>
           </Col>

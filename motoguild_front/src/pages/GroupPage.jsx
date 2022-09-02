@@ -1,12 +1,9 @@
-import GroupBody from '../components/GroupBody';
+import GroupBody from "../components/GroupBody";
 
-export default function GroupPage()
-{
-    
-
-    return (
-        <div>
-            <GroupBody/>
-        </div>
-    )
+export default function GroupPage() {
+  return (
+    <div className="container-custom">
+      <GroupBody />
+    </div>
+  );
 }

@@ -137,6 +137,97 @@ label {
   margin: 5%;
 }
 
+.add-comment-container {
+  display: flex;
+  gap: 15px;
+  margin-left: 16px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.add-comment-form {
+  width: 100%;
+  margin-right: 30px;
+  margin-left: 5px;
+}
+
+.comment-container {
+  display: flex;
+  width: 100%;
+  margin-left: 23px;
+}
+
+.comment-content {
+  margin-left: 15px;
+  margin-right: 5px;
+  text-align: start;
+  width: 100%;
+  min-height: 35px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.comment-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.comment-time {
+  width: 44%;
+}
+.comment-username {
+  margin-left: 10px;
+  width: 52%;
+  text-align: start;
+}
+
+.comment-content {
+  text-align: start;
+  width: 100%;
+  min-height: 35px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+
+.comments-container {
+  margin-top: 5px;
+  margin-right: 40px;
+  width: 100%;
+}
+
+.add-comment-input {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  text-indent: 10px;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  height: 22px;
+}
+
+.add-comment-button {
+  border-radius: 10px;
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
+  background-color: white;
+  font-size: 12px;
+  width: 30%;
+  height: 22px;
+}
+
+.group {
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
 .group-container {
   background-color: #d9d9d9;
 }
@@ -215,12 +306,22 @@ label {
 
 .for-list-user-text {
   font-size: 12px;
+  float: right;
+}
+
+.for-list-user {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  border-radius: 5px;
+  height: 95px;
+  box-shadow: inset 0px 0px 6px -4px rgba(0, 0, 0, 1);
+  border: 1px solid lightgray;
 }
 
 .for-list-user-avatar {
-  font-size: 50px;
-  margin-top: 10px;
   margin: auto;
+  margin-top: 10px;
   width: 50px;
 }
 
@@ -294,6 +395,12 @@ label {
   background-color: lightgray;
 }
 
+.post-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .post-time {
   width: 30%;
 }
@@ -309,6 +416,7 @@ label {
   margin-right: 5px;
   text-align: start;
   width: 100%;
+  min-height: 35px;
   background-color: white;
   border-radius: 5px;
   border: 1px solid lightgray;
@@ -328,7 +436,7 @@ label {
 }
 
 .add-post-input {
-  border: 1px solid grey;
+  border: 1px solid lightgray;
   border-radius: 15px;
   text-indent: 10px;
   float: left;
@@ -339,7 +447,8 @@ label {
 
 .add-post-button {
   border-radius: 15\px;
-  border: 1px solid grey;
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
   background-color: white;
   font-size: 12px;
   width: 100%;
