@@ -6,6 +6,13 @@ export default function Pagination(params)
     
     function handlePageClick(data)
     {
+        // if (params.isTimer)
+        // {
+        //     params.setQuery(prevState => {
+        //         return (10 - prevState)
+        //     })
+        // }
+       
         let currentPage = data.selected + 1
         params.setCurrentPage(currentPage)
     }

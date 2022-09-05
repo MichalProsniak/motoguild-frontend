@@ -10,6 +10,15 @@ export default function RideList() {
   const [paginationData, setPaginationData] = useState(null);
   const [allRides, setAllRides] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  // const [query, setQuery] = useState(0)
+  
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setQuery(prevState => prevState === 10 ? 10 : prevState + 1)
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   useEffect(() => {
     async function getRides() {
       try {
@@ -26,6 +35,7 @@ export default function RideList() {
       }
     }
     getRides();
+    // setTimeout(getRides, query * 1000)
   }, [currentPage]);
 
   return (
@@ -49,6 +59,8 @@ export default function RideList() {
         <Pagination
           pagination={paginationData}
           setCurrentPage={setCurrentPage}
+          // setQuery={setQuery}
+          // isTimer={true}
         />
       )}
     </div>

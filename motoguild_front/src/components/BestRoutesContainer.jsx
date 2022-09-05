@@ -91,7 +91,8 @@ export default function BestRoutesContainer(props) {
                   size={3}
                   originPoint={{lat: 52.237049, lng: 21.017532}}
                   destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />} */}
+                />}
+                 */}
                 
    
     <div className="slideshow">

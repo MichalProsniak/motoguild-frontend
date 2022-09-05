@@ -110,7 +110,7 @@ export default function NewRouteBody()
                         <input className="standard-input" type="text" name="startPlace" value={newRoute.startPlace} onChange={handleChange} ref={originRef}></input>
                     </Autocomplete>}
                     <label name="endPoint">Koniec trasy</label>
-                    {isLoaded && <Autocomplete  onPlaceChanged={handleSelectDestination}>
+                    {isLoaded && <Autocomplete onPlaceChanged={handleSelectDestination}>
                         <input className="standard-input" type="text" name="endingPlace" value={newRoute.endingPlace} onChange={handleChange} ref={destinationRef}></input>
                     </Autocomplete>}
                 </div>
