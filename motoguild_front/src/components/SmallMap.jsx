@@ -15,6 +15,8 @@ export default function SmallMap(props) {
   });
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
+  const [queryLimit, setQueryLimit] = useState(false)
+  const [counter, setCounter] = useState(0)
 
   const [directionsResponse, setDirectionsResponse] = useState(null);
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function SmallMap(props) {
         return;
       }
       const directionsService = new google.maps.DirectionsService();
+
       const results = await directionsService.route(
         {
           origin: props.originPoint,
@@ -41,16 +44,25 @@ export default function SmallMap(props) {
         },
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
+            
             setDirectionsResponse(result);
             setDistance(result.routes[0].legs[0].distance.text);
             setDuration(result.routes[0].legs[0].duration.text);
+            setQueryLimit(false)
           } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
+            console.log(counter)
+            setCounter(100)
+            setTimeout(calculateRoute, 1000)
+            setQueryLimit(true)
           }
         }
       );
     }
-
-    calculateRoute();
+    if (!queryLimit)
+    {
+      calculateRoute();
+    }
+    
   }, []);
   if (props.size === 1) {
     return (

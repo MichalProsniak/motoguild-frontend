@@ -42,6 +42,7 @@ export default function RideList() {
             owner={ride.owner}
             minimumRating={ride.minimumRating}
             participants={ride.participants.length}
+          
           />
         ))}
       {!isLoading && (
