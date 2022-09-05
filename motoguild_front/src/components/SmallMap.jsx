@@ -25,38 +25,41 @@ export default function SmallMap(props) {
         return;
       }
       const directionsService = new google.maps.DirectionsService();
-
-      const results = await directionsService.route(
-        {
-          origin: props.originPoint,
-          destination: props.destinationPoint,
-          travelMode: google.maps.TravelMode.DRIVING,
-          waypoints: [
-            // {
-            //   location: "Warszawa",
-            //   stopover: true,
-            // },
-            // {
-            //   location: "Poznań",
-            //   stopover: true,
-            // },
-          ],
-        },
-        (result, status) => {
-          if (status === google.maps.DirectionsStatus.OK) {
-            
-            setDirectionsResponse(result);
-            setDistance(result.routes[0].legs[0].distance.text);
-            setDuration(result.routes[0].legs[0].duration.text);
-            setQueryLimit(false)
-          } else if (status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
-            console.log(counter)
-            setCounter(100)
-            setTimeout(calculateRoute, 1000)
-            setQueryLimit(true)
+      try{
+        const results = await directionsService.route(
+          {
+            origin: props.originPoint,
+            destination: props.destinationPoint,
+            travelMode: google.maps.TravelMode.DRIVING,
+            waypoints: [
+              // {
+              //   location: "Warszawa",
+              //   stopover: true,
+              // },
+              // {
+              //   location: "Poznań",
+              //   stopover: true,
+              // },
+            ],
+          },
+          (result, status) => {
+            if (status === google.maps.DirectionsStatus.OK) {
+              
+              setDirectionsResponse(result);
+              setDistance(result.routes[0].legs[0].distance.text);
+              setDuration(result.routes[0].legs[0].duration.text);
+              setQueryLimit(false)
+            }
           }
-        }
-      );
+        );
+
+      }
+      catch(e){
+        setTimeout(calculateRoute, 1000)
+        setQueryLimit(true)
+      }
+
+      
     }
     if (!queryLimit)
     {
