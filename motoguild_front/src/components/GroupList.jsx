@@ -38,6 +38,7 @@ export default function GroupList() {
             isPrivate={group.isPrivate}
             rating={group.rating}
             participants={group.participants}
+            description={group.description}
           />
         ))}
       {!isLoading && (

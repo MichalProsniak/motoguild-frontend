@@ -293,8 +293,8 @@ label {
 }
 
 .group-rating {
-  margin-top: -8px;
-  margin-left: 10px;
+  margin-top: -6px;
+  margin-left: 6px;
   width: 80%;
   display: flex;
   height: 13px;
@@ -319,6 +319,142 @@ label {
 .group-apply-button-text-apply {
   font-size: 12px;
   margin-top: 3px;
+}
+
+.group-page-container-col2 {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.group-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.group-page-header {
+  background-color: #ffffff;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 1015px;
+}
+
+.group-page-header-photo {
+  margin: 10px;
+  width: 100px;
+  border-radius: 50%;
+  height: 100px;
+}
+
+.group-page-info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100px;
+  align-content: center;
+  width: 85%;
+}
+
+.group-page-info-name {
+  height: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 5px;
+}
+
+.group-page-info-privacy {
+  height: 25px;
+  width: 70%;
+  text-align: left;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.group-page-info-owner {
+  text-align: left;
+  font-size: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.group-page-info-created {
+}
+
+.group-page-info-rating {
+  margin-left: 5px;
+  margin-top: -3px;
+}
+
+.group-page-members-container {
+  border: 1px solid lightgray;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 300px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.group-page-member-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 90%;
+  height: 70px;
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.group-page-member {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px;
+}
+
+.group-page-member-photo {
+  align-self: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.group-page-member-rating {
+  margin-top: -10px;
+  height: 20px;
+}
+
+.group-page-member-name {
+  margin-bottom: 0px;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+}
+
+.group-page-members-header {
+  font-size: 16px;
+  font-weight: 600;
+  width: 90%;
+  margin: 0px;
+  height: 50px;
 }
 
 .text-container {
@@ -425,13 +561,13 @@ label {
 
 .posts {
   border: 1px solid lightgray;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 300px;
   width: 500px;
   padding: 10px;
   padding-right: 15px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   border-radius: 10px;

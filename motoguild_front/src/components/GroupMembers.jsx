@@ -1,15 +1,12 @@
-import GroupMemberForList from "./GroupMemberForList"
+import GroupMemberForList from "./GroupMemberForList";
 
-
-export default function GroupMembers(props)
-{
-    return (
-        <div>
-            <h2>Członkowie</h2>
-            <div className="posts">
-                {props.members.map(member => <GroupMemberForList key={member.id} member={member} />)}
-            </div>
-            
-        </div>
-    )
+export default function GroupMembers(props) {
+  return (
+    <div className="group-page-members-container">
+      <p className="group-page-members-header">Członkowie</p>
+      {props.members.map((member) => (
+        <GroupMemberForList key={member.id} member={member} />
+      ))}
+    </div>
+  );
 }
