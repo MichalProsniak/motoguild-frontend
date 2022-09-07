@@ -13,7 +13,7 @@ export default function GroupList() {
   useEffect(() => {
     async function getAllGroups() {
       try {
-        const res = getGroups(currentPage, itemsPerPage);
+        const res = await getGroups(currentPage, itemsPerPage);
         const data = await res.json();
         const headers = res.headers;
         setPaginationData(JSON.parse(headers.get("X-Pagination")));
