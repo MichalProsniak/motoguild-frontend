@@ -7,46 +7,31 @@ import Container from "react-bootstrap/Container";
 import Comments from "./Comments";
 import AddComment from "./AddComment";
 import { useState, useEffect } from "react";
+import { getComments, createNewComment } from "../helpnigFunctions/ApiCaller";
+import GetDayMonthYear from "../helpnigFunctions/GetDayMonthYear";
+import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 
 const Post = ({ post, loggedUser }) => {
   const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const getComments = async () => {
-      const commentsFromServer = await fetchComments();
-      setComments(commentsFromServer);
-    };
-    getComments();
-  }, []);
+      async function getCommentsFromApi() {
+      const data = await getComments(post.id)
+      setComments(data);
+      setIsLoading(false);
+      }
+      getCommentsFromApi();
+  }, [comments]);
 
-  const addComment = async (comments) => {
-    try {
-      const res = await fetch(
-        `https://localhost:3333/api/post/${post.id}/comment`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(comments),
-        }
-      );
-      const commentsFromServer = await fetchComments();
-      setComments(commentsFromServer);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const fetchComments = async () => {
-    const res = await fetch(
-      `https://localhost:3333/api/post/${post.id}/comment`
-    );
-    const data = await res.json();
-    return data;
-  };
+  async function addComment(comments) {
+    await createNewComment(post.id, comments)
+    setComments([]);
+  } 
 
-  const dateTime = post.createTime.split("T");
-  const fulltime = dateTime[1].split(".");
-  const correktTime = dateTime[0] + " " + fulltime[0];
+
+  const date = GetDayMonthYear(post.createTime)
+  const hours = GetHourMinutes(post.createTime)
+  const correctTime = date + " " + hours;
   return (
     <Container className="post">
       <div className="post-card">
@@ -62,13 +47,13 @@ const Post = ({ post, loggedUser }) => {
             <strong>{post.author.userName}</strong>
           </div>
 
-          <div className="post-time">{correktTime}</div>
+          <div className="post-time">{correctTime}</div>
 
           <div className="post-content">{post.content}</div>
 
           <AddComment loggedUser={loggedUser} addComment={addComment} />
 
-          {comments.length > 0 && <Comments comments={comments} />}
+          {!isLoading && comments.length > 0 && <Comments comments={comments} />}
         </div>
       </div>
     </Container>

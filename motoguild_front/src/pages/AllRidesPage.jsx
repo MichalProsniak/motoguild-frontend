@@ -5,10 +5,8 @@ export default function AllRidesPage() {
     return (
       <div>
           <h1>Przejazdy</h1>
-          <RideList />
-          
+          <RideList /> 
       </div>
-        
     );
   }
   

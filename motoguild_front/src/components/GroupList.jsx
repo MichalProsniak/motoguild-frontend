@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import GroupForList from "../components/GroupForList";
 import Pagination from "./Pagination";
+import { getGroups } from "../helpnigFunctions/ApiCaller";
 
 export default function GroupList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -8,12 +9,11 @@ export default function GroupList() {
   const [paginationData, setPaginationData] = useState(null);
   const [allGroups, setAllGroups] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    async function getGroups() {
+    async function getAllGroups() {
       try {
-        const res = await fetch(
-          `https://localhost:3333/api/groups?page=${currentPage}&itemsperpage=${itemsPerPage}`
-        );
+        const res = getGroups(currentPage, itemsPerPage);
         const data = await res.json();
         const headers = res.headers;
         setPaginationData(JSON.parse(headers.get("X-Pagination")));
@@ -23,7 +23,7 @@ export default function GroupList() {
         console.log(error);
       }
     }
-    getGroups();
+    getAllGroups();
   }, [currentPage]);
 
   return (
@@ -38,7 +38,6 @@ export default function GroupList() {
             isPrivate={group.isPrivate}
             rating={group.rating}
             participants={group.participants}
-            description={group.description}
           />
         ))}
       {!isLoading && (

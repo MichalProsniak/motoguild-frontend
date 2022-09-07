@@ -2,7 +2,6 @@ import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from "@react-go
 import {useState, useEffect} from "react"
 
 const libraries = ['places']
-
 export default function BigMap(props)
 {
     const { isLoaded } = useLoadScript({
@@ -28,13 +27,9 @@ export default function BigMap(props)
                 })
                 setDirectionsResponse(results)
             }
-            
         }
         calculateRoute()
     }, [props.isOrigin, props.isDestination])
-
-    
-
 
     return (<div>{isLoaded && <GoogleMap zoom={7} center={props.coordinates} mapContainerClassName="googlemap" options={{
         streetViewControl: false,
@@ -42,7 +37,6 @@ export default function BigMap(props)
             <MarkerF/>
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
         </GoogleMap>}
-        {/* {isLoaded && <button type="button" onClick={calculateRoute}>Zaktualizuj mapę</button>} */}
         </div>)
 
 }

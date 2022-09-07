@@ -1,24 +1,17 @@
 import {
   GoogleMap,
-  useLoadScript,
   MarkerF,
   DirectionsRenderer,
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 
-const libraries = ["places"];
-
 export default function SmallMap(props) {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
+ 
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
   const [queryLimit, setQueryLimit] = useState(false)
-  const [counter, setCounter] = useState(0)
-
   const [directionsResponse, setDirectionsResponse] = useState(null);
+
   useEffect(() => {
     async function calculateRoute() {
       if (props.originPoint === "" || props.destinationPoint === "") {
@@ -44,15 +37,10 @@ export default function SmallMap(props) {
           },
           (result, status) => {
             if (status === google.maps.DirectionsStatus.OK) {
-              
-              setDirectionsResponse(result);
-              setDistance(result.routes[0].legs[0].distance.text);
-              setDuration(result.routes[0].legs[0].duration.text);
-              setQueryLimit(false)
+              setCorrectData(result)
             }
           }
         );
-
       }
       catch(e){
         setTimeout(calculateRoute, 1000)
@@ -67,10 +55,19 @@ export default function SmallMap(props) {
     }
     
   }, []);
+
+  function setCorrectData(result)
+  {
+    setDirectionsResponse(result);
+    setDistance(result.routes[0].legs[0].distance.text);
+    setDuration(result.routes[0].legs[0].duration.text);
+    setQueryLimit(false)
+  }
+
   if (props.size === 1) {
     return (
       <div>
-        {isLoaded && (
+        {props.isLoaded && (
           <div>
             <GoogleMap
               mapContainerClassName="googlemap-small"
@@ -100,7 +97,7 @@ export default function SmallMap(props) {
   } else if (props.size === 2) {
     return (
       <div>
-        {isLoaded && (
+        {props.isLoaded && (
           <div>
             <GoogleMap
               mapContainerClassName="googlemap-normal"
@@ -126,7 +123,7 @@ export default function SmallMap(props) {
   } else if (props.size === 3) {
     return (
       <div>
-        {isLoaded && (
+        {props.isLoaded && (
           <div>
             <GoogleMap
               mapContainerClassName="googlemap-slides"

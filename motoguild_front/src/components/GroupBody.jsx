@@ -8,26 +8,23 @@ import {Route, Link, Routes, useParams} from 'react-router-dom';
 import GroupImportantInfo from './GroupImportantInfo';
 import PostsForPage from './PostsForPage';
 import GroupMembers from './GroupMembers';
+import { getGroup } from '../helpnigFunctions/ApiCaller';
 
 
 export default function GroupBody()
 {
     const currentGroup = useParams().id;
+    
     const [group, setGroup] = useState(null)
-
     const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
-        async function getGroup() {
-        try {
-            const res = await fetch(`https://localhost:3333/api/groups/${currentGroup}`);
-            const data = await res.json();
-            setGroup(data);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-        }
-        getGroup(); 
+        async function getGroupInfo() {
+        const data = await getGroup(currentGroup)
+        setGroup(data);
+        setIsLoading(false);
+      }
+      getGroupInfo()
     }, []);
 
 

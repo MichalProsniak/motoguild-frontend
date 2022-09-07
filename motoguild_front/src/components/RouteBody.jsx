@@ -13,6 +13,7 @@ export default function RouteBody(props) {
     <div>
       {isLoaded && (
         <SmallMap
+          isLoaded={isLoaded}
           size={2}
           originPoint={props.route.startPlace}
           destinationPoint={props.route.endingPlace}

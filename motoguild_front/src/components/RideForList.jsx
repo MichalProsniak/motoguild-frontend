@@ -19,16 +19,10 @@ export default function RideForList(props) {
     <div className="for-list">
       <Container>
         <Row>
-          <Col sm={12} className="normal-container">
-            {/* <Link to={`/rides/${props.id}`}>
-              <h2>{props.name}</h2>
-            </Link> */}
-          </Col>
-        </Row>
-        <Row>
           <Col sm={4}>
             {isLoaded && (
               <SmallMap
+                isLoaded={isLoaded}
                 size={1}
                 originPoint={props.startPlace}
                 destinationPoint={props.endingPlace}

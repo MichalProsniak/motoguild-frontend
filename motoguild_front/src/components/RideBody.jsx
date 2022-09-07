@@ -21,6 +21,7 @@ export default function RideBody(props) {
             <Col sm={6}>
               {isLoaded && (
                 <SmallMap
+                  isLoaded={isLoaded}
                   size={2}
                   originPoint={props.ride.route.startPlace}
                   destinationPoint={props.ride.route.endingPlace}

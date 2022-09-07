@@ -1,14 +1,15 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 import pictres from "../images/piesek.jpg";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import GetDayMonthYear from "../helpnigFunctions/GetDayMonthYear";
+import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 
 const Comment = ({ comment }) => {
-  const dateTime = comment.createTime.split("T");
-  const fulltime = dateTime[1].split(".");
-  const correktTime = dateTime[0] + " " + fulltime[0];
+  
+  const date = GetDayMonthYear(comment.createTime)
+  const hours = GetHourMinutes(comment.createTime)
+  const correctTime = date + " " + hours;
+
   return (
     <div className="comment-container">
       <div className="post-avatar">
@@ -23,7 +24,7 @@ const Comment = ({ comment }) => {
           <strong>{comment.author.userName}</strong>
         </div>
 
-        <div className="comment-time">{correktTime}</div>
+        <div className="comment-time">{correctTime}</div>
 
         <div className="comment-content">{comment.content}</div>
       </div>
