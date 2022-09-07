@@ -1,10 +1,7 @@
-import React from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import { useState } from "react";
 
 const AddComment = ({ loggedUser, addComment }) => {
-  const [content, setContent] = useState("");
+
   const [author, setAuthor] = useState({
     id: 2,
     userName: "Fineasz",
@@ -12,15 +9,15 @@ const AddComment = ({ loggedUser, addComment }) => {
     rating: 0,
   });
 
+  const [content, setContent] = useState("");
+  
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!content) {
-      alert("Please add Comment");
+    if (!content || content.length < 3) {
+      alert("Komentarz musi zawierać conajmniej 3 znaki!");
       return;
     }
-
     addComment({ content, author });
-
     setContent("");
   };
 

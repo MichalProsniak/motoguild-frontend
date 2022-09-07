@@ -1,11 +1,10 @@
-import React from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 
 const AddPost = ({ loggedUser, addPost }) => {
-  const [content, setContent] = useState("");
+
   const [author, setAuthor] = useState({
     id: 2,
     userName: "Fineasz",
@@ -13,17 +12,18 @@ const AddPost = ({ loggedUser, addPost }) => {
     rating: 0,
   });
 
+  const [content, setContent] = useState("");
+  
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!content) {
-      alert("Please add Post");
+    if (!content || content.length < 3) {
+      alert("Post musi zawierać conajmniej 3 znaki!");
       return;
     }
-
     addPost({ content, author });
-
     setContent("");
   };
+  
   return (
     <Container className="post">
       <form onSubmit={onSubmit}>

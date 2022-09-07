@@ -3,41 +3,23 @@ import Posts from "../components/Posts";
 import UpcomingEvents from "../components/UpcomingEvents";
 import BestRoutes from "../components/BestRoutes";
 import { Col, Row } from "react-bootstrap";
+import { getPostsForFeed, createNewPostsForFeed } from "../helpnigFunctions/ApiCaller";
 
 const Homepage = ({ loggedUser }) => {
   const [posts, setPosts] = useState();
 
   useEffect(() => {
     const getPosts = async () => {
-      const postsFromServer = await fetchPosts();
+      const postsFromServer = await getPostsForFeed();
       setPosts(postsFromServer);
     };
     getPosts();
-  }, []);
+  }, [posts]);
 
   const addPost = async (post) => {
-    try {
-      const res = await fetch("https://localhost:3333/api/feed/1/post", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(post),
-      });
-      const postsFromServer = await fetchPosts();
-      setPosts(postsFromServer);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const fetchPosts = async () => {
-    const res = await fetch(
-      `https://localhost:3333/api/feed/1/post?orderByDate=true`
-    );
-    const data = await res.json();
-
-    return data;
-  };
+    await createNewPostsForFeed(post)
+    setPosts([]);
+};
 
   return (
     <div>

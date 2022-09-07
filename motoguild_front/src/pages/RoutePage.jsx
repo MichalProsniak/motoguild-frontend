@@ -1,26 +1,22 @@
 import {useState, useEffect} from 'react';
 import {Route, Link, Routes, useParams} from 'react-router-dom';
 import RouteBody from '../components/RouteBody';
+import { getRoute } from '../helpnigFunctions/ApiCaller';
 
 export default function RoutePage()
 {
 
     const currentRoute = useParams().id;
     const [route, setRoute] = useState(null)
-
     const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
-        async function getRoute() {
-        try {
-            const res = await fetch(`https://localhost:3333/api/routes/${currentRoute}`);
-            const data = await res.json();
-            setRoute(data);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error);
+        async function getCurrentRouteData() {
+        const data = await getRoute(currentRoute);
+        setRoute(data);
+        setIsLoading(false);
         }
-        }
-        getRoute(); 
+        getCurrentRouteData(); 
     }, []);
 
     return (

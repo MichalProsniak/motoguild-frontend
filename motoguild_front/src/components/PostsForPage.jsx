@@ -1,53 +1,34 @@
 import Posts from "./Posts";
-import {useState, useEffect} from 'react'
-import {Route, Link, Routes, useParams} from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import { getPosts, createNewPost } from "../helpnigFunctions/ApiCaller";
 
 
 export default function PostsForPage(props)
 {
-    const currentRide = useParams().id;
-    const loggedUser= {
-      id: 2,
-      userName: "Fineasz",
-      email: "fin@gmail.com",
-      rating: 0
+  const loggedUser= {
+    id: 2,
+    userName: "Fineasz",
+    email: "fin@gmail.com",
+    rating: 0
   }
+
+    const currentRide = useParams().id;
     const [posts,setPosts] = useState([])
 
     useEffect(()=>{
-        const getPosts = async () => {
-          const postsFromServer = await fetchPosts()
+        const getPostsFromApi = async () => {
+          const postsFromServer = await getPosts(props.link, currentRide)
           setPosts(postsFromServer)
         }
-        getPosts()
-      },[])
+        getPostsFromApi()
+      },[posts])
 
-      const fetchPosts = async () =>{
-        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`)
-        const data = await res.json()
-
-        return data
-      }
-
-      const addPost = async (post) =>{
-        try{
-        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`,{
-            method: 'POST',
-            // mode: 'cors',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        })
-        const postsFromServer = await fetchPosts()
-        setPosts(postsFromServer)
-      }catch (error){
-        console.log(error)
-      }
-      }
-
-    
-
+    async function addPost(post)
+    {
+      await createNewPost(props.link, currentRide, post)
+      setPosts([])
+    }
 
     return (
         <div className="posts" >

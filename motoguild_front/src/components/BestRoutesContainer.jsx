@@ -9,8 +9,8 @@ export default function BestRoutesContainer(props) {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const delay = 5000;
 
+  const delay = 5000;
   const [index, setIndex] = useState(0);
   const timeoutRef = useRef(null);
 
@@ -36,65 +36,6 @@ export default function BestRoutesContainer(props) {
   }, [index]);
 
   return (
-    <div>
-      {/* {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                {isLoaded && <SmallMap
-                  size={3}
-                  originPoint={{lat: 52.237049, lng: 21.017532}}
-                  destinationPoint={{lat: 50.049683, lng: 19.944544}}
-                />}
-                 */}
-                
-   
     <div className="slideshow">
       <div
         className="slideshowSlider"
@@ -105,7 +46,7 @@ export default function BestRoutesContainer(props) {
             {isLoaded && (
               <Link to={`/routes/${route.id}`}>
                 <SmallMap
-                isLoaded={isLoaded}
+                  isLoaded={isLoaded}
                   size={3}
                   originPoint={route.startPlace}
                   destinationPoint={route.endingPlace}
@@ -127,7 +68,6 @@ export default function BestRoutesContainer(props) {
           ></div>
         ))}
       </div>
-    </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import {useState, useRef} from "react"
 import { useLoadScript, Autocomplete} from "@react-google-maps/api"
 import BigMap from './BigMap.jsx'
-
+import { createNewRoute } from "../helpnigFunctions/ApiCaller.js"
 
 
 const libraries = ['places']
@@ -66,17 +66,7 @@ export default function NewRouteBody()
             return
         }
         setAllInputsCorrect(true)
-        try{
-            const res = await fetch('https://localhost:3333/api/routes/',{
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(newRoute)
-            })
-          }catch (error){
-            console.log(error)
-          }
+        await createNewRoute(newRoute);
 
       }
       function handleSelectOrigin()
@@ -96,8 +86,6 @@ export default function NewRouteBody()
           })) 
           setIsDestination(true)
       }
-
-     
 
     return (
         <div>

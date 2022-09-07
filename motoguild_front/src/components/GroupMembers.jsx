@@ -7,11 +7,7 @@ export default function GroupMembers(props)
         <div>
             <h2>Członkowie</h2>
             <div className="posts">
-                {props.members.map(member => {
-                    return (
-                        <GroupMemberForList key={member.id} member={member} />
-                    )
-                })}
+                {props.members.map(member => <GroupMemberForList key={member.id} member={member} />)}
             </div>
             
         </div>
