@@ -29,6 +29,7 @@ export default function RideForList(props) {
           <Col sm={4}>
             {isLoaded && (
               <SmallMap
+                isLoaded={isLoaded}
                 size={1}
                 originPoint={props.startPlace}
                 destinationPoint={props.endingPlace}

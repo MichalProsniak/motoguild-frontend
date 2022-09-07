@@ -105,6 +105,7 @@ export default function BestRoutesContainer(props) {
             {isLoaded && (
               <Link to={`/routes/${route.id}`}>
                 <SmallMap
+                isLoaded={isLoaded}
                   size={3}
                   originPoint={route.startPlace}
                   destinationPoint={route.endingPlace}

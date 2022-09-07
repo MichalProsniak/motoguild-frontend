@@ -6,17 +6,19 @@ import {
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 
-const libraries = ["places"];
+// const libraries = ["places"];
 
 export default function SmallMap(props) {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
+  // const { isLoaded } = useLoadScript({
+  //   googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  //   // libraries,
+  // });
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
   const [queryLimit, setQueryLimit] = useState(false)
   const [counter, setCounter] = useState(0)
+  
+  console.log = function() {}
 
   const [directionsResponse, setDirectionsResponse] = useState(null);
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function SmallMap(props) {
   if (props.size === 1) {
     return (
       <div>
-        {isLoaded && (
+        {props.isLoaded && (
           <div>
             <GoogleMap
               mapContainerClassName="googlemap-small"
@@ -100,7 +102,7 @@ export default function SmallMap(props) {
   } else if (props.size === 2) {
     return (
       <div>
-        {isLoaded && (
+        {props.isLoaded && (
           <div>
             <GoogleMap
               mapContainerClassName="googlemap-normal"
@@ -126,7 +128,7 @@ export default function SmallMap(props) {
   } else if (props.size === 3) {
     return (
       <div>
-        {isLoaded && (
+        {props.isLoaded && (
           <div>
             <GoogleMap
               mapContainerClassName="googlemap-slides"
