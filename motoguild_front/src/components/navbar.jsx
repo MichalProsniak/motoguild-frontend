@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
-import pictres from "../images/piesek.jpg";
+import pictures from "../images/piesek.jpg";
 import logo from "../images/logo.png";
 import { useState } from "react";
 
@@ -146,7 +146,7 @@ function OffcanvasExample() {
         <Image
           className="img fluid rounded-circle navbar-profile-pic"
           style={{ height: "50px", width: "50px" }}
-          src={pictres}
+          src={pictures}
         />
       </div>
     </Navbar>

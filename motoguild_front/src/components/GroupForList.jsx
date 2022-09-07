@@ -9,46 +9,44 @@ import { Link } from "react-router-dom";
 
 export default function GroupForList(props) {
   return (
-    <Container className="group">
-      <Row>
-        <Col sm={2}>
-          <Link to={`/groups/${props.id}`}>
-            <img
-              className="img fluid rounded-circle"
-              style={{ height: "100px", width: "100px" }}
-              src={picture}
-            />
-          </Link>
-        </Col>
-        <Col sm={5}>
-          <Row>
-            <Link to={`/groups/${props.id}`}>
-              <h3>{props.name}</h3>
-            </Link>
-            {props.isPrivate ? <p>Prywatna</p> : <p>Publiczna</p>}
-            <Rating initialValue={props.rating} readonly={true} />
-          </Row>
-        </Col>
-        <Col sm={5}>
-          <h3>Właściciel: {props.owner.userName}</h3>
-          <h4>Członkowie: {props.participants.length}</h4>
+    <div className="group-container">
+      <div className="group-photo-container">
+        <Link to={`/groups/${props.id}`}>
+          <img className="group-photo" src={picture} />
+        </Link>
+      </div>
+      <div className="group-header">
+        <Link to={`/groups/${props.id}`}>
+          <p>{props.name}</p>
+        </Link>
+        <div className="group-details">
           {props.isPrivate ? (
-            <button
-              style={{ margin: "40px 0px" }}
-              className="btn btn-outline-primary"
-            >
-              Poproś o dostęp
-            </button>
+            <p className="group-privacy-text">Prywatna</p>
           ) : (
-            <button
-              style={{ margin: "40px 0px" }}
-              className="btn btn-outline-primary"
-            >
-              Dołącz
-            </button>
+            <p className="group-privacy-text">Publiczna</p>
           )}
-        </Col>
-      </Row>
-    </Container>
+          <div className="group-rating">
+            <Rating initialValue={props.rating} readonly={true} size="13" />
+          </div>
+          <div className="group-description">
+            <p>{props.description}</p>
+          </div>
+        </div>
+      </div>
+      <div className="group-apply-button-container">
+        <span className="group-participants-text">
+          Członkowie: {props.participants.length}
+        </span>
+        {props.isPrivate ? (
+          <button className="group-apply-button btn btn-outline-primary">
+            <p className="group-apply-button-text-ask">Poproś o dostęp</p>
+          </button>
+        ) : (
+          <button className="group-apply-button btn btn-outline-primary">
+            <p className="group-apply-button-text-apply">Dołącz</p>
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
