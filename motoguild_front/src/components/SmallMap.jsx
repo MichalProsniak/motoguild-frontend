@@ -6,44 +6,49 @@ export default function SmallMap(props) {
   const [duration, setDuration] = useState("");
   const [queryLimit, setQueryLimit] = useState(false);
   const [directionsResponse, setDirectionsResponse] = useState(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
-    async function calculateRoute() {
-      if (props.originPoint === "" || props.destinationPoint === "") {
-        return;
-      }
-      const directionsService = new google.maps.DirectionsService();
-      try {
-        const results = await directionsService.route(
-          {
-            origin: props.originPoint,
-            destination: props.destinationPoint,
-            travelMode: google.maps.TravelMode.DRIVING,
-            waypoints: [
-              // {
-              //   location: "Warszawa",
-              //   stopover: true,
-              // },
-              // {
-              //   location: "Poznań",
-              //   stopover: true,
-              // },
-            ],
-          },
-          (result, status) => {
-            if (status === google.maps.DirectionsStatus.OK) {
-              setCorrectData(result);
+    try {
+      async function calculateRoute() {
+        if (props.originPoint === "" || props.destinationPoint === "") {
+          return;
+        }
+        const directionsService = new google.maps.DirectionsService();
+        try {
+          const results = await directionsService.route(
+            {
+              origin: props.originPoint,
+              destination: props.destinationPoint,
+              travelMode: google.maps.TravelMode.DRIVING,
+              waypoints: [
+                // {
+                //   location: "Warszawa",
+                //   stopover: true,
+                // },
+                // {
+                //   location: "Poznań",
+                //   stopover: true,
+                // },
+              ],
+            },
+            (result, status) => {
+              if (status === google.maps.DirectionsStatus.OK) {
+                setCorrectData(result);
+                setMapLoaded(true);
+                props.setLoadedMaps((prev) => prev + 1);
+              }
             }
-          }
-        );
-      } catch (e) {
-        setTimeout(calculateRoute, 1000);
-        setQueryLimit(true);
+          );
+        } catch (e) {
+          setTimeout(calculateRoute, 1000);
+          setQueryLimit(true);
+        }
       }
-    }
-    if (!queryLimit) {
-      calculateRoute();
-    }
+      if (!queryLimit) {
+        setTimeout(calculateRoute, props.loadedMaps * 1000);
+      }
+    } catch {}
   }, []);
 
   function setCorrectData(result) {
@@ -51,15 +56,18 @@ export default function SmallMap(props) {
     setDistance(result.routes[0].legs[0].distance.text);
     setDuration(result.routes[0].legs[0].duration.text);
     setQueryLimit(false);
-    props.setMapInfo([
-      result.routes[0].legs[0].distance.text,
-      result.routes[0].legs[0].duration.text,
-    ]);
+    try {
+      props.setMapInfo([
+        result.routes[0].legs[0].distance.text,
+        result.routes[0].legs[0].duration.text,
+      ]);
+    } catch {}
   }
 
   if (props.size === 1) {
     return (
-      <div>
+      <div className="container-map-small">
+        {!mapLoaded && <div className="loader"></div>}
         {props.isLoaded && (
           <div>
             <GoogleMap
@@ -109,7 +117,8 @@ export default function SmallMap(props) {
     );
   } else if (props.size === 3) {
     return (
-      <div>
+      <div className="container-map-slider">
+        {!mapLoaded && <div className="loader-slider"></div>}
         {props.isLoaded && (
           <div>
             <GoogleMap
