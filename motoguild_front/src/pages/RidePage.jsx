@@ -1,28 +1,21 @@
-import {useState, useEffect} from 'react';
-import {Route, Link, Routes, useParams} from 'react-router-dom';
-import RideBody from '../components/RideBody';
-import { getRide } from '../helpnigFunctions/ApiCaller';
+import { useState, useEffect } from "react";
+import { Route, Link, Routes, useParams } from "react-router-dom";
+import RideBody from "../components/RideBody";
+import { getRide } from "../helpnigFunctions/ApiCaller";
 
-export default function RidePage()
-{
-    const currentRide = useParams().id;
-    const [ride, setRide] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
+export default function RidePage() {
+  const currentRide = useParams().id;
+  const [ride, setRide] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        async function getCurrentRideData() {
-            const data = await getRide(currentRide)
-            setRide(data);
-            setIsLoading(false);
-        }
-        getCurrentRideData(); 
-    }, []);
+  useEffect(() => {
+    async function getCurrentRideData() {
+      const data = await getRide(currentRide);
+      setRide(data);
+      setIsLoading(false);
+    }
+    getCurrentRideData();
+  }, []);
 
-    return (
-        <div>
-            {!isLoading && <h1 className="page-title">{ride.name}</h1>}
-            {!isLoading && <RideBody ride={ride} />}
-        </div>
-        
-    )
+  return <div>{!isLoading && <RideBody ride={ride} />}</div>;
 }

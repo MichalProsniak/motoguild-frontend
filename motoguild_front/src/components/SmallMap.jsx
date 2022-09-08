@@ -1,15 +1,10 @@
-import {
-  GoogleMap,
-  MarkerF,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
+import { GoogleMap, MarkerF, DirectionsRenderer } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 
 export default function SmallMap(props) {
- 
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
-  const [queryLimit, setQueryLimit] = useState(false)
+  const [queryLimit, setQueryLimit] = useState(false);
   const [directionsResponse, setDirectionsResponse] = useState(null);
 
   useEffect(() => {
@@ -18,7 +13,7 @@ export default function SmallMap(props) {
         return;
       }
       const directionsService = new google.maps.DirectionsService();
-      try{
+      try {
         const results = await directionsService.route(
           {
             origin: props.originPoint,
@@ -37,31 +32,29 @@ export default function SmallMap(props) {
           },
           (result, status) => {
             if (status === google.maps.DirectionsStatus.OK) {
-              setCorrectData(result)
+              setCorrectData(result);
             }
           }
         );
+      } catch (e) {
+        setTimeout(calculateRoute, 1000);
+        setQueryLimit(true);
       }
-      catch(e){
-        setTimeout(calculateRoute, 1000)
-        setQueryLimit(true)
-      }
-
-      
     }
-    if (!queryLimit)
-    {
+    if (!queryLimit) {
       calculateRoute();
     }
-    
   }, []);
 
-  function setCorrectData(result)
-  {
+  function setCorrectData(result) {
     setDirectionsResponse(result);
     setDistance(result.routes[0].legs[0].distance.text);
     setDuration(result.routes[0].legs[0].duration.text);
-    setQueryLimit(false)
+    setQueryLimit(false);
+    props.setMapInfo([
+      result.routes[0].legs[0].distance.text,
+      result.routes[0].legs[0].duration.text,
+    ]);
   }
 
   if (props.size === 1) {
@@ -110,12 +103,6 @@ export default function SmallMap(props) {
                 <DirectionsRenderer directions={directionsResponse} />
               )}
             </GoogleMap>
-            <p>
-              <i className="bi bi-browser-safari"></i> {distance}
-            </p>
-            <p>
-              <i className="bi bi-clock-history"></i> {duration}
-            </p>
           </div>
         )}
       </div>

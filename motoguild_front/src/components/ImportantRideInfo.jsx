@@ -4,7 +4,6 @@ import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 import { Link } from "react-router-dom";
 
 export default function ImportantRideInfo(props) {
-  
   const dayMonthYear = GetDayMonthYear(props.startTime);
   const hourMinutes = GetHourMinutes(props.startTime);
 
