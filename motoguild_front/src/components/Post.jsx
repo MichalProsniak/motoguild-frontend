@@ -13,24 +13,27 @@ import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 
 const Post = ({ post, loggedUser }) => {
   const [comments, setComments] = useState([]);
+  const [commentsLength, setCommentsLength] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-      async function getCommentsFromApi() {
-      const data = await getComments(post.id)
+    async function getCommentsFromApi() {
+      const data = await getComments(post.id);
       setComments(data);
+      setCommentsLength(data.length);
       setIsLoading(false);
-      }
-      getCommentsFromApi();
-  }, [comments]);
+    }
+    getCommentsFromApi();
+  }, [commentsLength]);
 
   async function addComment(comments) {
-    await createNewComment(post.id, comments)
-    setComments([]);
-  } 
+    await createNewComment(post.id, comments);
+    const data = await getComments(post.id);
+    setComments(data);
+    setCommentsLength(data.length);
+  }
 
-
-  const date = GetDayMonthYear(post.createTime)
-  const hours = GetHourMinutes(post.createTime)
+  const date = GetDayMonthYear(post.createTime);
+  const hours = GetHourMinutes(post.createTime);
   const correctTime = date + " " + hours;
   return (
     <Container className="post">
@@ -53,7 +56,9 @@ const Post = ({ post, loggedUser }) => {
 
           <AddComment loggedUser={loggedUser} addComment={addComment} />
 
-          {!isLoading && comments.length > 0 && <Comments comments={comments} />}
+          {!isLoading && comments.length > 0 && (
+            <Comments comments={comments} />
+          )}
         </div>
       </div>
     </Container>

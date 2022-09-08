@@ -3,23 +3,30 @@ import Posts from "../components/Posts";
 import UpcomingEvents from "../components/UpcomingEvents";
 import BestRoutes from "../components/BestRoutes";
 import { Col, Row } from "react-bootstrap";
-import { getPostsForFeed, createNewPostsForFeed } from "../helpnigFunctions/ApiCaller";
+import {
+  getPostsForFeed,
+  createNewPostsForFeed,
+} from "../helpnigFunctions/ApiCaller";
 
 const Homepage = ({ loggedUser }) => {
   const [posts, setPosts] = useState();
+  const [postsLength, setPostsLength] = useState();
 
   useEffect(() => {
     const getPosts = async () => {
       const postsFromServer = await getPostsForFeed();
-      setPosts(postsFromServer);
+      await setPosts(postsFromServer);
+      await setPostsLength(postsFromServer.length);
     };
     getPosts();
-  }, [posts]);
+  }, [postsLength]);
 
   const addPost = async (post) => {
-    await createNewPostsForFeed(post)
-    setPosts([]);
-};
+    await createNewPostsForFeed(post);
+    const postsFromServer = await getPostsForFeed();
+    await setPosts(postsFromServer);
+    await setPostsLength(postsFromServer.length);
+  };
 
   return (
     <div>
