@@ -1,10 +1,9 @@
 import { Rating } from "react-simple-star-rating";
 import { Link } from "react-router-dom";
 
-export default function ImportantRoutInfo(props) {
-  
+export default function ImportantRouteInfo(props) {
   return (
-    <div className="ride-info-text">
+    <div className={props.style}>
       <Link to={`/routes/${props.nameId}`}>
         <p className="for-list-name">{props.nameText}</p>
       </Link>

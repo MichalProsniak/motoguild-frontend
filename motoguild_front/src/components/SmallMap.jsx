@@ -41,7 +41,9 @@ export default function SmallMap(props) {
           );
         } catch (e) {}
       }
-      let timeout = setTimeout(calculateRoute, props.loadedMaps * 1000);
+      let timeout = setTimeout(() => {
+        calculateRoute();
+      }, props.loadedMaps * 1000);
 
       return () => clearTimeout(timeout);
     } catch {}

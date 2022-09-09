@@ -8,7 +8,7 @@ export default function ImportantRideInfo(props) {
   const hourMinutes = GetHourMinutes(props.startTime);
 
   return (
-    <div className="ride-info-text">
+    <div className={props.style}>
       <Link to={`/rides/${props.nameId}`}>
         <p className="for-list-name">{props.nameText}</p>
       </Link>

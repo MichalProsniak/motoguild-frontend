@@ -34,6 +34,7 @@ export default function RouteForList(props) {
           </Col>
           <Col className="text-container" sm={5}>
             <ImportantRouteInfo
+              style="ride-info-text-for-list"
               nameId={props.id}
               nameText={props.name}
               startPlace={props.startPlace}

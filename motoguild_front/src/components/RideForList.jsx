@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 
 import { Link } from "react-router-dom";
 import ImportantRideInfo from "./ImportantRideInfo";
+import pictures from "../images/piesek.jpg";
+import Image from "react-bootstrap/Image";
 
 const libraries = ["places"];
 export default function RideForList(props) {
@@ -33,6 +35,7 @@ export default function RideForList(props) {
           </Col>
           <Col className="text-container" sm={5}>
             <ImportantRideInfo
+              style="ride-info-text-for-list"
               nameId={props.id}
               nameText={props.name}
               startPlace={props.startPlace}
@@ -43,9 +46,10 @@ export default function RideForList(props) {
           </Col>
           <Col>
             <div className="for-list-user">
-              <h3 className="for-list-user-avatar">
-                <i className="bi bi-person-circle"></i>
-              </h3>
+              <Image
+                className="img fluid rounded-circle for-list-user-avatar"
+                src={pictures}
+              />
               <h3 className="for-list-user-text">{props.owner.userName}</h3>
               <h3 className="for-list-participants">
                 <i className="bi bi-person-lines-fill for-list-participants-icon"></i>
