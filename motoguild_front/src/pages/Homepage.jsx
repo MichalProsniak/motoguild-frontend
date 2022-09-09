@@ -11,6 +11,7 @@ import {
 const Homepage = ({ loggedUser }) => {
   const [posts, setPosts] = useState();
   const [postsLength, setPostsLength] = useState();
+  const [loadedMaps, setLoadedMaps] = useState(0);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -28,10 +29,17 @@ const Homepage = ({ loggedUser }) => {
     await setPostsLength(postsFromServer.length);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoadedMaps((prev) => prev > 0 && prev - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       <Row>
-        <BestRoutes />
+        <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
       </Row>
       <Row>
         <Col className="homepage-col1">

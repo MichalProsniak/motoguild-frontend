@@ -27,6 +27,8 @@ export default function RouteForList(props) {
                 size={1}
                 originPoint={props.startPlace}
                 destinationPoint={props.endingPlace}
+                setLoadedMaps={props.setLoadedMaps}
+                loadedMaps={props.loadedMaps}
               />
             )}
           </Col>

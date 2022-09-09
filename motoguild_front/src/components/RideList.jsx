@@ -26,7 +26,6 @@ export default function RideList() {
   useEffect(() => {
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
-      console.log("xd");
     }, 1000);
     return () => clearInterval(interval);
   }, []);

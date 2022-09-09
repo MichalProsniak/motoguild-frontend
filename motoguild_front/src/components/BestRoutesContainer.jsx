@@ -50,6 +50,8 @@ export default function BestRoutesContainer(props) {
                   size={3}
                   originPoint={route.startPlace}
                   destinationPoint={route.endingPlace}
+                  setLoadedMaps={props.setLoadedMaps}
+                  loadedMaps={props.loadedMaps}
                 />
               </Link>
             )}

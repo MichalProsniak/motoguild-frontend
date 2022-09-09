@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 export default function SmallMap(props) {
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
-  const [queryLimit, setQueryLimit] = useState(false);
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
 
@@ -40,14 +39,11 @@ export default function SmallMap(props) {
               }
             }
           );
-        } catch (e) {
-          setTimeout(calculateRoute, 1000);
-          setQueryLimit(true);
-        }
+        } catch (e) {}
       }
-      if (!queryLimit) {
-        setTimeout(calculateRoute, props.loadedMaps * 1000);
-      }
+      let timeout = setTimeout(calculateRoute, props.loadedMaps * 1000);
+
+      return () => clearTimeout(timeout);
     } catch {}
   }, []);
 
@@ -55,7 +51,6 @@ export default function SmallMap(props) {
     setDirectionsResponse(result);
     setDistance(result.routes[0].legs[0].distance.text);
     setDuration(result.routes[0].legs[0].duration.text);
-    setQueryLimit(false);
     try {
       props.setMapInfo([
         result.routes[0].legs[0].distance.text,
