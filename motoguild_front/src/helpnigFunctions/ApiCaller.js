@@ -160,3 +160,19 @@ export async function createNewPostsForFeed(post) {
         console.log(error);
       }
 }
+
+export async function createUser(user) {
+  try {
+      const res = await fetch(`https://localhost:3333/api/users/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+}
