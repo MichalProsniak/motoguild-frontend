@@ -58,7 +58,6 @@ const Homepage = ({loggedUser}) => {
           </Col>
         </Row>
       </div>
-        
     )
 }
 

@@ -20,8 +20,7 @@ const Post = ({post, loggedUser}) => {
       },[])
     
       const addComment = async (comments) =>{
-        console.log(comments)
-        try{
+         try{
         const res = await fetch(`https://localhost:3333/api/post/${post.id}/comment`,{
             method: 'POST',
             headers: {
@@ -52,6 +51,7 @@ const Post = ({post, loggedUser}) => {
     const dateTime = post.createTime.split('T')
     const fulltime = dateTime[1].split('.')
     const correktTime = dateTime[0]+' '+ fulltime[0]
+
     return(
         <Container className="post">
             <Row>
