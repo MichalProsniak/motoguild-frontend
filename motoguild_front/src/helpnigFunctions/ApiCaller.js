@@ -176,3 +176,40 @@ export async function createUser(user) {
       console.log(error);
     }
 }
+
+export async function loginUser(user) {
+  try {
+      const res = await fetch(`https://localhost:3333/api/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      const data = await res.text()
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+
+export async function testLogin(token) {
+  try {
+    const res = await fetch(
+      "https://localhost:3333/api/users/logged",
+      {
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": `bearer ${token}`
+        }
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
