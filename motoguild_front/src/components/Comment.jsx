@@ -1,36 +1,35 @@
-import React from "react"
-import Image from 'react-bootstrap/Image'
-import pictres from '../images/piesek.jpg'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
+import React from "react";
+import Image from "react-bootstrap/Image";
+import pictres from "../images/piesek.jpg";
+import GetDayMonthYear from "../helpnigFunctions/GetDayMonthYear";
+import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 
-const Comment = ({comment}) => {
-    const dateTime = comment.createTime.split('T')
-    const fulltime = dateTime[1].split('.')
-    const correktTime = dateTime[0]+' '+ fulltime[0]
-    return(
-        <Container className="post">
-            <Row>
-                <Col sm={2}>
-                    <Image className='img fluid rounded-circle' style={{height: '50px'}} src={pictres} />
-                </Col>
-                <Col sm={10}>
-                    <Row >
-                        <Col>
-                            <h3 style={{float:'left'}}>{comment.author.userName}</h3>
-                        </Col>
-                        <Col>
-                            <h4 style={{float:'right'}}>{correktTime}</h4>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <h4>{comment.content}</h4>
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
-    )
-}
+const Comment = ({ comment }) => {
+  
+  const date = GetDayMonthYear(comment.createTime)
+  const hours = GetHourMinutes(comment.createTime)
+  const correctTime = date + " " + hours;
 
-export default Comment
+  return (
+    <div className="comment-container">
+      <div className="post-avatar">
+        <Image
+          className="img fluid rounded-circle"
+          style={{ height: "40px" }}
+          src={pictres}
+        />
+      </div>
+      <div className="comment-details">
+        <div className="comment-username">
+          <strong>{comment.author.userName}</strong>
+        </div>
+
+        <div className="comment-time">{correctTime}</div>
+
+        <div className="comment-content">{comment.content}</div>
+      </div>
+    </div>
+  );
+};
+
+export default Comment;

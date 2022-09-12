@@ -1,32 +1,29 @@
 import { useState, useEffect } from "react";
 import BestRoutesContainer from "./BestRoutesContainer";
+import { getRoutesForSlider } from "../helpnigFunctions/ApiCaller";
 
+export default function BestRoutes(props) {
+  const [allRoutes, setAllRoutes] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    async function getRoutes() {
+      const data = await getRoutesForSlider();
+      setAllRoutes(data);
+      setIsLoading(false);
+    }
+    getRoutes();
+  }, []);
 
-export default function BestRoutes()
-{
-    
-
-    const [allRoutes, setAllRoutes] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-        async function getAllRoutes() {
-        try {
-            const res = await fetch("https://localhost:3333/api/routes?page=1&itemsperpage=5&orderByRating=true");
-            const data = await res.json();
-            setAllRoutes(data);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-        }
-        getAllRoutes(); 
-    }, []);
-
-    return (
-        <div>
-            <h1>Najlepsze trasy</h1>
-            {!isLoading && <BestRoutesContainer routes={allRoutes} />}
-            
-        </div>
-    )
+  return (
+    <div className="homepage-best-routes">
+      <h1>Najlepsze trasy</h1>
+      {!isLoading && (
+        <BestRoutesContainer
+          routes={allRoutes}
+          setLoadedMaps={props.setLoadedMaps}
+          loadedMaps={props.loadedMaps}
+        />
+      )}
+    </div>
+  );
 }

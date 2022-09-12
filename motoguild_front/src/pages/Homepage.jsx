@@ -1,64 +1,58 @@
-import React, { useState, useEffect } from "react"
-import Posts from '../components/Posts'
-import UpcomingEvents from '../components/UpcomingEvents'
-import BestRoutes from "../components/BestRoutes"
-import { Col, Row } from "react-bootstrap"
+import React, { useState, useEffect } from "react";
+import Posts from "../components/Posts";
+import UpcomingEvents from "../components/UpcomingEvents";
+import BestRoutes from "../components/BestRoutes";
+import { Col, Row } from "react-bootstrap";
+import {
+  getPostsForFeed,
+  createNewPostsForFeed,
+} from "../helpnigFunctions/ApiCaller";
 
-const Homepage = ({loggedUser}) => {
-    const [posts,setPosts] = useState()
+const Homepage = ({ loggedUser }) => {
+  const [posts, setPosts] = useState();
+  const [postsLength, setPostsLength] = useState();
+  const [loadedMaps, setLoadedMaps] = useState(0);
 
-    useEffect(()=>{
-        const getPosts = async () => {
-          const postsFromServer = await fetchPosts()
-          setPosts(postsFromServer)
-        }
-        getPosts()
-      },[])
-    
-      const addPost = async (post) =>{
-        try{
+  useEffect(() => {
+    const getPosts = async () => {
+      const postsFromServer = await getPostsForFeed();
+      await setPosts(postsFromServer);
+      await setPostsLength(postsFromServer.length);
+    };
+    getPosts();
+  }, [postsLength]);
 
-        const res = await fetch('https://localhost:3333/api/feed/1/post',{
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        })
-        const postsFromServer = await fetchPosts()
-        setPosts(postsFromServer)
-      }catch (error){
-        console.log(error)
-      }
-      }
-      const fetchPosts = async () =>{
-        const res = await fetch(`https://localhost:3333/api/feed/1/post?orderByDate=true`)
-        const data = await res.json()
+  const addPost = async (post) => {
+    await createNewPostsForFeed(post);
+    const postsFromServer = await getPostsForFeed();
+    await setPosts(postsFromServer);
+    await setPostsLength(postsFromServer.length);
+  };
 
-        return data
-      }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoadedMaps((prev) => prev > 0 && prev - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-    return (
-      <div>
-        <Row>
-        <BestRoutes />
-        </Row>
-        <Row>
-          <Col>
-            <div className="posts" >
-                <Posts
-                loggedUser={loggedUser}
-                posts={posts}
-                onAdd={addPost}
-                />
-            </div>
-          </Col>
-          <Col>
-            <UpcomingEvents />
-          </Col>
-        </Row>
-      </div>
-    )
-}
+  return (
+    <div>
+      <Row>
+        <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
+      </Row>
+      <Row>
+        <Col className="homepage-col1">
+          <div className="posts">
+            <Posts loggedUser={loggedUser} posts={posts} onAdd={addPost} />
+          </div>
+        </Col>
+        <Col className="homepage-col2">
+          <UpcomingEvents />
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
-export default Homepage
+export default Homepage;

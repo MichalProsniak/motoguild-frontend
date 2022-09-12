@@ -1,44 +1,43 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 
-const UpcomingEvents = () =>{
+const UpcomingEvents = () => {
+  const [events, setEvents] = useState();
+  const [rides, setRides] = useState();
 
-    const [events, setEvents] = useState()
-    const [rides, setRides] = useState()
-
-    useEffect(()=>{
+  useEffect(() => {
     const getEvents = async () => {
-      const eventsFromServer = await fetchEvents()
-      setEvents(eventsFromServer)
-    }
+      const eventsFromServer = await fetchEvents();
+      setEvents(eventsFromServer);
+    };
     const getRides = async () => {
-        const ridesFromServer = await fetchRides()
-        setRides(ridesFromServer)
-    }
-    getEvents()
-    getRides()
-  },[])
+      const ridesFromServer = await fetchRides();
+      setRides(ridesFromServer);
+    };
+    getEvents();
+    getRides();
+  }, []);
 
-  const fetchEvents = async () =>{
-    const res = await fetch(`https://localhost:3333/api/events`)
-    const data = await res.json()
+  const fetchEvents = async () => {
+    const res = await fetch(`https://localhost:3333/api/events`);
+    const data = await res.json();
 
-    return data
-  }
+    return data;
+  };
   const fetchRides = async () => {
-    const res = await fetch('https://localhost:3333/api/rides')
-    const data = await res.json()
+    const res = await fetch("https://localhost:3333/api/rides");
+    const data = await res.json();
 
-    return data
-  }
-//   console.log("EVENTS")
-//   console.log(events)
-//   console.log("RIDES")
-//   console.log(rides)
-    return(
-        <div>
-            <h1>Upcoming events</h1>
-        </div>
-    )
-}
+    return data;
+  };
+  //   console.log("EVENTS")
+  //   console.log(events)
+  //   console.log("RIDES")
+  //   console.log(rides)
+  return (
+    <div className="upcoming-events-card">
+      <h1></h1>
+    </div>
+  );
+};
 
-export default UpcomingEvents
+export default UpcomingEvents;

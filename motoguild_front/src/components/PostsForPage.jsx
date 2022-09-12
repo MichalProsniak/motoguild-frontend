@@ -1,61 +1,39 @@
 import Posts from "./Posts";
-import {useState, useEffect} from 'react'
-import {Route, Link, Routes, useParams} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getPosts, createNewPost } from "../helpnigFunctions/ApiCaller";
 
+export default function PostsForPage(props) {
+  const loggedUser = {
+    id: 2,
+    userName: "Fineasz",
+    email: "fin@gmail.com",
+    rating: 0,
+  };
 
-export default function PostsForPage(props)
-{
-    const currentRide = useParams().id;
-    const loggedUser= {
-      id: 2,
-      userName: "Fineasz",
-      email: "fin@gmail.com",
-      rating: 0
+  const currentRide = useParams().id;
+  const [posts, setPosts] = useState([]);
+  const [postsLength, setPostsLength] = useState(0);
+
+  useEffect(() => {
+    const getPostsFromApi = async () => {
+      const postsFromServer = await getPosts(props.link, currentRide);
+      setPosts(postsFromServer);
+      setPostsLength(postsFromServer.length);
+    };
+    getPostsFromApi();
+  }, [postsLength]);
+
+  async function addPost(post) {
+    await createNewPost(props.link, currentRide, post);
+    const postsFromServer = await getPosts(props.link, currentRide);
+    setPosts(postsFromServer);
+    setPostsLength(postsFromServer.length);
   }
-    const [posts,setPosts] = useState([])
 
-    useEffect(()=>{
-        const getPosts = async () => {
-          const postsFromServer = await fetchPosts()
-          setPosts(postsFromServer)
-        }
-        getPosts()
-      },[])
-
-      const fetchPosts = async () =>{
-        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`)
-        const data = await res.json()
-
-        return data
-      }
-
-      const addPost = async (post) =>{
-        try{
-        const res = await fetch(`https://localhost:3333/api/${props.link}/${currentRide}/post`,{
-            method: 'POST',
-            // mode: 'cors',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        })
-        const postsFromServer = await fetchPosts()
-        setPosts(postsFromServer)
-      }catch (error){
-        console.log(error)
-      }
-      }
-
-    
-
-
-    return (
-        <div className="posts" >
-            <Posts
-            loggedUser={loggedUser}
-            posts={posts}
-            onAdd={addPost}
-            />
-        </div>
-    )
+  return (
+    <div className="posts">
+      <Posts loggedUser={loggedUser} posts={posts} onAdd={addPost} />
+    </div>
+  );
 }
