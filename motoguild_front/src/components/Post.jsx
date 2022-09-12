@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 import pictres from "../images/piesek.jpg";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Comments from "./Comments";
 import AddComment from "./AddComment";
@@ -31,6 +29,7 @@ const Post = ({ post, loggedUser }) => {
     setComments(data);
     setCommentsLength(data.length);
   }
+
 
   const date = GetDayMonthYear(post.createTime);
   const hours = GetHourMinutes(post.createTime);
