@@ -8,7 +8,7 @@ import {
   createNewPostsForFeed,
 } from "../helpnigFunctions/ApiCaller";
 
-const Homepage = ({ loggedUser }) => {
+const Homepage = ({ loggedUser, name, onChange }) => {
   const [posts, setPosts] = useState();
   const [postsLength, setPostsLength] = useState();
   const [loadedMaps, setLoadedMaps] = useState(0);
@@ -39,6 +39,7 @@ const Homepage = ({ loggedUser }) => {
   return (
     <div>
       <Row>
+        {this.state.name && <h1>Hello {this.state.name}!</h1>}
         <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
       </Row>
       <Row>
