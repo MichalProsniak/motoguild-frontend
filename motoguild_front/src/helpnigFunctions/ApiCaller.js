@@ -196,8 +196,9 @@ export async function loginUser(user) {
 }
 
 
-export async function testLogin(token) {
+export async function testLogin() {
   try {
+    const token = await getToken()
     const res = await fetch(
       "https://localhost:3333/api/users/logged",
       {
@@ -212,4 +213,22 @@ export async function testLogin(token) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function getToken() {
+  try {
+      const res = await fetch('https://localhost:3333/api/users/refresh-token',
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const data = await res.text()
+      console.log(res)
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
 }

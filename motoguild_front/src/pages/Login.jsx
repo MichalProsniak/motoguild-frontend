@@ -29,9 +29,6 @@ const Login = () => {
             return
         }
         setIsValidData(true)
-        console.log(responseText)
-        const x = await testLogin(responseText)
-        console.log(x)
 
       }
       

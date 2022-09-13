@@ -6,6 +6,7 @@ import { Col, Row } from "react-bootstrap";
 import {
   getPostsForFeed,
   createNewPostsForFeed,
+  testLogin
 } from "../helpnigFunctions/ApiCaller";
 
 const Homepage = ({ loggedUser }) => {
@@ -18,6 +19,8 @@ const Homepage = ({ loggedUser }) => {
       const postsFromServer = await getPostsForFeed();
       await setPosts(postsFromServer);
       await setPostsLength(postsFromServer.length);
+      var test = await testLogin()
+      console.log(test)
     };
     getPosts();
   }, [postsLength]);
