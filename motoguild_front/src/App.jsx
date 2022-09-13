@@ -11,6 +11,8 @@ import RidePage from "./pages/RidePage";
 import AllRoutesPage from "./pages/AllRoutesPage";
 import RoutePage from "./pages/RoutePage";
 import GroupPage from "./pages/GroupPage";
+import Register from "./pages/Registration";
+import Login from "./pages/Login";
 
 function App() {
   const [loggedUser, setLogedUser] = useState({
@@ -52,6 +54,8 @@ function App() {
           <Route exact path="/rides/:id" element={<RidePage />}></Route>
           <Route exact path="/routes" element={<AllRoutesPage />}></Route>
           <Route exact path="/routes/:id" element={<RoutePage />}></Route>
+          <Route exact path="/register" element={<Register />}></Route>
+          <Route exact path="/login" element={<Login />}></Route>
         </Routes>
       </Router>
     </div>
