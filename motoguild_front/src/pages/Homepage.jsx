@@ -6,18 +6,23 @@ import { Col, Row } from "react-bootstrap";
 import {
   getPostsForFeed,
   createNewPostsForFeed,
+  getToken,
 } from "../helpnigFunctions/ApiCaller";
+import { withCookies, Cookies, useCookies } from "react-cookie";
 
 const Homepage = ({ loggedUser, name, onChange }) => {
   const [posts, setPosts] = useState();
   const [postsLength, setPostsLength] = useState();
   const [loadedMaps, setLoadedMaps] = useState(0);
+  const [cookies, setCookie] = useCookies(["refreshToken"]);
 
   useEffect(() => {
     const getPosts = async () => {
       const postsFromServer = await getPostsForFeed();
       await setPosts(postsFromServer);
       await setPostsLength(postsFromServer.length);
+      const x = await getToken();
+      console.log(x);
     };
     getPosts();
   }, [postsLength]);
@@ -35,6 +40,10 @@ const Homepage = ({ loggedUser, name, onChange }) => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  function onChange(newName) {
+    setCookie("refreshToken", newName, { path: "/" });
+  }
 
   return (
     <div>
