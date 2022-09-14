@@ -8,21 +8,18 @@ import {
   createNewPostsForFeed,
   getToken,
 } from "../helpnigFunctions/ApiCaller";
-import { withCookies, Cookies, useCookies } from "react-cookie";
 
-const Homepage = ({ loggedUser }) => {
+const Homepage = ({ loggedUser, name, onChange }) => {
   const [posts, setPosts] = useState();
   const [postsLength, setPostsLength] = useState();
   const [loadedMaps, setLoadedMaps] = useState(0);
-  const [cookies, setCookie] = useCookies(["refreshToken"]);
 
   useEffect(() => {
     const getPosts = async () => {
       const postsFromServer = await getPostsForFeed();
       await setPosts(postsFromServer);
       await setPostsLength(postsFromServer.length);
-      const x = await getToken();
-      console.log(x);
+
     };
     getPosts();
   }, [postsLength]);
@@ -33,17 +30,17 @@ const Homepage = ({ loggedUser }) => {
     await setPosts(postsFromServer);
     await setPostsLength(postsFromServer.length);
   };
+  
+
 
   useEffect(() => {
+    const asyncToken = async () => {await getToken()}
+    asyncToken()
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  function onChange(newName) {
-    setCookie("refreshToken", newName, { path: "/" });
-  }
 
   return (
     <div>

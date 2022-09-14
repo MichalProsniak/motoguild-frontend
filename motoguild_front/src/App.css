@@ -882,6 +882,10 @@ label {
   float: right;
 }
 
+.logout-link:hover {
+  cursor: pointer;
+}
+
 .for-list-user {
   display: flex;
   flex-direction: column;
