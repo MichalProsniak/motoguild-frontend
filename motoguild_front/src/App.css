@@ -1113,3 +1113,17 @@ label {
   padding: 30px;
   margin-bottom: 30px;
 }
+
+.suggestion {
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 5px;
+}
+.suggestion :hover {
+  background-color:#888;
+  cursor: pointer;
+}
