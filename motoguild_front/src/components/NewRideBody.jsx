@@ -107,6 +107,7 @@ export default function NewRideBody(){
             value={newRide.description}
             onChange={handleChange}
           ></textarea>
+            <p>Wybierz istniejącą trasę:</p>
             {!isLoading && <CustomAutocomplete saveRoute={setNewRide} setIsRoute={setIsRoute} routes={routes}/>}
             {isLoaded && isRoute && (
               <SmallMap
