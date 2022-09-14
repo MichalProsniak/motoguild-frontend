@@ -196,10 +196,11 @@ export async function loginUser(user) {
       method: "POST",
       credentials: "same-origin",
       body: JSON.stringify(user),
-    }); 
-    const tokens = await res.json()
-    RemoveCookie('refreshToken')
-    SetCookie('refreshToken', tokens.refreshToken)
+    });
+    const tokens = await res.json();
+    RemoveCookie("refreshToken");
+    SetCookie("refreshToken", tokens.refreshToken);
+    localStorage.setItem("token", tokens.token);
     return tokens;
   } catch (error) {
     console.log(error);
@@ -211,15 +212,15 @@ export async function getToken() {
     const res = await fetch("https://localhost:3333/api/users/refresh-token", {
       method: "POST",
       credentials: "include",
-      headers: { 
-        'Content-Type': 'application/json',
-        'X-refreshToken': `${GetCookie('refreshToken')}`,
-    },
+      headers: {
+        "Content-Type": "application/json",
+        "X-refreshToken": `${GetCookie("refreshToken")}`,
+      },
     });
-    const tokens = await res.json()
-    RemoveCookie('refreshToken')
-    SetCookie('refreshToken', tokens.newRefreshToken)
-    return GetCookie('refreshToken');
+    const tokens = await res.json();
+    RemoveCookie("refreshToken");
+    SetCookie("refreshToken", tokens.newRefreshToken);
+    return GetCookie("refreshToken");
   } catch (error) {
     console.log(error);
   }
@@ -230,12 +231,13 @@ export async function testLogin() {
     const res = await fetch("https://localhost:3333/api/users/logged", {
       headers: {
         "Content-type": "application/json",
-        Authorization: `bearer ${token}`,
+        Authorization: `bearer ${localStorage.getItem("token")}`,
       },
     });
-    const data = await res.json();
+    const data = await res.text();
     return data;
   } catch (error) {
+    console.log("XD");
     console.log(error);
   }
 }
