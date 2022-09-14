@@ -28,9 +28,7 @@ export async function getRoutesForSlider() {
 
 export async function getAllRoutes() {
   try {
-    const res = await fetch(
-      "https://localhost:3333/api/routes/all"
-    );
+    const res = await fetch("https://localhost:3333/api/routes/all");
     const data = await res.json();
     return data;
   } catch (error) {
@@ -246,24 +244,43 @@ export async function getToken() {
     const tokens = await res.json();
     RemoveCookie("refreshToken");
     SetCookie("refreshToken", tokens.newRefreshToken);
-    return GetCookie("refreshToken");
+    localStorage.setItem("token", tokens.token);
+    return tokens;
   } catch (error) {
     console.log(error);
   }
 }
 
+// export async function testLogin() {
+//   try {
+//     let res = await fetch("https://localhost:3333/api/users/logged", {
+//       headers: {
+//         "Content-type": "application/json",
+//         Authorization: `bearer ${localStorage.getItem("token")}`,
+//       },
+//     });
+//     const data = await res.text();
+//     return data;
+//   } catch (error) {
+//     console.log("XD");
+//     console.log(error);
+//   }
+// }
+
 export async function testLogin() {
-  try {
-    const res = await fetch("https://localhost:3333/api/users/logged", {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    const data = await res.text();
-    return data;
-  } catch (error) {
-    console.log("XD");
-    console.log(error);
-  }
+  let result = null;
+  await fetch("https://localhost:3333/api/users/logged", {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `bearer ${localStorage.getItem("token")}`,
+    },
+  }).then(async (response) => {
+    if (!response.ok) {
+      await getToken();
+      result = await response.status;
+    } else {
+      result = await response.text();
+    }
+  });
+  return result;
 }

@@ -33,7 +33,10 @@ const Homepage = ({ loggedUser, name, onChange }) => {
   useEffect(() => {
     const asyncToken = async () => {
       const response = await testLogin();
-      console.log(response);
+      console.log(await response);
+      if (response == 401) {
+        asyncToken();
+      }
     };
     asyncToken();
     const interval = setInterval(() => {
