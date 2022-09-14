@@ -26,6 +26,18 @@ export async function getRoutesForSlider() {
   }
 }
 
+export async function getAllRoutes() {
+  try {
+    const res = await fetch(
+      "https://localhost:3333/api/routes/all"
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getGroups(currentPage, itemsPerPage) {
   try {
     const res = await fetch(
@@ -45,6 +57,20 @@ export async function createNewRoute(newRoute) {
         "Content-type": "application/json",
       },
       body: JSON.stringify(newRoute),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function createNewRide(newRide) {
+  try {
+    const res = await fetch("https://localhost:3333/api/rides", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newRide),
     });
   } catch (error) {
     console.log(error);
