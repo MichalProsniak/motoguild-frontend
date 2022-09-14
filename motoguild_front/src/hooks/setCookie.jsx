@@ -1,8 +1,8 @@
-import Cookie from 'react-cookie';
+import Cookie from 'js-cookie';
 
-const SetCookie = (cookiename, refreshToken) => {
-    Cookie.set(cookiename, refreshToken,{
-        expires:1,
+const SetCookie = (cookiename, value) => {
+    Cookie.set(cookiename, value.token,{
+        expires: 7,
         secure: true,
         sameSite: 'strict',
         path:'/'

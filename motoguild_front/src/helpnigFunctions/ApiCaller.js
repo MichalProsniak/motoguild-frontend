@@ -1,3 +1,7 @@
+import GetCookie from "../hooks/getCookie";
+import RemoveCookie from "../hooks/removeCookie";
+import SetCookie from "../hooks/setCookie";
+
 export async function getGroup(currentGroup) {
   try {
     const res = await fetch(
@@ -192,11 +196,11 @@ export async function loginUser(user) {
       method: "POST",
       credentials: "same-origin",
       body: JSON.stringify(user),
-    });
-    const headers = res.headers;
-    console.log(document.cookie);
-    const data = await res.text();
-    return data;
+    }); 
+    const tokens = await res.json()
+    RemoveCookie('refreshToken')
+    SetCookie('refreshToken', tokens.refreshToken)
+    return tokens;
   } catch (error) {
     console.log(error);
   }
@@ -206,10 +210,16 @@ export async function getToken() {
   try {
     const res = await fetch("https://localhost:3333/api/users/refresh-token", {
       method: "POST",
+      credentials: "include",
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-refreshToken': `${GetCookie('refreshToken')}`,
+    },
     });
-    console.log(res);
-    const data = await res.json();
-    return data;
+    const tokens = await res.json()
+    RemoveCookie('refreshToken')
+    SetCookie('refreshToken', tokens.newRefreshToken)
+    return GetCookie('refreshToken');
   } catch (error) {
     console.log(error);
   }

@@ -1,4 +1,4 @@
-import Cookie from 'react-cookie';
+import Cookie from 'js-cookie';
 
 const GetCookie = (cookiename) => {
     return Cookie.get(cookiename);
