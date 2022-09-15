@@ -16,9 +16,11 @@ const Homepage = ({ loggedUser, name, onChange }) => {
 
   useEffect(() => {
     const getPosts = async () => {
-      const postsFromServer = await getPostsForFeed();
-      await setPosts(postsFromServer);
-      await setPostsLength(postsFromServer.length);
+      if (localStorage.getItem("token")) {
+        const postsFromServer = await getPostsForFeed();
+        await setPosts(postsFromServer);
+        await setPostsLength(postsFromServer.length);
+      }
     };
     getPosts();
   }, [postsLength]);
@@ -31,14 +33,7 @@ const Homepage = ({ loggedUser, name, onChange }) => {
   };
 
   useEffect(() => {
-    const asyncToken = async () => {
-      const response = await testLogin();
-      console.log(await response);
-      if (response == 401) {
-        asyncToken();
-      }
-    };
-    asyncToken();
+    console.log(localStorage.getItem("token"));
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
     }, 1000);
@@ -53,7 +48,9 @@ const Homepage = ({ loggedUser, name, onChange }) => {
       <Row>
         <Col className="homepage-col1">
           <div className="posts">
-            <Posts loggedUser={loggedUser} posts={posts} onAdd={addPost} />
+            {localStorage.getItem("token") && (
+              <Posts loggedUser={loggedUser} posts={posts} onAdd={addPost} />
+            )}
           </div>
         </Col>
         <Col className="homepage-col2">
