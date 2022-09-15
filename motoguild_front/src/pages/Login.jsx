@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
 
 const Login = () => {
@@ -27,9 +28,10 @@ const Login = () => {
       setErrorMessage(responseText);
       setIsValidData(false);
       return;
-    }
+    }else{
     setIsValidData(true);
-    console.log(responseText);
+    return <Navigate to="home" />
+    }
   }
 
   return (
@@ -51,8 +53,7 @@ const Login = () => {
           value={user.password}
           onChange={handleChange}
         ></input>
-
-        <button>Zaloguj</button>
+          <button>Zaloguj</button>
       </form>
       {!isValidData && <p>{errorMessage}</p>}
     </div>

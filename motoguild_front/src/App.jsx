@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes , Outlet} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes , Outlet, Navigate} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
@@ -16,17 +16,10 @@ import Login from "./pages/Login";
 import StartPage from "./pages/StartPage";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const handleLogin = () => setUser({id: 1, name: 'Grzegorz'})
-  const handleLogout = () => setUser(null)
-
- 
-
   const ProtectedRoute = () => {
 
     if (!localStorage.getItem('token')) {
-      return <StartPage to='/' replace />;
+      return <Navigate to='/' replace />;
     }
   
     return <Outlet />
@@ -36,11 +29,6 @@ function App() {
     <div className="App">
       <Router>
         {localStorage.getItem('token') && <Navbar />}
-        {user ? (
-        <button onClick={handleLogout}>Sign Out</button>
-      ) : (
-        <button onClick={handleLogin}>Sign In</button>
-      )}
         <Routes>
           <Route element={<ProtectedRoute/>}>
             <Route path="home" element={<Homepage />} />
