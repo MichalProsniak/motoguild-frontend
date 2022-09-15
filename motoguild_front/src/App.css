@@ -1135,3 +1135,16 @@ label {
 .startpage-text {
   text-align: left;
 }
+
+.all-suggestions {
+  border: 1px solid lightgray;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 200px;
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}

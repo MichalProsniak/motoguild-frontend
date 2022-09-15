@@ -40,7 +40,6 @@ export default function CustomAutocomplete(props)
             allMatches.sort(function(a, b) { 
                 return b.rating - a.rating;
             })
-            allMatches = allMatches.slice(0, 5)
             setSuggestions(allMatches)
         }
         setText(text)
@@ -51,11 +50,13 @@ export default function CustomAutocomplete(props)
             <input className="standard-input" onChange={(e) => onChangeHandler(e.target.value)}  onBlur={() => {
                 setTimeout(() => setSuggestions([]), 100)
             }} value={text}></input>
-            {suggestions && suggestions.map(suggestion => {
+            {suggestions.length > 0 && <div className='all-suggestions'>{suggestions && suggestions.map(suggestion => {
                 return (
                     <RouteSuggestion customClickEvent={() => handleClick(suggestion)} key={suggestion.id} route={suggestion} />
                 )
             })}
+            </div>}
+            
         </div>
     )
 }

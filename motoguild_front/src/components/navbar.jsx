@@ -52,7 +52,7 @@ function OffcanvasExample() {
         className="navbar-custom-container collapse navbar-collapse"
         id="navbarSupportedContent"
       >
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <img src={logo} className="logo-navbar" alt="MotoGuild" />
         </a>
         <button
