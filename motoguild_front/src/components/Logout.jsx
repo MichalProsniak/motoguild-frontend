@@ -6,7 +6,8 @@ export default function Logout() {
   const navigate = useNavigate()
   function handleClick() {
     localStorage.removeItem("token");
-    navigate('/home')
+    navigate('/')
+    window.location.reload(false);
   }
   return <span onClick={handleClick}>Logout</span>;
 }

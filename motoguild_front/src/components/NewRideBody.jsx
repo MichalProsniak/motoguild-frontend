@@ -8,6 +8,7 @@ import { useLoadScript } from "@react-google-maps/api";
 import DateFrontToBack from "../helpnigFunctions/DateFrontToBack";
 import { createNewRide } from "../helpnigFunctions/ApiCaller";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
 
 const libraries = ["places"];
 export default function NewRideBody(){

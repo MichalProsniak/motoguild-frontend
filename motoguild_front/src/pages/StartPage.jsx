@@ -5,11 +5,13 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from 'react-router';
+import Homepage from "./Homepage";
 
 const StartPage = () => {
+    
     const navigate = useNavigate()
     useEffect(() => {
-        navigate('/home')
+        navigate('/')
     },[])
 
     const [isRegistration, setIsRegistration ] = useState(true)
@@ -23,8 +25,7 @@ const StartPage = () => {
 
     return(
         <div>
-            
-            <Container>
+            {!localStorage.getItem("token") ? <Container>
                 <Row>
                 <Col sm={6}>
                 <h2>Czołem Bracia Motocykliści!</h2><br></br><br></br>
@@ -45,6 +46,9 @@ const StartPage = () => {
                 </Col>
                 </Row>
             </Container>
+            :
+            <Homepage />}
+            
         </div>
     )
 }

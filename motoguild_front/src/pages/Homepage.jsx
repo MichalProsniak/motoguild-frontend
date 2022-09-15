@@ -15,6 +15,7 @@ const Homepage = ({ user }) => {
   const [loadedMaps, setLoadedMaps] = useState(0);
 
   useEffect(() => {
+
     const getPosts = async () => {
       if (localStorage.getItem("token")) {
         const postsFromServer = await getPostsForFeed();
