@@ -9,8 +9,10 @@ import pictures from "../images/piesek.jpg";
 import logo from "../images/logo.png";
 import Logout from "./Logout";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function OffcanvasExample() {
+  const navigate = useNavigate()
   const [isClickedRoutes, setIsClickedRoutes] = useState(false);
   const [classNameRoutes, setClassNameRoutes] = useState("dropdown-menu");
   const [classNameRoutes2, setClassNameRoutes2] = useState("nav-item dropdown");
@@ -52,7 +54,7 @@ function OffcanvasExample() {
         className="navbar-custom-container collapse navbar-collapse"
         id="navbarSupportedContent"
       >
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           <img src={logo} className="logo-navbar" alt="MotoGuild" />
         </a>
         <button
@@ -124,23 +126,33 @@ function OffcanvasExample() {
               </Nav.Link>
             </div>
           </li>
-          {localStorage.getItem('token')? "" :<li className="nav-item active">
-            <Nav.Link className="nav-link" href="/login">
-              Login
-            </Nav.Link>
-          </li>}
-          {localStorage.getItem('token')? "" :<li className="nav-item active">
-            <Nav.Link className="nav-link" href="/register">
-              Register
-            </Nav.Link>
-          </li>}
-          {localStorage.getItem("token") ? <li className="nav-item active">
-            <span className="nav-link logout-link">
-              <Nav.Link to="/">
+          {localStorage.getItem("token") ? (
+            ""
+          ) : (
+            <li className="nav-item active">
+              <Nav.Link className="nav-link" href="/login">
+                Login
+              </Nav.Link>
+            </li>
+          )}
+          {localStorage.getItem("token") ? (
+            ""
+          ) : (
+            <li className="nav-item active">
+              <Nav.Link className="nav-link" href="/register">
+                Register
+              </Nav.Link>
+            </li>
+          )}
+          {localStorage.getItem("token") ? (
+            <li className="nav-item active">
+              <Nav.Link to="/" className="nav-link logout-link">
                 <Logout />
               </Nav.Link>
-            </span>
-          </li>: ""}
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
         <Image
           className="img fluid rounded-circle navbar-profile-pic"

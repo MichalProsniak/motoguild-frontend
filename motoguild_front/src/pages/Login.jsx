@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
-import { useNavigate } from "react-router";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [user, setUser] = useState({
     userName: "",
     password: "",
   });
-  const [isValidData, setIsValidData] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("Wprowadź poprawne dane!");
+  const [isValidData, setIsValidData] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -23,18 +21,21 @@ const Login = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     const responseText = await loginUser(user);
-    if (!localStorage.getItem("token")) {
+    if (
+      responseText === "User not found." ||
+      responseText === "Wrong password."
+    ) {
+      setErrorMessage(responseText);
       setIsValidData(false);
       return;
-    } else {
-      setIsValidData(true);
-      navigate("/");
-      window.location.reload(false);
+    }else{
+    setIsValidData(true);
+    return <Navigate to="home" />
     }
   }
 
   return (
-    <div className="login-form-container">
+    <div>
       <form onSubmit={handleSubmit}>
         <label name="userName">User Name</label>
         <input
@@ -52,9 +53,7 @@ const Login = () => {
           value={user.password}
           onChange={handleChange}
         ></input>
-        {!isValidData && <p className="error-message">{errorMessage}</p>}
-        <br></br>
-        <button className="btn btn-primary">Zaloguj</button>
+          <button>Zaloguj</button>
       </form>
       {!isValidData && <p>{errorMessage}</p>}
     </div>
