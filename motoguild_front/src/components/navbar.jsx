@@ -9,7 +9,7 @@ import pictures from "../images/piesek.jpg";
 import logo from "../images/logo.png";
 import Logout from "./Logout";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function OffcanvasExample() {
   const navigate = useNavigate()
@@ -143,12 +143,16 @@ function OffcanvasExample() {
               </Nav.Link>
             </span>
           </li>: ""}
-        </ul>
-        <Image
-          className="img fluid rounded-circle navbar-profile-pic"
-          style={{ height: "50px", width: "50px" }}
-          src={pictures} onClick={navigate("profile")}
-        />
+        <li>
+          <Link to="profile">
+          <Image
+            className="img fluid rounded-circle navbar-profile-pic"
+            style={{ height: "50px", width: "50px" }}
+            src={pictures}
+          />
+          </Link>
+          </li>
+          </ul>
       </div>
     </Navbar>
   );
