@@ -1,12 +1,17 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Login from "../components/Login";
 import Registration from "../components/Registration";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { useNavigate } from 'react-router';
 
 const StartPage = () => {
-    
+    const navigate = useNavigate()
+    useEffect(() => {
+        navigate('/home')
+    },[])
+
     const [isRegistration, setIsRegistration ] = useState(true)
 
     function changeAction() {

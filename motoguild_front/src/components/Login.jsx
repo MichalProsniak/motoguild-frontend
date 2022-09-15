@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
+import { useNavigate } from 'react-router';
 
 const Login = () => {
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -25,6 +27,7 @@ const Login = () => {
       return;
     }
     setIsValidData(true);
+    navigate('/')
   }
 
   return (

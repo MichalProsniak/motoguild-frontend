@@ -44,7 +44,7 @@ function App() {
         )}
         <Routes>
           <Route element={<ProtectedRoute />}>
-            <Route path="home" element={<Homepage />} />
+            <Route path="/" element={<Homepage />} />
             <Route path="create-ride" element={<CreateRidePage />} />
             <Route path="create-route" element={<CreateRoutePage />} />
             <Route path="create-group" element={<CreateGroupPage />} />
@@ -55,7 +55,7 @@ function App() {
             <Route path="/routes" element={<AllRoutesPage />} />
             <Route path="/routes/:id" element={<RoutePage />} />
           </Route>
-          <Route path="/" element={<StartPage />} />
+          <Route path="/home" element={<StartPage />} />
         </Routes>
       </Router>
     </div>
