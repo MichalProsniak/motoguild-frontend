@@ -289,10 +289,9 @@ export async function loginUser(user) {
       body: JSON.stringify(user),
     });
     const resposne = await res.text();
-    if (resposne.length > 40) {
-      localStorage.setItem("token", token);
+    if (resposne.length > 90) {
+      localStorage.setItem("token", resposne);
     }
-    return response;
   } catch (error) {
     console.log(error);
   }
