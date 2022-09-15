@@ -173,7 +173,13 @@ export async function getRoute(id) {
 export async function getPostsForFeed() {
   try {
     const res = await fetch(
-      "https://localhost:3333/api/feed/1/post?orderByDate=true"
+      "https://localhost:3333/api/feed/1/post?orderByDate=true",
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     const data = await res.json();
     return data;
@@ -221,66 +227,25 @@ export async function loginUser(user) {
       credentials: "same-origin",
       body: JSON.stringify(user),
     });
-    const tokens = await res.json();
-    RemoveCookie("refreshToken");
-    SetCookie("refreshToken", tokens.refreshToken);
-    localStorage.setItem("token", tokens.token);
-    return tokens;
+    const token = await res.text();
+    localStorage.setItem("token", token);
   } catch (error) {
     console.log(error);
   }
 }
-
-export async function getToken() {
-  try {
-    const res = await fetch("https://localhost:3333/api/users/refresh-token", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "X-refreshToken": `${GetCookie("refreshToken")}`,
-      },
-    });
-    const tokens = await res.json();
-    RemoveCookie("refreshToken");
-    SetCookie("refreshToken", tokens.newRefreshToken);
-    localStorage.setItem("token", tokens.token);
-    return tokens;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-// export async function testLogin() {
-//   try {
-//     let res = await fetch("https://localhost:3333/api/users/logged", {
-//       headers: {
-//         "Content-type": "application/json",
-//         Authorization: `bearer ${localStorage.getItem("token")}`,
-//       },
-//     });
-//     const data = await res.text();
-//     return data;
-//   } catch (error) {
-//     console.log("XD");
-//     console.log(error);
-//   }
-// }
 
 export async function testLogin() {
-  let result = null;
-  await fetch("https://localhost:3333/api/users/logged", {
-    headers: {
-      "Content-type": "application/json",
-      Authorization: `bearer ${localStorage.getItem("token")}`,
-    },
-  }).then(async (response) => {
-    if (!response.ok) {
-      await getToken();
-      result = await response.status;
-    } else {
-      result = await response.text();
-    }
-  });
-  return result;
+  try {
+    let res = await fetch("https://localhost:3333/api/users/logged", {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const data = await res.text();
+    return data;
+  } catch (error) {
+    console.log("XD");
+    console.log(error);
+  }
 }

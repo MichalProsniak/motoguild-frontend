@@ -7,6 +7,7 @@ import SmallMap from "./SmallMap.jsx"
 import { useLoadScript } from "@react-google-maps/api";
 import DateFrontToBack from "../helpnigFunctions/DateFrontToBack";
 import { createNewRide } from "../helpnigFunctions/ApiCaller";
+import { Link } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewRideBody(){
@@ -15,6 +16,7 @@ export default function NewRideBody(){
       libraries,
     });
     const [mapInfo, setMapInfo] = useState([]);
+    const [isValidRide, setIsValidRide] = useState(true);
     const [newRide, setNewRide] = useState({
         name: "",
         description: "",
@@ -45,7 +47,13 @@ export default function NewRideBody(){
       }
       async function handleSubmit(event)
       {
-        event.preventDefault()
+        if (newRide.name.length < 4 || newRide.description.length < 4 || newRide.rideDate === "" || newRide.rideHour === "" || !isRoute)
+        {
+          event.preventDefault()
+          setIsValidRide(false)
+          return
+        }
+        setIsValidRide(true)
         const newDate = DateFrontToBack(newRide.rideDate, newRide.rideHour)
         const rideTosave = {
           name: newRide.name,
@@ -56,7 +64,6 @@ export default function NewRideBody(){
           startTime: newDate,
           route: newRide.route
         }
-        console.log(rideTosave)
         await createNewRide(rideTosave)
       }
 
@@ -118,10 +125,15 @@ export default function NewRideBody(){
                 setMapInfo={setMapInfo}
               />
             )}
+            {!isValidRide && <p className="error-message">Uzupełnij wszystkie pola!</p>}
           </div>
+          
           <button className="standard-button">Stwórz</button>
         </form>
-       <button>Dodaj nową trasę lub wybierz istniejącą w wyszukiwarce powyżej</button>
+        <Link to={`/create-route`}>
+          <button>Dodaj nową trasę lub wybierz istniejącą w wyszukiwarce powyżej</button>
+        </Link>
+      
       </div>
     )
 }
