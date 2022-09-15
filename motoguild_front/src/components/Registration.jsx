@@ -6,7 +6,7 @@ const Registration = () => {
     userName: "",
     email: "",
     password: "",
-    phoneNumber: null,
+    phoneNumber: 0,
   });
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isValidData, setIsValidData] = useState(true);
