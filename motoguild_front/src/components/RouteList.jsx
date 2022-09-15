@@ -47,7 +47,7 @@ export default function RouteList() {
             owner={route.owner}
             rating={route.rating}
             setLoadedMaps={setLoadedMaps}
-            loadedMaps={loadedMaps}
+            loadedMaps={loadedMaps} 
           />
         ))}
       {!isLoading && (
