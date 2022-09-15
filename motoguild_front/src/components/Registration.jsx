@@ -85,6 +85,7 @@ const Registration = () => {
         {!isValidData && (
           <p className="error-message">Wprowadź prawidłowe dane!</p>
         )}
+        <br></br>
         <button className="btn btn-primary">Zarejestruj</button>
       </form>
     </div>
