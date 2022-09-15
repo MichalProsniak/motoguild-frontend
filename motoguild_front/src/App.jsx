@@ -17,8 +17,6 @@ import RidePage from "./pages/RidePage";
 import AllRoutesPage from "./pages/AllRoutesPage";
 import RoutePage from "./pages/RoutePage";
 import GroupPage from "./pages/GroupPage";
-import Register from "./pages/Registration";
-import Login from "./pages/Login";
 import StartPage from "./pages/StartPage";
 
 function App() {
@@ -58,8 +56,6 @@ function App() {
             <Route path="/routes/:id" element={<RoutePage />} />
           </Route>
           <Route path="/" element={<StartPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
