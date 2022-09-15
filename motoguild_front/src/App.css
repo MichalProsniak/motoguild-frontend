@@ -1128,10 +1128,77 @@ label {
   border-radius: 5px;
 }
 .suggestion :hover {
-  background-color:#888;
+  background-color: #888;
   cursor: pointer;
 }
 
-.startpage-text {
+.start-page-text {
+  width: 50%;
+  margin-top: 50px;
+}
+
+.start-page-text-p {
+  margin: 30px;
   text-align: left;
+}
+
+.start-page-text-header {
+  margin: 30px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.start-page-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.start-page-login-register {
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  width: 48%;
+}
+
+.navbar-startpage {
+  width: 100%;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-register-switch {
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.login-register-switch-login {
+  width: 50%;
+  padding: 10px;
+}
+
+.login-register-switch-register {
+  width: 50%;
+  padding: 10px;
+}
+
+.login-register-switch-login:hover {
+  cursor: pointer;
+}
+
+.login-register-switch-register:hover {
+  cursor: pointer;
+}
+
+.login-register-no-active:hover {
+  background-color: lightgray;
+  color: white;
+  width: 50%;
+}
+
+.login-register-active {
+  color: white;
+  font-weight: 500;
+  background-color: gray;
 }
