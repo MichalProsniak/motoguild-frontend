@@ -1131,3 +1131,7 @@ label {
   background-color:#888;
   cursor: pointer;
 }
+
+.startpage-text {
+  text-align: left;
+}
