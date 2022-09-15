@@ -39,32 +39,34 @@ export default function RouteBody(props) {
         {isLoaded && (
           <SmallMap
             isLoaded={isLoaded}
-            size={1}
+            size={2}
             originPoint={props.route.startPlace}
             destinationPoint={props.route.endingPlace}
             setMapInfo={setMapInfo}
           />
         )}
-        <div className="route-page-map-card">
-          <div className="route-page-map-card-header">
-            <p>Informacje o trasie</p>
-          </div>
-          <div className="route-page-info-imp">
-            <div className="route-page-info-imp-map-info">
-              <span>
-                <i className="bi bi-browser-safari"></i> {mapInfo[0]}
-              </span>
-              <span>
-                <i className="bi bi-clock-history"></i> {mapInfo[1]}
-              </span>
+        <div className="route-page-map-card-container" >
+          <div className="route-page-map-card">
+            <div className="route-page-map-card-header">
+              <p>Informacje o trasie</p>
             </div>
+            <div className="route-page-info-imp">
+              <div className="route-page-info-imp-map-info">
+                <span>
+                  <i className="bi bi-browser-safari"></i> {mapInfo[0]}
+                </span>
+                <span>
+                  <i className="bi bi-clock-history"></i> {mapInfo[1]}
+                </span>
+              </div>
 
-            <ImportantRouteInfo
-              style="ride-info-text"
-              startPlace={props.route.startPlace}
-              endingPlace={props.route.endingPlace}
-              minimumRating={props.route.rating}
-            />
+              <ImportantRouteInfo
+                style="ride-info-text"
+                startPlace={props.route.startPlace}
+                endingPlace={props.route.endingPlace}
+                minimumRating={props.route.rating}
+              />
+            </div>
           </div>
         </div>
       </div>
