@@ -1,7 +1,17 @@
+import GetCookie from "../hooks/getCookie";
+import RemoveCookie from "../hooks/removeCookie";
+import SetCookie from "../hooks/setCookie";
+
 export async function getGroup(currentGroup) {
   try {
     const res = await fetch(
-      `https://localhost:3333/api/groups/${currentGroup}`
+      `https://localhost:3333/api/groups/${currentGroup}`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     const data = await res.json();
     return data;
@@ -13,8 +23,29 @@ export async function getGroup(currentGroup) {
 export async function getRoutesForSlider() {
   try {
     const res = await fetch(
-      "https://localhost:3333/api/routes?page=1&itemsperpage=5&orderByRating=true"
+      "https://localhost:3333/api/routes?page=1&itemsperpage=5&orderByRating=true",
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getAllRoutes() {
+  try {
+    const res = await fetch("https://localhost:3333/api/routes/all", {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error) {
@@ -25,7 +56,13 @@ export async function getRoutesForSlider() {
 export async function getGroups(currentPage, itemsPerPage) {
   try {
     const res = await fetch(
-      `https://localhost:3333/api/groups?page=${currentPage}&itemsperpage=${itemsPerPage}`
+      `https://localhost:3333/api/groups?page=${currentPage}&itemsperpage=${itemsPerPage}`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     return res;
   } catch (error) {
@@ -39,8 +76,24 @@ export async function createNewRoute(newRoute) {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(newRoute),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function createNewRide(newRide) {
+  try {
+    const res = await fetch("https://localhost:3333/api/rides", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(newRide),
     });
   } catch (error) {
     console.log(error);
@@ -50,7 +103,13 @@ export async function createNewRoute(newRoute) {
 export async function getComments(postId) {
   try {
     const res = await fetch(
-      `https://localhost:3333/api/post/${postId}/comment`
+      `https://localhost:3333/api/post/${postId}/comment`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     const data = await res.json();
     return data;
@@ -67,6 +126,7 @@ export async function createNewComment(postId, comment) {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(comment),
       }
@@ -78,7 +138,12 @@ export async function createNewComment(postId, comment) {
 
 export async function getPosts(route, id) {
   try {
-    const res = await fetch(`https://localhost:3333/api/${route}/${id}/post`);
+    const res = await fetch(`https://localhost:3333/api/${route}/${id}/post`, {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error) {
@@ -92,6 +157,7 @@ export async function createNewPost(route, id, post) {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(post),
     });
@@ -103,7 +169,13 @@ export async function createNewPost(route, id, post) {
 export async function getRides(currentPage, itemsPerPage) {
   try {
     const res = await fetch(
-      `https://localhost:3333/api/rides?page=${currentPage}&itemsperpage=${itemsPerPage}`
+      `https://localhost:3333/api/rides?page=${currentPage}&itemsperpage=${itemsPerPage}`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     return res;
   } catch (error) {
@@ -114,7 +186,13 @@ export async function getRides(currentPage, itemsPerPage) {
 export async function getRoutes(currentPage, itemsPerPage) {
   try {
     const res = await fetch(
-      `https://localhost:3333/api/routes?page=${currentPage}&itemsperpage=${itemsPerPage}`
+      `https://localhost:3333/api/routes?page=${currentPage}&itemsperpage=${itemsPerPage}`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     return res;
   } catch (error) {
@@ -124,7 +202,12 @@ export async function getRoutes(currentPage, itemsPerPage) {
 
 export async function getRide(id) {
   try {
-    const res = await fetch(`https://localhost:3333/api/rides/${id}`);
+    const res = await fetch(`https://localhost:3333/api/rides/${id}`, {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error) {
@@ -134,7 +217,12 @@ export async function getRide(id) {
 
 export async function getRoute(id) {
   try {
-    const res = await fetch(`https://localhost:3333/api/routes/${id}`);
+    const res = await fetch(`https://localhost:3333/api/routes/${id}`, {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error) {
@@ -145,7 +233,13 @@ export async function getRoute(id) {
 export async function getPostsForFeed() {
   try {
     const res = await fetch(
-      "https://localhost:3333/api/feed/1/post?orderByDate=true"
+      "https://localhost:3333/api/feed/1/post?orderByDate=true",
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     const data = await res.json();
     return data;
@@ -160,6 +254,7 @@ export async function createNewPostsForFeed(post) {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(post),
     });
@@ -193,39 +288,27 @@ export async function loginUser(user) {
       credentials: "same-origin",
       body: JSON.stringify(user),
     });
-    const headers = res.headers;
-    console.log(document.cookie);
+    const resposne = await res.text();
+    if (resposne.length > 90) {
+      localStorage.setItem("token", resposne);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function testLogin() {
+  try {
+    let res = await fetch("https://localhost:3333/api/users/logged", {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
     const data = await res.text();
     return data;
   } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function getToken() {
-  try {
-    const res = await fetch("https://localhost:3333/api/users/refresh-token", {
-      method: "POST",
-    });
-    console.log(res);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function testLogin(token) {
-  try {
-    const res = await fetch("https://localhost:3333/api/users/logged", {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${token}`,
-      },
-    });
-    const data = await res.json();
-    return data;
-  } catch (error) {
+    console.log("XD");
     console.log(error);
   }
 }

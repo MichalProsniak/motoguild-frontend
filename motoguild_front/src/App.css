@@ -882,6 +882,10 @@ label {
   float: right;
 }
 
+.logout-link:hover {
+  cursor: pointer;
+}
+
 .for-list-user {
   display: flex;
   flex-direction: column;
@@ -1112,4 +1116,18 @@ label {
 .homepage-best-routes {
   padding: 30px;
   margin-bottom: 30px;
+}
+
+.suggestion {
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 5px;
+}
+.suggestion :hover {
+  background-color:#888;
+  cursor: pointer;
 }

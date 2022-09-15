@@ -6,23 +6,21 @@ import { Col, Row } from "react-bootstrap";
 import {
   getPostsForFeed,
   createNewPostsForFeed,
-  getToken,
+  testLogin,
 } from "../helpnigFunctions/ApiCaller";
-import { withCookies, Cookies, useCookies } from "react-cookie";
 
-const Homepage = ({ loggedUser }) => {
+const Homepage = ({ user }) => {
   const [posts, setPosts] = useState();
   const [postsLength, setPostsLength] = useState();
   const [loadedMaps, setLoadedMaps] = useState(0);
-  const [cookies, setCookie] = useCookies(["refreshToken"]);
 
   useEffect(() => {
     const getPosts = async () => {
-      const postsFromServer = await getPostsForFeed();
-      await setPosts(postsFromServer);
-      await setPostsLength(postsFromServer.length);
-      const x = await getToken();
-      console.log(x);
+      if (localStorage.getItem("token")) {
+        const postsFromServer = await getPostsForFeed();
+        await setPosts(postsFromServer);
+        await setPostsLength(postsFromServer.length);
+      }
     };
     getPosts();
   }, [postsLength]);
@@ -35,33 +33,32 @@ const Homepage = ({ loggedUser }) => {
   };
 
   useEffect(() => {
+    console.log(localStorage.getItem("token"));
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  function onChange(newName) {
-    setCookie("refreshToken", newName, { path: "/" });
+  if (!user) {
+    return (
+      <div>
+        <Row>
+          <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
+        </Row>
+        <Row>
+          <Col className="homepage-col1">
+            <div className="posts">
+              <Posts user={user} posts={posts} onAdd={addPost} />
+            </div>
+          </Col>
+          <Col className="homepage-col2">
+            <UpcomingEvents />
+          </Col>
+        </Row>
+      </div>
+    );
   }
-
-  return (
-    <div>
-      <Row>
-        <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
-      </Row>
-      <Row>
-        <Col className="homepage-col1">
-          <div className="posts">
-            <Posts loggedUser={loggedUser} posts={posts} onAdd={addPost} />
-          </div>
-        </Col>
-        <Col className="homepage-col2">
-          <UpcomingEvents />
-        </Col>
-      </Row>
-    </div>
-  );
+  return <h2>Home (Protected: authenticated user required)</h2>;
 };
 
 export default Homepage;
