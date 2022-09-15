@@ -3,7 +3,7 @@ import RemoveCookie from "../hooks/removeCookie";
 
 export default function Logout() {
   function handleClick() {
-    RemoveCookie("refreshToken");
+    localStorage.removeItem("token");
   }
   return <span onClick={handleClick}>Logout</span>;
 }
