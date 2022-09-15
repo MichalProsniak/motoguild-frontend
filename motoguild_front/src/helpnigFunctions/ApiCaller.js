@@ -200,6 +200,7 @@ export async function loginUser(user) {
     const tokens = await res.json()
     RemoveCookie('refreshToken')
     SetCookie('refreshToken', tokens.refreshToken)
+    await console.log(tokens)
     return tokens;
   } catch (error) {
     console.log(error);
