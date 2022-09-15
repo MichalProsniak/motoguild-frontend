@@ -9,7 +9,7 @@ import {
   testLogin,
 } from "../helpnigFunctions/ApiCaller";
 
-const Homepage = ({ loggedUser, name, onChange }) => {
+const Homepage = ({ user }) => {
   const [posts, setPosts] = useState();
   const [postsLength, setPostsLength] = useState();
   const [loadedMaps, setLoadedMaps] = useState(0);
@@ -39,26 +39,26 @@ const Homepage = ({ loggedUser, name, onChange }) => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  return (
-    <div>
-      <Row>
-        <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
-      </Row>
-      <Row>
-        <Col className="homepage-col1">
-          <div className="posts">
-            {localStorage.getItem("token") && (
-              <Posts loggedUser={loggedUser} posts={posts} onAdd={addPost} />
-            )}
-          </div>
-        </Col>
-        <Col className="homepage-col2">
-          <UpcomingEvents />
-        </Col>
-      </Row>
-    </div>
-  );
+  if (!user) {
+    return (
+      <div>
+        <Row>
+          <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
+        </Row>
+        <Row>
+          <Col className="homepage-col1">
+            <div className="posts">
+              <Posts user={user} posts={posts} onAdd={addPost} />
+            </div>
+          </Col>
+          <Col className="homepage-col2">
+            <UpcomingEvents />
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+  return <h2>Home (Protected: authenticated user required)</h2>;
 };
 
 export default Homepage;
