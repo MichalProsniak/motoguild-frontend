@@ -68,7 +68,7 @@ function OffcanvasExample() {
         </button>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Nav.Link className="nav-link" href="/">
+            <Nav.Link className="nav-link" href="home">
               Home
             </Nav.Link>
           </li>

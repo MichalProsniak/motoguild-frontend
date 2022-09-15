@@ -194,6 +194,7 @@ export async function createNewPostsForFeed(post) {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(post),
     });
