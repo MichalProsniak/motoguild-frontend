@@ -8,6 +8,7 @@ import ImportantEventInfo from "./ImportantEventInfo";
 import pictures from "../images/piesek.jpg";
 import Image from "react-bootstrap/Image";
 
+
 const libraries = ["places"];
 
 export default function EventForList(props) {

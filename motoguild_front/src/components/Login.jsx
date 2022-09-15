@@ -59,6 +59,6 @@ const Login = () => {
       {!isValidData && <p>{errorMessage}</p>}
     </div>
   );
-};}
+};
 
 export default Login;

@@ -1,11 +1,10 @@
-import { Rating } from "react-simple-star-rating";
+
 import { Link } from "react-router-dom";
 import GetDayMonthYear from "../helpnigFunctions/GetDayMonthYear";
-import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 
 export default function ImportantEventInfo(props) {
-    const dayMonthYear = GetDayMonthYear(props.start);
-    const hourMinutes = GetHourMinutes(props.start);
+    const dayMonthYearStart = GetDayMonthYear(props.start);
+    const dayMonthYearStop = GetDayMonthYear(props.stop);
     
     return (
         <div className={props.style}>
@@ -16,10 +15,10 @@ export default function ImportantEventInfo(props) {
             <i className="bi bi-record-circle"></i> {props.Place}
         </p>
         <p>
-            <i className="bi bi-calendar-check"></i> {dayMonthYear}
-        </p>
+            <i className="bi bi-calendar-check"></i> {dayMonthYearStart}
+        </p>        
         <p>
-            <i className="bi bi-alarm"></i> {hourMinutes}
+            <i className="bi bi-calendar-check"></i> {dayMonthYearStop}
         </p>
         </div>
     );

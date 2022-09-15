@@ -22,6 +22,7 @@ import CreateEventPage from "./pages/CreateEventPage";
 import AllEventsPage from "./pages/AllEventsPage";
 import EventPage from "./pages/EventPage";
 
+
 function App() {
   const ProtectedRoute = () => {
     
@@ -63,8 +64,8 @@ function App() {
             <Route path="/routes/:id" element={<RoutePage />}/>
           </Route>
           <Route path="/" element={<StartPage />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path="/login" element={<Login />}/>
+          {/* <Route path="/register" element={<Register />}/>
+          <Route path="/login" element={<Login />}/> */}
           <Route exact path="/events" element={<AllEventsPage />}></Route>
           <Route exact path="/events/:id" element={<EventPage />}></Route>
           <Route exact path="/create-event" element={<CreateEventPage />}></Route>
