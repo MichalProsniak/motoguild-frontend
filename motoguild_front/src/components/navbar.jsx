@@ -9,8 +9,10 @@ import pictures from "../images/piesek.jpg";
 import logo from "../images/logo.png";
 import Logout from "./Logout";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function OffcanvasExample() {
+  const navigate = useNavigate()
   const [isClickedRoutes, setIsClickedRoutes] = useState(false);
   const [classNameRoutes, setClassNameRoutes] = useState("dropdown-menu");
   const [classNameRoutes2, setClassNameRoutes2] = useState("nav-item dropdown");
@@ -155,7 +157,7 @@ function OffcanvasExample() {
         <Image
           className="img fluid rounded-circle navbar-profile-pic"
           style={{ height: "50px", width: "50px" }}
-          src={pictures}
+          src={pictures} onClick={navigate("profile")}
         />
       </div>
     </Navbar>
