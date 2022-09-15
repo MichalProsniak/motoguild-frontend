@@ -229,3 +229,40 @@ export async function testLogin(token) {
     console.log(error);
   }
 }
+
+export async function createNewEvent(newEvent) {
+  try {
+    const res = await fetch("https://localhost:3333/api/events", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newEvent),
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getEvents(currentPage, itemsPerPage) {
+  try {
+    const res = await fetch(
+      `https://localhost:3333/api/events?page=${currentPage}&itemsperpage=${itemsPerPage}`
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getEvent(id) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/events/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
