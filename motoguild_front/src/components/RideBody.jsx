@@ -18,20 +18,23 @@ export default function RideBody(props) {
   });
 
   return (
+    <div>
     <div className="ride-page-container">
+      
       <div className="ride-page-header">
         <p>{props.ride.name}</p>
       </div>
       <div className="ride-page-map">
         {isLoaded && (
-          <SmallMap
-            isLoaded={isLoaded}
-            size={2}
-            originPoint={props.ride.route.startPlace}
-            destinationPoint={props.ride.route.endingPlace}
-            setMapInfo={setMapInfo}
-          />
+        <SmallMap
+          isLoaded={isLoaded}
+          size={2}
+          originPoint={props.ride.route.startPlace}
+          destinationPoint={props.ride.route.endingPlace}
+          setMapInfo={setMapInfo}
+        />
         )}
+        
         <div className="ride-page-map-card">
           <div className="ride-page-map-card-header">
             <p>Informacje o trasie</p>
@@ -76,6 +79,7 @@ export default function RideBody(props) {
       <div className="ride-page-posts">
         <PostsForPage link="ride" />
       </div>
+    </div>
     </div>
   );
 }

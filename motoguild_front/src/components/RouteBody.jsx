@@ -39,7 +39,7 @@ export default function RouteBody(props) {
         {isLoaded && (
           <SmallMap
             isLoaded={isLoaded}
-            size={2}
+            size={1}
             originPoint={props.route.startPlace}
             destinationPoint={props.route.endingPlace}
             setMapInfo={setMapInfo}

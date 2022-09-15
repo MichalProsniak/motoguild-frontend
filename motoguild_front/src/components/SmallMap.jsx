@@ -35,7 +35,7 @@ export default function SmallMap(props) {
               if (status === google.maps.DirectionsStatus.OK) {
                 setCorrectData(result);
                 setMapLoaded(true);
-                props.setLoadedMaps((prev) => prev + 1);
+                // props.setLoadedMaps((prev) => prev + 1);
               }
             }
           );
