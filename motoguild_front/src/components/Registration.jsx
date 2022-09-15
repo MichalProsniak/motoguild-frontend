@@ -9,7 +9,7 @@ const Registration = () => {
         phoneNumber: 0
     })
     const [passwordConfirm,setPasswordConfirm] = useState("")
-    const [isValidData,setIsValidData] = useState(false)
+    const [isValidData,setIsValidData] = useState(true)
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -36,7 +36,6 @@ const Registration = () => {
       
     return (
         <div>
-            {isValidData && <p>OK</p>}
         <form onSubmit={handleSubmit}>
             <label name ='userName'>User Name</label>
             <input className='standard-input' type='text' name='userName' value={user.userName} onChange={handleChange}></input>
@@ -48,6 +47,7 @@ const Registration = () => {
             <input className='standard-input' type='password' name='passwordConfirm' value={passwordConfirm} onChange={handleChangePasswordConfirm}></input>
             <label name ='phoneNumber'>Phone Number</label>
             <input className='standard-input' type='tel' name='phoneNumber' pattern="[0-9]{9}" value={user.phoneNumber} onChange={handleChange}></input>
+            {!isValidData && <p className='error-message'>Wprowadź prawidłowe dane!</p>}
             <button>Zarejestruj</button>
         </form>
         </div>

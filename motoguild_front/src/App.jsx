@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
+import CreateGroupPage from "./pages/CreateGroupPage";
 import AllGroupsPage from "./pages/AllGroupsPage";
 import AllRidesPage from "./pages/AllRidesPage";
 import RidePage from "./pages/RidePage";

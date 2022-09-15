@@ -7,8 +7,8 @@ const Login = () => {
     userName: "",
     password: "",
   });
-  const [isValidData, setIsValidData] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isValidData, setIsValidData] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("Wprowadź poprawne dane!");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -21,17 +21,11 @@ const Login = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     const responseText = await loginUser(user);
-    if (
-      responseText === "User not found." ||
-      responseText === "Wrong password."
-    ) {
-      setErrorMessage(responseText);
+    if (!localStorage.getItem("token")) {
       setIsValidData(false);
       return;
     }else{
     setIsValidData(true);
-    return <Navigate to="home" />
-    }
   }
 
   return (
@@ -53,7 +47,9 @@ const Login = () => {
           value={user.password}
           onChange={handleChange}
         ></input>
-          <button>Zaloguj</button>
+        {!isValidData && <p className="error-message">{errorMessage}</p>}
+
+        <button>Zaloguj</button>
       </form>
       {!isValidData && <p>{errorMessage}</p>}
     </div>
