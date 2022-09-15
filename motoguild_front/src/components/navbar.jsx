@@ -157,7 +157,7 @@ function OffcanvasExample() {
         <Image
           className="img fluid rounded-circle navbar-profile-pic"
           style={{ height: "50px", width: "50px" }}
-          src={pictures} onClick={navigate("profile")}
+          src={pictures}
         />
       </div>
     </Navbar>
