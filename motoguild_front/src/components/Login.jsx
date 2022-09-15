@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
+import { useNavigate } from 'react-router';
 
 const Login = () => {
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -26,7 +28,10 @@ const Login = () => {
       return;
     }else{
     setIsValidData(true);
+    navigate('/')
+    window.location.reload(false);
   }
+}
 
   return (
     <div>
