@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
 
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
     if (!localStorage.getItem("token")) {
       setIsValidData(false);
       return;
-    }
+    }else{
     setIsValidData(true);
   }
 
@@ -50,6 +51,7 @@ const Login = () => {
 
         <button>Zaloguj</button>
       </form>
+      {!isValidData && <p>{errorMessage}</p>}
     </div>
   );
 };

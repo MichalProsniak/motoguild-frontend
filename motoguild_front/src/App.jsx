@@ -17,48 +17,42 @@ import RidePage from "./pages/RidePage";
 import AllRoutesPage from "./pages/AllRoutesPage";
 import RoutePage from "./pages/RoutePage";
 import GroupPage from "./pages/GroupPage";
+import Register from "./pages/Registration";
+import Login from "./pages/Login";
 import StartPage from "./pages/StartPage";
 import CreateEventPage from "./pages/CreateEventPage";
 import AllEventsPage from "./pages/AllEventsPage";
 import EventPage from "./pages/EventPage";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const handleLogin = () => setUser({ id: 1, name: "Grzegorz" });
-  const handleLogout = () => setUser(null);
-
   const ProtectedRoute = () => {
-    if (!localStorage.getItem("token")) {
-      return <StartPage to="/" replace />;
-    }
 
-    return <Outlet />;
+    if (!localStorage.getItem('token')) {
+      return <Navigate to='/' replace />;
+    }
+  
+    return <Outlet />
   };
 
   return (
     <div className="App">
       <Router>
-        {localStorage.getItem("token") && <Navbar />}
-        {user ? (
-          <button onClick={handleLogout}>Sign Out</button>
-        ) : (
-          <button onClick={handleLogin}>Sign In</button>
-        )}
+        {localStorage.getItem('token') && <Navbar />}
         <Routes>
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute/>}>
             <Route path="home" element={<Homepage />} />
             <Route path="create-ride" element={<CreateRidePage />} />
             <Route path="create-route" element={<CreateRoutePage />} />
-            <Route path="create-group" element={<CreateGroupPage />} />
-            <Route path="groups" element={<AllGroupsPage />} />
-            <Route path="groups/:id" element={<GroupPage />} />
-            <Route path="/rides" element={<AllRidesPage />} />
-            <Route path="/rides/:id" element={<RidePage />} />
-            <Route path="/routes" element={<AllRoutesPage />} />
-            <Route path="/routes/:id" element={<RoutePage />} />
+            <Route path="groups" element={<AllGroupsPage />}/>
+            <Route path="groups/:id" element={<GroupPage />}/>
+            <Route path="/rides" element={<AllRidesPage />}/>
+            <Route path="/rides/:id" element={<RidePage />}/>
+            <Route path="/routes" element={<AllRoutesPage />}/>
+            <Route path="/routes/:id" element={<RoutePage />}/>
           </Route>
-          <Route path="/" element={<StartPage />} />
+          <Route path="/" element={<StartPage />}/>
+          <Route path="/register" element={<Register />}/>
+          <Route path="/login" element={<Login />}/>
           <Route exact path="/events" element={<AllEventsPage />}></Route>
           <Route exact path="/events/:id" element={<EventPage />}></Route>
           <Route exact path="/create-event" element={<CreateEventPage />}></Route>

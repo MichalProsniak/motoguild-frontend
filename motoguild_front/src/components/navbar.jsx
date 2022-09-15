@@ -97,9 +97,6 @@ function OffcanvasExample() {
               <Nav.Link className="dropdown-item-custom" href="/create-ride">
                 <span className="dropdown-item-custom-link">Create Ride</span>
               </Nav.Link>
-              {/* <Nav.Link className="dropdown-item" href="#">Another action</a> */}
-              {/* <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>
 
@@ -127,38 +124,24 @@ function OffcanvasExample() {
               </Nav.Link>
             </div>
           </li>
-          <li className="nav-item active">
+          {localStorage.getItem('token')? "" :<li className="nav-item active">
             <Nav.Link className="nav-link" href="/login">
               Login
             </Nav.Link>
-          </li>
-          <li className="nav-item active">
+          </li>}
+          {localStorage.getItem('token')? "" :<li className="nav-item active">
             <Nav.Link className="nav-link" href="/register">
               Register
             </Nav.Link>
-          </li>
-          <li className="nav-item active">
+          </li>}
+          {localStorage.getItem("token") ? <li className="nav-item active">
             <span className="nav-link logout-link">
-              <Logout />
+              <Nav.Link to="/">
+                <Logout />
+              </Nav.Link>
             </span>
-          </li>
-          {/* <li className="nav-item">
-            <a className="nav-link disabled" href="#">
-              Disabled
-            </a>
-          </li> */}
+          </li>: ""}
         </ul>
-        {/* <form className="form-inline my-2 my-lg-0 navbar-search">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-primary" type="submit">
-            Search
-          </button>
-        </form> */}
         <Image
           className="img fluid rounded-circle navbar-profile-pic"
           style={{ height: "50px", width: "50px" }}
