@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes , Outlet} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Outlet,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
+import CreateGroupPage from "./pages/CreateGroupPage";
 import AllGroupsPage from "./pages/AllGroupsPage";
 import AllRidesPage from "./pages/AllRidesPage";
 import RidePage from "./pages/RidePage";
@@ -16,42 +22,40 @@ import StartPage from "./pages/StartPage";
 function App() {
   const [user, setUser] = useState(null);
 
-  const handleLogin = () => setUser({id: 1, name: 'Grzegorz'})
-  const handleLogout = () => setUser(null)
-
- 
+  const handleLogin = () => setUser({ id: 1, name: "Grzegorz" });
+  const handleLogout = () => setUser(null);
 
   const ProtectedRoute = () => {
-
-    if (!localStorage.getItem('token')) {
-      return <StartPage to='/' replace />;
+    if (!localStorage.getItem("token")) {
+      return <StartPage to="/" replace />;
     }
-  
-    return <Outlet />
+
+    return <Outlet />;
   };
 
   return (
     <div className="App">
       <Router>
-        {localStorage.getItem('token') && <Navbar />}
+        {localStorage.getItem("token") && <Navbar />}
         {user ? (
-        <button onClick={handleLogout}>Sign Out</button>
-      ) : (
-        <button onClick={handleLogin}>Sign In</button>
-      )}
+          <button onClick={handleLogout}>Sign Out</button>
+        ) : (
+          <button onClick={handleLogin}>Sign In</button>
+        )}
         <Routes>
-          <Route element={<ProtectedRoute/>}>
+          <Route element={<ProtectedRoute />}>
             <Route path="home" element={<Homepage />} />
             <Route path="create-ride" element={<CreateRidePage />} />
             <Route path="create-route" element={<CreateRoutePage />} />
-            <Route path="groups" element={<AllGroupsPage />}/>
-            <Route path="groups/:id" element={<GroupPage />}/>
-            <Route path="/rides" element={<AllRidesPage />}/>
-            <Route path="/rides/:id" element={<RidePage />}/>
-            <Route path="/routes" element={<AllRoutesPage />}/>
-            <Route path="/routes/:id" element={<RoutePage />}/>
+            <Route path="create-group" element={<CreateGroupPage />} />
+            <Route path="groups" element={<AllGroupsPage />} />
+            <Route path="groups/:id" element={<GroupPage />} />
+            <Route path="/rides" element={<AllRidesPage />} />
+            <Route path="/rides/:id" element={<RidePage />} />
+            <Route path="/routes" element={<AllRoutesPage />} />
+            <Route path="/routes/:id" element={<RoutePage />} />
           </Route>
-          <Route path="/" element={<StartPage />}/>
+          <Route path="/" element={<StartPage />} />
         </Routes>
       </Router>
     </div>

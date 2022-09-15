@@ -20,7 +20,7 @@ const Login = () => {
   async function handleSubmit(event) {
     event.preventDefault();
     const responseText = await loginUser(user);
-    if (responseText !== "test") {
+    if (!localStorage.getItem("token")) {
       setIsValidData(false);
       return;
     }
@@ -46,11 +46,10 @@ const Login = () => {
           value={user.password}
           onChange={handleChange}
         ></input>
-        {!isValidData && <p className='error-message' >{errorMessage}</p>}
+        {!isValidData && <p className="error-message">{errorMessage}</p>}
 
         <button>Zaloguj</button>
       </form>
-      
     </div>
   );
 };

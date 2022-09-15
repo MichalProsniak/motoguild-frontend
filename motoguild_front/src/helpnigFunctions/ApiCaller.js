@@ -288,9 +288,10 @@ export async function loginUser(user) {
       credentials: "same-origin",
       body: JSON.stringify(user),
     });
-    const token = await res.text();
-    localStorage.setItem("token", token);
-    return "test"
+    const resposne = await res.text();
+    if (resposne.length > 90) {
+      localStorage.setItem("token", resposne);
+    }
   } catch (error) {
     console.log(error);
   }
