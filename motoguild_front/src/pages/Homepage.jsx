@@ -6,7 +6,7 @@ import { Col, Row } from "react-bootstrap";
 import {
   getPostsForFeed,
   createNewPostsForFeed,
-  getToken,
+  testLogin,
 } from "../helpnigFunctions/ApiCaller";
 
 const Homepage = ({ user}) => {
@@ -19,7 +19,6 @@ const Homepage = ({ user}) => {
       const postsFromServer = await getPostsForFeed();
       await setPosts(postsFromServer);
       await setPostsLength(postsFromServer.length);
-
     };
     getPosts();
   }, [postsLength]);
@@ -30,12 +29,16 @@ const Homepage = ({ user}) => {
     await setPosts(postsFromServer);
     await setPostsLength(postsFromServer.length);
   };
-  
-
 
   useEffect(() => {
-    const asyncToken = async () => {await getToken()}
-    asyncToken()
+    const asyncToken = async () => {
+      const response = await testLogin();
+      console.log(await response);
+      if (response == 401) {
+        asyncToken();
+      }
+    };
+    asyncToken();
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
     }, 1000);

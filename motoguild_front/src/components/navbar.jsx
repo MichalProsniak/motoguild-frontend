@@ -7,6 +7,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
 import pictures from "../images/piesek.jpg";
 import logo from "../images/logo.png";
+import Logout from "./Logout";
 import { useState } from "react";
 
 function OffcanvasExample() {
@@ -126,13 +127,28 @@ function OffcanvasExample() {
               </Nav.Link>
             </div>
           </li>
+          <li className="nav-item active">
+            <Nav.Link className="nav-link" href="/login">
+              Login
+            </Nav.Link>
+          </li>
+          <li className="nav-item active">
+            <Nav.Link className="nav-link" href="/register">
+              Register
+            </Nav.Link>
+          </li>
+          <li className="nav-item active">
+            <span className="nav-link logout-link">
+              <Logout />
+            </span>
+          </li>
           {/* <li className="nav-item">
             <a className="nav-link disabled" href="#">
               Disabled
             </a>
           </li> */}
         </ul>
-        <form className="form-inline my-2 my-lg-0 navbar-search">
+        {/* <form className="form-inline my-2 my-lg-0 navbar-search">
           <input
             className="form-control mr-sm-2"
             type="search"
@@ -142,7 +158,7 @@ function OffcanvasExample() {
           <button className="btn btn-outline-primary" type="submit">
             Search
           </button>
-        </form>
+        </form> */}
         <Image
           className="img fluid rounded-circle navbar-profile-pic"
           style={{ height: "50px", width: "50px" }}
