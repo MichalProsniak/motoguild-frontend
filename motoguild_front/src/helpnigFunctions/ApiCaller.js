@@ -230,6 +230,7 @@ export async function loginUser(user) {
     });
     const token = await res.text();
     localStorage.setItem("token", token);
+    return "test"
   } catch (error) {
     console.log(error);
   }
