@@ -64,7 +64,7 @@ export default function RouteBody(props) {
                 style="ride-info-text"
                 startPlace={props.route.startPlace}
                 endingPlace={props.route.endingPlace}
-                minimumRating={props.route.rating}
+                rating={props.route.rating}
               />
             </div>
           </div>
