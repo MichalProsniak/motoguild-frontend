@@ -6,7 +6,7 @@ const Registration = () => {
     userName: "",
     email: "",
     password: "",
-    phoneNumber: 0,
+    phoneNumber: null,
   });
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isValidData, setIsValidData] = useState(true);
@@ -41,41 +41,41 @@ const Registration = () => {
   return (
     <div className="register-form-container">
       <form onSubmit={handleSubmit}>
-        <label name="userName">User Name</label>
+        <label name="userName">Nazwa użytkownika</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="text"
           name="userName"
           value={user.userName}
           onChange={handleChange}
         ></input>
-        <label name="email">Email</label>
+        <label name="email">Adres e-mail</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="email"
           name="email"
           value={user.email}
           onChange={handleChange}
         ></input>
-        <label name="password">Password</label>
+        <label name="password">Hasło</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="password"
           name="password"
           value={user.password}
           onChange={handleChange}
         ></input>
-        <label name="passwordConfirm">Password Confirm</label>
+        <label name="passwordConfirm">Potwierdź hasło</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="password"
           name="passwordConfirm"
           value={passwordConfirm}
           onChange={handleChangePasswordConfirm}
         ></input>
-        <label name="phoneNumber">Phone Number</label>
+        <label name="phoneNumber">Numer telefonu</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="tel"
           name="phoneNumber"
           pattern="[0-9]{9}"
@@ -86,7 +86,7 @@ const Registration = () => {
           <p className="error-message">Wprowadź prawidłowe dane!</p>
         )}
         <br></br>
-        <button className="btn btn-primary">Zarejestruj</button>
+        <button className="btn btn-secondary">Zarejestruj</button>
       </form>
     </div>
   );
