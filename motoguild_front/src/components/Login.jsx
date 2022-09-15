@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -26,15 +26,15 @@ const Login = () => {
     if (!localStorage.getItem("token")) {
       setIsValidData(false);
       return;
-    }else{
-    setIsValidData(true);
-    navigate('/')
-    window.location.reload(false);
+    } else {
+      setIsValidData(true);
+      navigate("/");
+      window.location.reload(false);
+    }
   }
-}
 
   return (
-    <div>
+    <div className="login-form-container">
       <form onSubmit={handleSubmit}>
         <label name="userName">User Name</label>
         <input
@@ -53,8 +53,8 @@ const Login = () => {
           onChange={handleChange}
         ></input>
         {!isValidData && <p className="error-message">{errorMessage}</p>}
-
-        <button>Zaloguj</button>
+        <br></br>
+        <button className="btn btn-primary">Zaloguj</button>
       </form>
       {!isValidData && <p>{errorMessage}</p>}
     </div>

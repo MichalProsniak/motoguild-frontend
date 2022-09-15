@@ -133,7 +133,7 @@ label {
 
 .googlemap-normal {
   display: flex;
-  z-index: -2;
+  z-index: 2;
   width: 90%;
   height: 400px;
   margin: auto;
@@ -485,13 +485,12 @@ label {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  z-index: -2;
+  /* z-index: -2; */
 }
 
 .ride-page-map {
   width: 100%;
   height: 430px;
-  z-index: -2;
 }
 
 .ride-page-header {
@@ -577,7 +576,11 @@ label {
   background-color: white;
   margin-left: 60px;
   margin-top: -390px;
-  z-index: -1;
+  z-index: 99;
+}
+.ride-page-map-card-container{
+  display: flex;
+  z-index: 99;
 }
 
 .ride-page-map-card-header {
@@ -628,7 +631,6 @@ label {
 .route-page-map {
   width: 100%;
   height: 430px;
-  z-index: -2;
 }
 
 .route-page-header {
@@ -703,7 +705,10 @@ label {
   flex-direction: column;
   margin-bottom: 12px;
 }
-
+.route-page-map-card-container{
+  display:flex;
+  z-index: 99;
+}
 .route-page-map-card {
   display: flex;
   flex-wrap: wrap;
@@ -714,7 +719,7 @@ label {
   background-color: white;
   margin-left: 60px;
   margin-top: -390px;
-  z-index: -1;
+  z-index: 99;
 }
 
 .route-page-map-card-header {
@@ -1128,10 +1133,106 @@ label {
   border-radius: 5px;
 }
 .suggestion :hover {
-  background-color:#888;
+  background-color: #888;
   cursor: pointer;
 }
 
-.startpage-text {
+.start-page-text {
+  width: 50%;
+  margin-top: 50px;
+}
+
+.start-page-text-p {
+  margin: 30px;
   text-align: left;
+}
+
+.all-suggestions {
+  border: 1px solid lightgray;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 200px;
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.start-page-text-header {
+  margin: 30px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.start-page-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.start-page-login-register {
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  width: 48%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar-startpage {
+  width: 100%;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-register-switch {
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.login-register-switch-login {
+  width: 50%;
+  padding: 10px;
+}
+
+.login-register-switch-register {
+  width: 50%;
+  padding: 10px;
+}
+
+.login-register-switch-login:hover {
+  cursor: pointer;
+}
+
+.login-register-switch-register:hover {
+  cursor: pointer;
+}
+
+.login-register-no-active:hover {
+  background-color: lightgray;
+  color: white;
+  width: 50%;
+}
+
+.login-register-active {
+  color: white;
+  font-weight: 500;
+  background-color: gray;
+}
+
+.register-form-container {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 35px;
+  margin-top: 5px;
+}
+
+.login-form-container {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 35px;
+  margin-top: 5px;
 }
