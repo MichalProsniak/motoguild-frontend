@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const AddComment = ({ loggedUser, addComment }) => {
-
   const [author, setAuthor] = useState({
     id: 2,
     userName: "Fineasz",
@@ -10,7 +9,7 @@ const AddComment = ({ loggedUser, addComment }) => {
   });
 
   const [content, setContent] = useState("");
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!content || content.length < 3) {
@@ -26,7 +25,7 @@ const AddComment = ({ loggedUser, addComment }) => {
       <div className="add-comment-container">
         <input
           type="text"
-          placeholder="Add Comment"
+          placeholder="Dodaj komentarz"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           className="add-comment-input"
@@ -34,7 +33,7 @@ const AddComment = ({ loggedUser, addComment }) => {
         <input
           className="add-comment-button"
           type="submit"
-          value="Add Comment"
+          value="Dodaj komentarz"
         />
       </div>
     </form>

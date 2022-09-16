@@ -9,10 +9,10 @@ import pictures from "../images/piesek.jpg";
 import logo from "../images/logo.png";
 import Logout from "./Logout";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function OffcanvasExample() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isClickedRoutes, setIsClickedRoutes] = useState(false);
   const [classNameRoutes, setClassNameRoutes] = useState("dropdown-menu");
   const [classNameRoutes2, setClassNameRoutes2] = useState("nav-item dropdown");
@@ -71,12 +71,12 @@ function OffcanvasExample() {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/">
-              Home
+              Strona główna
             </Nav.Link>
           </li>
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/groups">
-              Group
+              Grupy
             </Nav.Link>
           </li>
           <li className={classNameRides2}>
@@ -90,14 +90,16 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRides}
             >
-              Rides
+              Rajdy
             </Nav.Link>
             <div className={classNameRides} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/rides">
-                <span className="dropdown-item-custom-link">Explore Rides</span>
+                <span className="dropdown-item-custom-link">
+                  Przeglądaj Rajdy
+                </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-ride">
-                <span className="dropdown-item-custom-link">Create Ride</span>
+                <span className="dropdown-item-custom-link">Stwórz Rajd</span>
               </Nav.Link>
             </div>
           </li>
@@ -113,16 +115,16 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRoutes}
             >
-              Routes
+              Trasy
             </Nav.Link>
             <div className={classNameRoutes} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/routes">
                 <span className="dropdown-item-custom-link">
-                  Explore Routes
+                  Przeglądaj Trasy
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-route">
-                <span className="dropdown-item-custom-link">Create Route</span>
+                <span className="dropdown-item-custom-link">Stwórz Trasę</span>
               </Nav.Link>
             </div>
           </li>
@@ -131,7 +133,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/login">
-                Login
+                Zaloguj
               </Nav.Link>
             </li>
           )}
@@ -140,7 +142,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/register">
-                Register
+                Zarejestruj
               </Nav.Link>
             </li>
           )}
@@ -153,12 +155,16 @@ function OffcanvasExample() {
           ) : (
             ""
           )}
+          <li>
+            <Link to="profile">
+              <Image
+                className="img fluid rounded-circle navbar-profile-pic"
+                style={{ height: "50px", width: "50px" }}
+                src={pictures}
+              />
+            </Link>
+          </li>
         </ul>
-        <Image
-          className="img fluid rounded-circle navbar-profile-pic"
-          style={{ height: "50px", width: "50px" }}
-          src={pictures}
-        />
       </div>
     </Navbar>
   );

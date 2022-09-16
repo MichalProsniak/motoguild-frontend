@@ -36,17 +36,17 @@ const Login = () => {
   return (
     <div className="login-form-container">
       <form onSubmit={handleSubmit}>
-        <label name="userName">User Name</label>
+        <label name="userName">Nazwa użytkownika</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="text"
           name="userName"
           value={user.userName}
           onChange={handleChange}
         ></input>
-        <label name="password">Password</label>
+        <label name="password">Hasło</label>
         <input
-          className="standard-input"
+          className="input-login-register"
           type="password"
           name="password"
           value={user.password}
@@ -54,7 +54,7 @@ const Login = () => {
         ></input>
         {!isValidData && <p className="error-message">{errorMessage}</p>}
         <br></br>
-        <button className="btn btn-primary">Zaloguj</button>
+        <button className="btn btn-secondary">Zaloguj</button>
       </form>
       {!isValidData && <p>{errorMessage}</p>}
     </div>

@@ -39,7 +39,7 @@ export default function RouteForList(props) {
               nameText={props.name}
               startPlace={props.startPlace}
               endingPlace={props.endingPlace}
-              minimumRating={props.minimumRating}
+              rating={props.rating}
             />
           </Col>
           <Col>

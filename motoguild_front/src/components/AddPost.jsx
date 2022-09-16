@@ -4,7 +4,6 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 
 const AddPost = ({ loggedUser, addPost }) => {
-
   const [author, setAuthor] = useState({
     id: 2,
     userName: "Fineasz",
@@ -13,7 +12,7 @@ const AddPost = ({ loggedUser, addPost }) => {
   });
 
   const [content, setContent] = useState("");
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!content || content.length < 3) {
@@ -23,7 +22,7 @@ const AddPost = ({ loggedUser, addPost }) => {
     addPost({ content, author });
     setContent("");
   };
-  
+
   return (
     <Container className="post">
       <form onSubmit={onSubmit}>
@@ -33,14 +32,18 @@ const AddPost = ({ loggedUser, addPost }) => {
               <input
                 className="add-post-input"
                 type="text"
-                placeholder="Add Post"
+                placeholder="Dodaj post"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
             </div>
           </Col>
           <Col sm={3}>
-            <input className="add-post-button" type="submit" value="Add Post" />
+            <input
+              className="add-post-button"
+              type="submit"
+              value="Dodaj post"
+            />
           </Col>
         </Row>
       </form>

@@ -14,7 +14,7 @@ export default function ImportantRouteInfo(props) {
         <i className="bi bi-caret-right-fill"></i> {props.endingPlace}
       </p>
       <Rating
-        initialValue={props.minimumRating}
+        initialValue={props.rating}
         readonly={true}
         size={20}
         className="ride-info-text-stars"

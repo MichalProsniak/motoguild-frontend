@@ -200,6 +200,23 @@ export async function getRoutes(currentPage, itemsPerPage) {
   }
 }
 
+export async function getUserData(id) {
+  try {
+    const res = await fetch(
+      `https://localhost:3333/api/user/${id}`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getRide(id) {
   try {
     const res = await fetch(`https://localhost:3333/api/rides/${id}`, {

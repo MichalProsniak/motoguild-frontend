@@ -578,7 +578,7 @@ label {
   margin-top: -390px;
   z-index: 99;
 }
-.ride-page-map-card-container{
+.ride-page-map-card-container {
   display: flex;
   z-index: 99;
 }
@@ -705,8 +705,8 @@ label {
   flex-direction: column;
   margin-bottom: 12px;
 }
-.route-page-map-card-container{
-  display:flex;
+.route-page-map-card-container {
+  display: flex;
   z-index: 99;
 }
 .route-page-map-card {
@@ -1173,10 +1173,11 @@ label {
 
 .start-page-login-register {
   box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  border: 1px solid lightgray;
   margin-top: 50px;
-  width: 48%;
+  width: 40%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 55px;
 }
 
 .navbar-startpage {
@@ -1235,4 +1236,14 @@ label {
   margin: auto;
   margin-bottom: 35px;
   margin-top: 5px;
+}
+
+.input-login-register {
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  text-indent: 5px;
+  display: block;
+  margin: auto;
+  height: 40px;
+  width: 80%;
 }
