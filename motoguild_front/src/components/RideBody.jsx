@@ -55,7 +55,7 @@ export default function RideBody(props) {
                 startPlace={props.ride.route.startPlace}
                 endingPlace={props.ride.route.endingPlace}
                 startTime={props.ride.startTime}
-                minimumRating={props.minimumRating}
+                minimumRating={props.ride.minimumRating}
               />
             </div>
           </div>
