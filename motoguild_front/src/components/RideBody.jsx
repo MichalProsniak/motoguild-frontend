@@ -64,7 +64,7 @@ export default function RideBody(props) {
 
       <div className="ride-page-info">
         <div className="ride-page-info-header">
-          <p>Opis przejazdu</p>
+          <p>Opis rajdu</p>
         </div>
         <p>{props.ride.description}</p>
         <div className="ride-page-info-owner">

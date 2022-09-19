@@ -1,34 +1,24 @@
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { useState, useEffect } from "react";
-import { Route, Link, Routes, useParams } from "react-router-dom";
+import { useState } from "react";
 import GroupImportantInfo from "./GroupImportantInfo";
 import PostsForPage from "./PostsForPage";
 import GroupMembers from "./GroupMembers";
-import { getGroup } from "../helpnigFunctions/ApiCaller";
+import { getLoggedUserData } from "../helpnigFunctions/ApiCaller";
 
-export default function GroupBody() {
-  const currentGroup = useParams().id;
-
-  const [group, setGroup] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function getGroupInfo() {
-      const data = await getGroup(currentGroup);
-      setGroup(data);
-      setIsLoading(false);
+export default function GroupBody(props) {
+  
+  const [isUserInGroup, setIsUserInGroup] = useState(props.group.participants.some(member => {
+    if (member.id === props.user.id)
+    {
+      return true
     }
-    getGroupInfo();
-  }, []);
+  }))
 
   return (
     <div className="group-page-container">
-      {!isLoading && <GroupImportantInfo group={group} />}
+      <GroupImportantInfo group={props.group} />
       <div className="group-page-container-col2">
-        {!isLoading && <GroupMembers members={group.participants} />}
-        {!isLoading && <PostsForPage link="group" />}
+        <GroupMembers members={props.group.participants} />
+        { isUserInGroup ? <PostsForPage link="group" /> : <p>Nie jesteś członkiem tej grupy!</p>}
       </div>
     </div>
   );
