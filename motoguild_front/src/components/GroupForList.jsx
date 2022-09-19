@@ -1,17 +1,35 @@
-import React from "react";
+import { useState} from "react";
 import picture from "../images/piesek.jpg";
 import { Rating } from "react-simple-star-rating";
 import { Link, useNavigate } from "react-router-dom";
-import { addUserToGroup, addUserToGroupsPendingUsers } from "../helpnigFunctions/ApiCaller";
+import { addUserToGroup, addUserToGroupsPendingUsers, deleteLoggedUserFromGroup } from "../helpnigFunctions/ApiCaller";
 
 export default function GroupForList(props) {
   const navigate = useNavigate();
+  const [isUserInGroup, setIsUserInGroup] = useState(props.participants.some(member => {
+    if (member.id === props.user.id)
+    {
+      return true
+    }
+  }))
 
+  const [isUserInPendingUsers, setIsUserInPendingUsers] = useState(props.pending.some(member => {
+    if (member.id === props.user.id)
+    {
+      return true
+    }
+  }))
 
   async function addUser()
   {
     await addUserToGroup(props.id)
     navigate(`/groups/${props.id}`)
+  }
+
+  async function deleteUserFromGroup()
+  {
+    await deleteLoggedUserFromGroup(props.id)
+    window.location.reload(false);
   }
 
   async function addUserToPendingUsers()
@@ -49,15 +67,25 @@ export default function GroupForList(props) {
         <span className="group-participants-text">
           Członkowie: {props.participants.length}
         </span>
-        {props.isPrivate ? (
-          <button className="group-apply-button btn btn-outline-primary">
-            <p onClick={addUserToPendingUsers} className="group-apply-button-text-ask">Poproś o dostęp</p>
-          </button>
-        ) : (
-          <button className="group-apply-button btn btn-outline-primary">
-            <p onClick={addUser} className="group-apply-button-text-apply">Dołącz</p>
-          </button>
-        )}
+
+        {props.isPrivate && !isUserInGroup && !isUserInPendingUsers &&
+        <button className="group-apply-button btn btn-outline-primary">
+          <p onClick={addUserToPendingUsers} className="group-apply-button-text-ask">Poproś o dostęp</p>
+        </button>}
+
+        {props.isPrivate && !isUserInGroup && isUserInPendingUsers &&
+        <p className="group-apply-button-text-ask">Akceptacja w toku</p>}
+
+        {!props.isPrivate && !isUserInGroup && 
+        <button className="group-apply-button btn btn-outline-primary">
+          <p onClick={addUser} className="group-apply-button-text-apply">Dołącz</p>
+        </button>}
+
+        {isUserInGroup && 
+        <button className="group-apply-button btn btn-outline-primary">
+          <p onClick={deleteUserFromGroup} className="group-apply-button-text-ask">Opuść grupę</p>
+        </button>}
+        
       </div>
     </div>
   );
