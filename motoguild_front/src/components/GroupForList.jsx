@@ -1,13 +1,25 @@
 import React from "react";
 import picture from "../images/piesek.jpg";
 import { Rating } from "react-simple-star-rating";
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { addUserToGroup, addUserToGroupsPendingUsers } from "../helpnigFunctions/ApiCaller";
 
 export default function GroupForList(props) {
+  const navigate = useNavigate();
+
+
+  async function addUser()
+  {
+    await addUserToGroup(props.id)
+    navigate(`/groups/${props.id}`)
+  }
+
+  async function addUserToPendingUsers()
+  {
+    await addUserToGroupsPendingUsers(props.id)
+    navigate(`/groups/${props.id}`)
+  }
+
   return (
     <div className="group-container">
       <div className="group-photo-container">
@@ -39,11 +51,11 @@ export default function GroupForList(props) {
         </span>
         {props.isPrivate ? (
           <button className="group-apply-button btn btn-outline-primary">
-            <p className="group-apply-button-text-ask">Poproś o dostęp</p>
+            <p onClick={addUserToPendingUsers} className="group-apply-button-text-ask">Poproś o dostęp</p>
           </button>
         ) : (
           <button className="group-apply-button btn btn-outline-primary">
-            <p className="group-apply-button-text-apply">Dołącz</p>
+            <p onClick={addUser} className="group-apply-button-text-apply">Dołącz</p>
           </button>
         )}
       </div>

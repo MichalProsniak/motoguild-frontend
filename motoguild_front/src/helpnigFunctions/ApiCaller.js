@@ -329,3 +329,32 @@ export async function testLogin() {
     console.log(error);
   }
 }
+
+export async function addUserToGroup(groupId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/1`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function addUserToGroupsPendingUsers(groupId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/pendingusers/1`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
