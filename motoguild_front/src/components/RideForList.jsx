@@ -30,6 +30,7 @@ export default function RideForList(props) {
                 destinationPoint={props.endingPlace}
                 setLoadedMaps={props.setLoadedMaps}
                 loadedMaps={props.loadedMaps}
+                stops={props.stops}
               />
             )}
           </Col>

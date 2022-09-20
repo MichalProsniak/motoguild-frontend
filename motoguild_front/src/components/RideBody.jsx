@@ -32,6 +32,7 @@ export default function RideBody(props) {
           originPoint={props.ride.route.startPlace}
           destinationPoint={props.ride.route.endingPlace}
           setMapInfo={setMapInfo}
+          stops={props.ride.route.stops}
         />
         )}
         <div className="ride-page-map-card-container" >
