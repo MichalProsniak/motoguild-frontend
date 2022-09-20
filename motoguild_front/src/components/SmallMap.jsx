@@ -6,7 +6,6 @@ export default function SmallMap(props) {
   const [duration, setDuration] = useState("");
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  
   const stopsForMap = props.stops.map(stop => {
       return {location : stop.place,
               stopover: true}

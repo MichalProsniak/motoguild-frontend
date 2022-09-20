@@ -9,6 +9,9 @@ export default function NewRouteBody() {
   const destinationRef = useRef();
   const [isOrigin, setIsOrigin] = useState(false);
   const [isDestination, setIsDestination] = useState(false);
+  const [stops, setStops] = useState([]);
+  // {place: "poznań"}
+
 
   const [allInputsCorrect, setAllInputsCorrect] = useState(true);
 
@@ -143,6 +146,7 @@ export default function NewRouteBody() {
           destinationRef={destinationRef}
           isOrigin={isOrigin}
           isDestination={isDestination}
+          stops={stops}
         />
       )}
     </div>

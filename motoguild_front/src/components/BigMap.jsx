@@ -9,6 +9,11 @@ export default function BigMap(props)
         libraries
     })
 
+    const stopsForMap = props.stops.map(stop => {
+        return {location : stop.place,
+                stopover: true}
+    })
+
     const [directionsResponse, setDirectionsResponse] = useState(null)
 
     useEffect(() => {
@@ -23,7 +28,8 @@ export default function BigMap(props)
                 const results = await directionsService.route({
                     origin: props.originRef.current.value,
                     destination: props.destinationRef.current.value,
-                    travelMode: google.maps.TravelMode.DRIVING
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    waypoints: stopsForMap
                 })
                 setDirectionsResponse(results)
             }
