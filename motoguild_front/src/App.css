@@ -1247,3 +1247,8 @@ label {
   height: 40px;
   width: 80%;
 }
+
+.delete-button:hover{
+  cursor: pointer;
+  color: red;
+}

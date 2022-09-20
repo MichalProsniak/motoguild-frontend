@@ -17,7 +17,7 @@ export default function GroupBody(props) {
     <div className="group-page-container">
       <GroupImportantInfo group={props.group} />
       <div className="group-page-container-col2">
-        <GroupMembers members={props.group.participants} />
+        <GroupMembers members={props.group.participants} owner={props.group.owner} user={props.user} group={props.group} />
         { isUserInGroup ? <PostsForPage link="group" /> : <p>Nie jesteś członkiem tej grupy!</p>}
       </div>
     </div>

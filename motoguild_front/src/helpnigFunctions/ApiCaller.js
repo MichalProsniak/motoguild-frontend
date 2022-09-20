@@ -372,6 +372,20 @@ export async function deleteLoggedUserFromGroup(groupId) {
   }
 }
 
+export async function deleteUserFromGroup(groupId, userId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getLoggedUserData() {
   try {
     let res = await fetch("https://localhost:3333/api/users/logged", {

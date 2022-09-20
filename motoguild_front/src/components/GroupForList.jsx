@@ -13,6 +13,8 @@ export default function GroupForList(props) {
     }
   }))
 
+  const [isUserTheOwner, setIsUserTheOwner] = useState(props.owner.id === props.user.id)
+
   const [isUserInPendingUsers, setIsUserInPendingUsers] = useState(props.pending.some(member => {
     if (member.id === props.user.id)
     {
@@ -68,20 +70,20 @@ export default function GroupForList(props) {
           Członkowie: {props.participants.length}
         </span>
 
-        {props.isPrivate && !isUserInGroup && !isUserInPendingUsers &&
+        {!isUserTheOwner && props.isPrivate && !isUserInGroup && !isUserInPendingUsers &&
         <button className="group-apply-button btn btn-outline-primary">
           <p onClick={addUserToPendingUsers} className="group-apply-button-text-ask">Poproś o dostęp</p>
         </button>}
 
-        {props.isPrivate && !isUserInGroup && isUserInPendingUsers &&
+        {!isUserTheOwner && props.isPrivate && !isUserInGroup && isUserInPendingUsers &&
         <p className="group-apply-button-text-ask">Akceptacja w toku</p>}
 
-        {!props.isPrivate && !isUserInGroup && 
+        {!isUserTheOwner && !props.isPrivate && !isUserInGroup && 
         <button className="group-apply-button btn btn-outline-primary">
           <p onClick={addUser} className="group-apply-button-text-apply">Dołącz</p>
         </button>}
 
-        {isUserInGroup && 
+        {!isUserTheOwner && isUserInGroup && 
         <button className="group-apply-button btn btn-outline-primary">
           <p onClick={deleteUserFromGroup} className="group-apply-button-text-ask">Opuść grupę</p>
         </button>}
