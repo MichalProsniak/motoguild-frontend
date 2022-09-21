@@ -73,15 +73,6 @@ const Registration = () => {
           value={passwordConfirm}
           onChange={handleChangePasswordConfirm}
         ></input>
-        <label name="phoneNumber">Numer telefonu</label>
-        <input
-          className="input-login-register"
-          type="tel"
-          name="phoneNumber"
-          pattern="[0-9]{9}"
-          value={user.phoneNumber}
-          onChange={handleChange}
-        ></input>
         {!isValidData && (
           <p className="error-message">Wprowadź prawidłowe dane!</p>
         )}
