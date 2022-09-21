@@ -7,10 +7,15 @@ const libraries = ["places"];
 export default function NewRouteBody() {
   const originRef = useRef();
   const destinationRef = useRef();
+  const stop1Ref = useRef();
   const [isOrigin, setIsOrigin] = useState(false);
   const [isDestination, setIsDestination] = useState(false);
+  const [isStop1, setIsStop1] = useState(false);
+  const [isStop1Saved, setIsStop1Saved] = useState(false);
   const [stops, setStops] = useState([]);
+  const [stop1, setStop1] = useState({name: 'Stop1', place: '', description: 'Opis' });
   // {place: "poznań"}
+  // {id: 1, name: 'Stop1', place: 'Warszawa', description: 'Opis'}
 
 
   const [allInputsCorrect, setAllInputsCorrect] = useState(true);
@@ -22,6 +27,7 @@ export default function NewRouteBody() {
     description: "",
     rating: 0,
     owner: { id: 1, userName: "b-man", email: "www@665.pl", rating: 0 },
+
   });
 
   const [coordinates, setCoordinates] = useState({
@@ -49,6 +55,17 @@ export default function NewRouteBody() {
     }));
   }
 
+  function handleChangeStop1(event) {
+    setIsStop1(false);
+    const { name, value } = event.target;
+    setStops([]);
+    setIsStop1Saved(false)
+    setStop1((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }
+
   async function handleSubmit(event) {
     // event.preventDefault()
     if (
@@ -57,6 +74,8 @@ export default function NewRouteBody() {
       newRoute.startPlace === "" ||
       newRoute.name === ""
     ) {
+      console.log(stops)
+      console.log(stop1)
       event.preventDefault();
       setAllInputsCorrect(false);
       return;
@@ -73,13 +92,36 @@ export default function NewRouteBody() {
   }
 
   function handleSelectDestination() {
-    console.log(destinationRef);
     setNewRoute((prevState) => ({
       ...prevState,
       endingPlace: destinationRef.current.value,
     }));
     setIsDestination(true);
   }
+  function handleSelectStop1() {
+    setStop1((prevState) => ({
+      ...prevState,
+      place: stop1Ref.current.value,
+    }));
+    
+    setIsStop1(true);
+  }
+
+  function saveStop1()
+  {
+    const stop1Exists = stops.some(element => {
+      if (element.name === 'Stop1') {
+        return true;
+      }
+      return false;
+    })
+    if(isStop1 && !stop1Exists)
+    {
+      setStops((prevState) => ([...prevState, stop1]))
+      setIsStop1Saved(true)
+    }
+  }
+  
 
   return (
     <div>
@@ -108,19 +150,37 @@ export default function NewRouteBody() {
           )}
           <label name="endPoint">Koniec trasy</label>
           {isLoaded && (
-            <Autocomplete onPlaceChanged={handleSelectDestination}>
-              <input
-                className="standard-input"
-                type="text"
-                name="endingPlace"
-                value={newRoute.endingPlace}
-                onChange={handleChange}
-                ref={destinationRef}
-              ></input>
-            </Autocomplete>
+            <div>
+              <Autocomplete onPlaceChanged={handleSelectDestination}>
+                <input
+                  className="standard-input"
+                  type="text"
+                  name="endingPlace"
+                  value={newRoute.endingPlace}
+                  onChange={handleChange}
+                  ref={destinationRef}
+                ></input>
+              </Autocomplete>
+            </div>
           )}
         </div>
         <div className="right-column">
+        <label name="place">Dodaj przystanek:</label>
+          {isLoaded && (
+            <div>
+              <Autocomplete onPlaceChanged={handleSelectStop1}>
+                <input
+                  className="standard-input"
+                  type="text"
+                  name="place"
+                  value={stop1.place}
+                  onChange={handleChangeStop1}
+                  ref={stop1Ref}
+                ></input>
+              </Autocomplete>
+              <button type="button" onClick={saveStop1}>Dodaj</button>
+            </div>
+          )}
           <label name="description">Krótki opis</label>
           <textarea
             className="description-input"
@@ -131,7 +191,7 @@ export default function NewRouteBody() {
           ></textarea>
         </div>
         <div>
-          <button className="standard-button">Stwórz</button>
+          <button type="submit" className="standard-button">Stwórz</button>
           {!allInputsCorrect && (
             <p className="error-message">
               Musisz uzupełnić wszystkie pola, żeby stworzyć nową trasę
@@ -147,6 +207,7 @@ export default function NewRouteBody() {
           isOrigin={isOrigin}
           isDestination={isDestination}
           stops={stops}
+          isStops={isStop1Saved}
         />
       )}
     </div>
