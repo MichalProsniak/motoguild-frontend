@@ -74,7 +74,7 @@
   text-indent: 5px;
   display: block;
   margin-left: 5%;
-  height: 300px;
+  height: 100px;
   width: 90%;
   resize: none;
 }
@@ -1246,4 +1246,9 @@ label {
   margin: auto;
   height: 40px;
   width: 80%;
+}
+
+.delete-button:hover{
+  cursor: pointer;
+  color: red;
 }

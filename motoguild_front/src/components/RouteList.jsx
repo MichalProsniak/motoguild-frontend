@@ -48,6 +48,7 @@ export default function RouteList() {
             rating={route.rating}
             setLoadedMaps={setLoadedMaps}
             loadedMaps={loadedMaps} 
+            stops={route.stops}
           />
         ))}
       {!isLoading && (

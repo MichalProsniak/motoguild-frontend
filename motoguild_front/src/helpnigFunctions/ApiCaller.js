@@ -330,6 +330,78 @@ export async function testLogin() {
   }
 }
 
+export async function addUserToGroup(groupId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/1`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function addUserToGroupsPendingUsers(groupId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/pendingusers/1`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteLoggedUserFromGroup(groupId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/logged`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteUserFromGroup(groupId, userId) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getLoggedUserData() {
+  try {
+    let res = await fetch("https://localhost:3333/api/users/logged", {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 export async function createNewEvent(newEvent) {
   try {
     const res = await fetch("https://localhost:3333/api/events", {

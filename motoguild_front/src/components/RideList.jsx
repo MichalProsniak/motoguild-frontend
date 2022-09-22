@@ -46,6 +46,7 @@ export default function RideList() {
             participants={ride.participants.length}
             setLoadedMaps={setLoadedMaps}
             loadedMaps={loadedMaps}
+            stops={ride.route.stops}
           />
         ))}
       {!isLoading && (
