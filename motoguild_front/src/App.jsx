@@ -18,7 +18,7 @@ import AllRoutesPage from "./pages/AllRoutesPage";
 import RoutePage from "./pages/RoutePage";
 import GroupPage from "./pages/GroupPage";
 import StartPage from "./pages/StartPage";
-import ProfilPage from "./pages/ProfilPage";
+// import ProfilPage from "./pages/ProfilPage";
 import CreateEventPage from "./pages/CreateEventPage";
 import AllEventsPage from "./pages/AllEventsPage";
 import EventPage from "./pages/EventPage";
@@ -59,7 +59,7 @@ function App() {
             <Route path="create-route" element={<CreateRoutePage />} />
             <Route path="groups" element={<AllGroupsPage />}/>
             <Route path="groups/:id" element={<GroupPage />}/>
-            <Route path="profile" element={<ProfilPage />}/>
+            {/* <Route path="profile" element={<ProfilPage />}/> */}
             <Route path="/rides" element={<AllRidesPage />}/>
             <Route path="/rides/:id" element={<RidePage />}/>
             <Route path="/routes" element={<AllRoutesPage />}/>

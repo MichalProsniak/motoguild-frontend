@@ -1,22 +1,22 @@
-import React from "react";
-import { useEffect } from "react";
-import { getUserData } from "../helpnigFunctions/ApiCaller";
-import jwt from 'jwt-decode'
+// import React from "react";
+// import { useEffect } from "react";
+// import { getUserData } from "../helpnigFunctions/ApiCaller";
+// import jwt from 'jwt-decode'
 
-const ProfilPage = () => {
-    const user = jwt(localStorage.getItem('token'))
-    console.log(user)
-    useEffect(() =>{
-        async function getUser(){
-        //const userData = await getUserData()
+// const ProfilPage = () => {
+//     const user = jwt(localStorage.getItem('token'))
+//     console.log(user)
+//     useEffect(() =>{
+//         async function getUser(){
+//         //const userData = await getUserData()
 
-        }
-        getUser()
-    })
+//         }
+//         getUser()
+//     })
     
-    return(
-        <h1>Profil Page</h1>
-    )
-}
+//     return(
+//         <h1>Profil Page</h1>
+//     )
+// }
 
-export default ProfilPage
+// export default ProfilPage
