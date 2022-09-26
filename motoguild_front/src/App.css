@@ -127,6 +127,7 @@ label {
   margin: auto;
   border-radius: 10px;
   border: 1px solid grey;
+  background-color: rgba(233, 233, 233, 0.867);
 }
 
 .googlemap-slides-containter-text {
@@ -772,7 +773,7 @@ label {
 
 .loader {
   border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #3498db; /* Blue */
+  border-top: 4px solid #951717;
   border-radius: 15px;
   margin-left: 85px;
   margin-top: 65px;
@@ -784,10 +785,10 @@ label {
 }
 
 .loader-slider {
-  border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #3498db; /* Blue */
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #951717;
   border-radius: 50%;
-  margin-left: 488px;
+  margin-left: 49vw;
   margin-top: 80px;
   width: 50px;
   height: 50px;
