@@ -90,17 +90,17 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRides}
             >
-              <span class="nav-text-custom">Rajdy</span>
+              <span class="nav-text-custom red-bold">Ustawki</span>
             </Nav.Link>
             <div className={classNameRides} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/rides">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Przeglądaj Rajdy</span>
+                  <span class="nav-text-custom">Przeglądaj Ustawki</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-ride">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Stwórz Rajd</span>
+                  <span class="nav-text-custom">Zaplanuj ustawkę</span>
                 </span>
               </Nav.Link>
             </div>
