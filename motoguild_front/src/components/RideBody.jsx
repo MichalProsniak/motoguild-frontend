@@ -32,6 +32,7 @@ export default function RideBody(props) {
           originPoint={props.ride.route.startPlace}
           destinationPoint={props.ride.route.endingPlace}
           setMapInfo={setMapInfo}
+          stops={props.ride.route.stops}
         />
         )}
         <div className="ride-page-map-card-container" >
@@ -64,7 +65,7 @@ export default function RideBody(props) {
 
       <div className="ride-page-info">
         <div className="ride-page-info-header">
-          <p>Opis przejazdu</p>
+          <p>Opis rajdu</p>
         </div>
         <p>{props.ride.description}</p>
         <div className="ride-page-info-owner">

@@ -43,6 +43,7 @@ export default function RouteBody(props) {
             originPoint={props.route.startPlace}
             destinationPoint={props.route.endingPlace}
             setMapInfo={setMapInfo}
+            stops={props.route.stops}
           />
         )}
         <div className="route-page-map-card-container" >

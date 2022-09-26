@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUser } from "../helpnigFunctions/ApiCaller";
 
-const Registration = () => {
+const Registration = (props) => {
   const [user, setUser] = useState({
     userName: "",
     email: "",
@@ -38,9 +38,16 @@ const Registration = () => {
     await createUser(user);
   }
 
+  function handleBackToLogin() {
+    props.setIsRegistration(false);
+  }
+
   return (
     <div className="register-form-container">
       <form onSubmit={handleSubmit}>
+        <p className="back-to-login-text" onClick={handleBackToLogin}>
+          <i class="bi bi-arrow-left"></i> Wróć do logowania
+        </p>
         <label name="userName">Nazwa użytkownika</label>
         <input
           className="input-login-register"
@@ -73,20 +80,11 @@ const Registration = () => {
           value={passwordConfirm}
           onChange={handleChangePasswordConfirm}
         ></input>
-        <label name="phoneNumber">Numer telefonu</label>
-        <input
-          className="input-login-register"
-          type="tel"
-          name="phoneNumber"
-          pattern="[0-9]{9}"
-          value={user.phoneNumber}
-          onChange={handleChange}
-        ></input>
         {!isValidData && (
           <p className="error-message">Wprowadź prawidłowe dane!</p>
         )}
         <br></br>
-        <button className="btn btn-secondary">Zarejestruj</button>
+        <button className="btn btn-dark">Zarejestruj</button>
       </form>
     </div>
   );

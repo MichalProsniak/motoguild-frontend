@@ -9,6 +9,11 @@ export default function BigMap(props)
         libraries
     })
 
+    const stopsForMap = props.stops.map(stop => {
+        return {location : stop.place,
+                stopover: true}
+    })
+
     const [directionsResponse, setDirectionsResponse] = useState(null)
 
     useEffect(() => {
@@ -17,19 +22,31 @@ export default function BigMap(props)
             {
                 return
             }
-            if (props.isOrigin && props.isDestination)
+            if (props.isOrigin && props.isDestination && !props.isStops)
             {
                 const directionsService = new google.maps.DirectionsService()
                 const results = await directionsService.route({
                     origin: props.originRef.current.value,
                     destination: props.destinationRef.current.value,
-                    travelMode: google.maps.TravelMode.DRIVING
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    // waypoints: stopsForMap
+                })
+                setDirectionsResponse(results)
+            }
+            if (props.isOrigin && props.isDestination && props.isStops)
+            {
+                const directionsService = new google.maps.DirectionsService()
+                const results = await directionsService.route({
+                    origin: props.originRef.current.value,
+                    destination: props.destinationRef.current.value,
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    waypoints: stopsForMap
                 })
                 setDirectionsResponse(results)
             }
         }
         calculateRoute()
-    }, [props.isOrigin, props.isDestination])
+    }, [props.isOrigin, props.isDestination, props.isStops])
 
     return (<div>{isLoaded && <GoogleMap zoom={7} center={props.coordinates} mapContainerClassName="googlemap" options={{
         streetViewControl: false,

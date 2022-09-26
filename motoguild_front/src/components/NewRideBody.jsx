@@ -125,6 +125,7 @@ export default function NewRideBody(){
                 originPoint={newRide.route.startPlace}
                 destinationPoint={newRide.route.endingPlace}
                 setMapInfo={setMapInfo}
+                stops={newRide.route.stops}
               />
             )}
             {!isValidRide && <p className="error-message">Uzupełnij wszystkie pola!</p>}
