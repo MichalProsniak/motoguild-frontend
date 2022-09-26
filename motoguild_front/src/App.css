@@ -38,7 +38,7 @@
 .user{
   position: relative;
   margin: 0 auto;
-  border: double;
+  border: groove;
   border-color: red;
   border-radius: 40px;
   height: 300px;
@@ -53,7 +53,8 @@
 }
 
 .user-data-element{
- text-align: left;
+  color: white;
+  text-align: left;
 }
 
 .card {
@@ -422,9 +423,6 @@ label {
   font-size: 16px;
   margin-left: 5px;
   margin-right: 5px;
-}
-
-.group-page-info-created {
 }
 
 .group-page-info-rating {
@@ -976,9 +974,6 @@ label {
   width: 100%;
 }
 
-.post-avatar {
-}
-
 .navbar-profile-pic {
   margin-left: 10px;
 }
@@ -1032,12 +1027,6 @@ label {
 .post-card {
   display: flex;
   flex-direction: row;
-}
-
-.post-add-card {
-}
-
-.add-post-card {
 }
 
 .add-post-input {

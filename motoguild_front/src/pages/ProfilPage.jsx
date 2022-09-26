@@ -42,9 +42,9 @@ const ProfilPage = () => {
 
     return (
         <div>
-            {profil &&
-            <UserData user={profil.user} />
-        }
+                {profil &&
+                <UserData user={profil.user} />
+            }
         </div>
       )
     }
