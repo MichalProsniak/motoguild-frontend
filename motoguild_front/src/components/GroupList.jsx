@@ -5,7 +5,7 @@ import { getGroups, getLoggedUserData } from "../helpnigFunctions/ApiCaller";
 
 export default function GroupList() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [paginationData, setPaginationData] = useState(null);
   const [allGroups, setAllGroups] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +57,7 @@ export default function GroupList() {
           setCurrentPage={setCurrentPage}
         />
       )}
+      <br></br>
     </div>
   );
 }

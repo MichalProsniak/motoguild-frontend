@@ -13,10 +13,13 @@ export default function NewRouteBody() {
   const [isStop1, setIsStop1] = useState(false);
   const [isStop1Saved, setIsStop1Saved] = useState(false);
   const [stops, setStops] = useState([]);
-  const [stop1, setStop1] = useState({name: 'Stop1', place: '', description: 'Opis' });
+  const [stop1, setStop1] = useState({
+    name: "Stop1",
+    place: "",
+    description: "Opis",
+  });
   // {place: "poznań"}
   // {id: 1, name: 'Stop1', place: 'Warszawa', description: 'Opis'}
-
 
   const [allInputsCorrect, setAllInputsCorrect] = useState(true);
 
@@ -27,7 +30,6 @@ export default function NewRouteBody() {
     description: "",
     rating: 0,
     owner: { id: 1, userName: "b-man", email: "www@665.pl", rating: 0 },
-
   });
 
   const [coordinates, setCoordinates] = useState({
@@ -58,8 +60,7 @@ export default function NewRouteBody() {
   function handleChangeStop1(event) {
     setIsStop1(false);
     const { name, value } = event.target;
-    setStops([]);
-    setIsStop1Saved(false)
+    setIsStop1Saved(false);
     setStop1((prevState) => ({
       ...prevState,
       [name]: value,
@@ -74,8 +75,8 @@ export default function NewRouteBody() {
       newRoute.startPlace === "" ||
       newRoute.name === ""
     ) {
-      console.log(stops)
-      console.log(stop1)
+      console.log(stops);
+      console.log(stop1);
       event.preventDefault();
       setAllInputsCorrect(false);
       return;
@@ -103,25 +104,27 @@ export default function NewRouteBody() {
       ...prevState,
       place: stop1Ref.current.value,
     }));
-    
+
     setIsStop1(true);
   }
 
-  function saveStop1()
-  {
-    const stop1Exists = stops.some(element => {
-      if (element.name === 'Stop1') {
+  function saveStop1() {
+    const stop1Exists = stops.some((element) => {
+      if (element.place === stop1.place) {
         return true;
       }
       return false;
-    })
-    if(isStop1 && !stop1Exists)
-    {
-      setStops((prevState) => ([...prevState, stop1]))
-      setIsStop1Saved(true)
+    });
+    if (isStop1 && !stop1Exists) {
+      setStops((prevState) => [...prevState, stop1]);
+      setIsStop1Saved(true);
     }
   }
-  
+
+  const handleRemoveStop = (e) => {
+    setStops(stops.filter((item) => item.place != e.target.outerText));
+    console.log(stops);
+  };
 
   return (
     <div>
@@ -134,6 +137,7 @@ export default function NewRouteBody() {
             name="name"
             value={newRoute.name}
             onChange={handleChange}
+            placeholder="Wpisz nazwę trasy"
           ></input>
           <label name="startPoint">Początek trasy</label>
           {isLoaded && (
@@ -165,9 +169,9 @@ export default function NewRouteBody() {
           )}
         </div>
         <div className="right-column">
-        <label name="place">Dodaj przystanek:</label>
+          <label name="place">Dodaj przystanek:</label>
           {isLoaded && (
-            <div>
+            <div className="add-stops-container">
               <Autocomplete onPlaceChanged={handleSelectStop1}>
                 <input
                   className="standard-input"
@@ -178,9 +182,21 @@ export default function NewRouteBody() {
                   ref={stop1Ref}
                 ></input>
               </Autocomplete>
-              <button type="button" onClick={saveStop1}>Dodaj</button>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={saveStop1}
+              >
+                Dodaj
+              </button>
             </div>
           )}
+          {stops.length > 0 &&
+            stops.map((stop) => (
+              <div onClick={handleRemoveStop} key={stop.place}>
+                <i className="delete-button bi bi-trash3">{stop.place}</i>
+              </div>
+            ))}
           <label name="description">Krótki opis</label>
           <textarea
             className="description-input"
@@ -188,10 +204,13 @@ export default function NewRouteBody() {
             name="description"
             value={newRoute.description}
             onChange={handleChange}
+            placeholder="Dodaj krótki opis..."
           ></textarea>
         </div>
         <div>
-          <button type="submit" className="standard-button">Stwórz</button>
+          <button type="submit" className="btn btn-secondary">
+            Stwórz
+          </button>
           {!allInputsCorrect && (
             <p className="error-message">
               Musisz uzupełnić wszystkie pola, żeby stworzyć nową trasę

@@ -15,7 +15,6 @@ const Homepage = ({ user }) => {
   const [loadedMaps, setLoadedMaps] = useState(0);
 
   useEffect(() => {
-
     const getPosts = async () => {
       if (localStorage.getItem("token")) {
         const postsFromServer = await getPostsForFeed();
@@ -34,7 +33,6 @@ const Homepage = ({ user }) => {
   };
 
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
     }, 1000);
@@ -42,20 +40,11 @@ const Homepage = ({ user }) => {
   }, []);
   if (!user) {
     return (
-      <div>
-        <Row>
-          <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
-        </Row>
-        <Row>
-          <Col className="homepage-col1">
-            <div className="posts">
-              <Posts user={user} posts={posts} onAdd={addPost} />
-            </div>
-          </Col>
-          <Col className="homepage-col2">
-            <UpcomingEvents />
-          </Col>
-        </Row>
+      <div className="homepage-container">
+        <BestRoutes setLoadedMaps={setLoadedMaps} loadedMaps={loadedMaps} />
+        <div className="posts-homepage">
+          <Posts user={user} posts={posts} onAdd={addPost} />
+        </div>
       </div>
     );
   }

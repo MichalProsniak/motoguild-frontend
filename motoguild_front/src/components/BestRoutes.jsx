@@ -16,7 +16,7 @@ export default function BestRoutes(props) {
 
   return (
     <div className="homepage-best-routes">
-      <h1>Najlepsze trasy</h1>
+      <h1 className="header-custom-font">Najlepsze trasy</h1>
       {!isLoading && (
         <BestRoutesContainer
           routes={allRoutes}

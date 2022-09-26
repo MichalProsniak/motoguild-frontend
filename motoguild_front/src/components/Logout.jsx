@@ -1,5 +1,4 @@
 import React from "react";
-import RemoveCookie from "../hooks/removeCookie";
 import { useNavigate } from "react-router";
 
 export default function Logout() {
@@ -9,5 +8,9 @@ export default function Logout() {
     navigate("/");
     window.location.reload(false);
   }
-  return <span onClick={handleClick}>Wyloguj</span>;
+  return (
+    <span className="nav-text-custom" onClick={handleClick}>
+      Wyloguj
+    </span>
+  );
 }
