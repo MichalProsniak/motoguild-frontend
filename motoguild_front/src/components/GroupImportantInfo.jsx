@@ -23,7 +23,7 @@ export default function GroupImportantInfo(props) {
           <i className="bi bi-calendar-check"></i> {dayMonthYear}
         </p>
         <p className="group-page-info-rating">
-          <Rating initialValue={props.group.rating} readonly={true} size="15" />
+          <Rating initialValue={props.group.rating} readonly={true} size="15" emptyColor="darkgrey" />
         </p>
       </div>
     </div>

@@ -26,6 +26,7 @@ export default function GroupMemberForList(props) {
             initialValue={props.member.rating}
             readonly={true}
             size="16"
+            emptyColor="darkgrey"
           />
         </div>
       </div>

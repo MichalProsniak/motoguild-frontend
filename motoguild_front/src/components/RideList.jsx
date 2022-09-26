@@ -55,6 +55,7 @@ export default function RideList() {
           setCurrentPage={setCurrentPage}
         />
       )}
+      <br></br>
     </div>
   );
 }
