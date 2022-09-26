@@ -119,6 +119,7 @@ label {
   margin-left: 0px;
   border-radius: 5px;
   border: 1px solid grey;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .googlemap-slides {
@@ -896,13 +897,13 @@ label {
 }
 
 .for-list {
-  background-color: #ffffff;
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   margin-top: 25px;
   padding-bottom: 20px;
   border-radius: 5px;
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.25));
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
   width: 574px;
 }
 
@@ -922,6 +923,7 @@ label {
   border-radius: 5px;
   height: fit-content;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(233, 233, 233, 0.867);
   border: 1px solid lightgray;
 }
 
