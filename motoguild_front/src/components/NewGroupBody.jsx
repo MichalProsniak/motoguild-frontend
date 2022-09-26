@@ -43,6 +43,7 @@ export default function NewRideBody() {
       [name]: value,
     }));
   }
+
   async function handleSubmit(event) {
     if (
       newRide.name.length < 4 ||

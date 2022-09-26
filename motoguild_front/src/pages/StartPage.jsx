@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router";
 import Homepage from "./Homepage";
-import logo from "../images/logo.png";
+import logo from "../images/motoguild-start.png";
 
 const StartPage = () => {
   const navigate = useNavigate();
@@ -14,38 +14,47 @@ const StartPage = () => {
     navigate("/");
   }, []);
 
-  const [isRegistration, setIsRegistration] = useState(true);
-  const [loginStyles, setLoginStyles] = useState(
-    "login-register-switch-login login-register-no-active"
-  );
-  const [registerStyles, setRegisterStyles] = useState(
-    "login-register-switch-register login-register-active"
-  );
+  const [isRegistration, setIsRegistration] = useState(false);
+  const [loginForm, setLoginForm] = useState("start-page-login-register");
+  const [startText, setStartText] = useState("start-page-text");
 
-  function changeActionToLogin() {
-    setLoginStyles("login-register-switch-login login-register-active");
-    setRegisterStyles(
-      "login-register-switch-register login-register-no-active"
-    );
+  function handleMobileLogin() {
+    setLoginForm("start-page-login-register show-login-form");
+    setStartText("start-page-text hidden-start-text");
     setIsRegistration(false);
   }
 
-  function changeActionToRegister() {
-    setLoginStyles("login-register-switch-login login-register-no-active");
-    setRegisterStyles("login-register-switch-register login-register-active");
+  function handleMobileRegister() {
+    setLoginForm("start-page-login-register show-login-form");
+    setStartText("start-page-text hidden-start-text");
     setIsRegistration(true);
+  }
+
+  function handleMobileExit() {
+    setLoginForm("start-page-login-register");
+    setStartText("start-page-text");
+    setIsRegistration(false);
   }
 
   return (
     <div>
       {!localStorage.getItem("token") ? (
         <div className="start-page-container">
-          <div className="navbar-custom navbar-startpage">
-            <a className="navbar-brand" href="/">
-              <img src={logo} className="logo-navbar" alt="MotoGuild" />
-            </a>
-          </div>
-          <div className="start-page-text">
+          <section className="top-nav">
+            <div>
+              <img src={logo} className="logo-top-nav" alt="MotoGuild" />
+            </div>
+            <input id="menu-toggle" type="checkbox" />
+            <label className="menu-button-container" for="menu-toggle">
+              <div className="menu-button" onClick={handleMobileExit}></div>
+            </label>
+            <ul className="menu">
+              <li onClick={handleMobileLogin}>Zaloguj</li>
+              <li onClick={handleMobileRegister}>Zarejestruj</li>
+            </ul>
+          </section>
+          <div className={startText}>
+            <img src={logo} className="logo-start" alt="MotoGuild" />
             <p className="start-page-text-header">
               Czołem Bracia Motocykliści!
             </p>
@@ -70,16 +79,12 @@ const StartPage = () => {
               Załoga MotoGuild
             </p>
           </div>
-          <div className="start-page-login-register">
-            <div className="login-register-switch">
-              <div onClick={changeActionToLogin} className={loginStyles}>
-                Zaloguj
-              </div>
-              <div onClick={changeActionToRegister} className={registerStyles}>
-                Zarejestruj
-              </div>
-            </div>
-            {isRegistration ? <Registration /> : <Login />}
+          <div className={loginForm}>
+            {isRegistration ? (
+              <Registration setIsRegistration={setIsRegistration} />
+            ) : (
+              <Login setIsRegistration={setIsRegistration} />
+            )}
           </div>
         </div>
       ) : (
