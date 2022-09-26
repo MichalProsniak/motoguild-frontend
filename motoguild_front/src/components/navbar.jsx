@@ -71,12 +71,12 @@ function OffcanvasExample() {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/">
-              <span class="nav-text-custom">Strona główna</span>
+              <span className="nav-text-custom">Strona główna</span>
             </Nav.Link>
           </li>
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/groups">
-              <span class="nav-text-custom">Grupy</span>
+              <span className="nav-text-custom">Grupy</span>
             </Nav.Link>
           </li>
           <li className={classNameRides2}>
@@ -90,17 +90,17 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRides}
             >
-              <span class="nav-text-custom red-bold">Ustawki</span>
+              <span className="nav-text-custom red-bold">Ustawki</span>
             </Nav.Link>
             <div className={classNameRides} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/rides">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Przeglądaj Ustawki</span>
+                  <span className="nav-text-custom">Przeglądaj Ustawki</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-ride">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Zaplanuj ustawkę</span>
+                  <span className="nav-text-custom">Zaplanuj ustawkę</span>
                 </span>
               </Nav.Link>
             </div>
@@ -117,17 +117,17 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRoutes}
             >
-              <span class="nav-text-custom">Trasy</span>
+              <span className="nav-text-custom">Trasy</span>
             </Nav.Link>
             <div className={classNameRoutes} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/routes">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Przeglądaj Trasy</span>
+                  <span className="nav-text-custom">Przeglądaj Trasy</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-route">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Stwórz Trasę</span>
+                  <span className="nav-text-custom">Stwórz Trasę</span>
                 </span>
               </Nav.Link>
             </div>
@@ -137,7 +137,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/login">
-                <span class="nav-text-custom">Zaloguj</span>
+                <span className="nav-text-custom">Zaloguj</span>
               </Nav.Link>
             </li>
           )}
@@ -146,7 +146,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/register">
-                <span class="nav-text-custom">Zarejestruj</span>
+                <span className="nav-text-custom">Zarejestruj</span>
               </Nav.Link>
             </li>
           )}
