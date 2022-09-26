@@ -400,7 +400,7 @@ export async function getLoggedUserData() {
 
 export async function ProfileData(id){
   try{
-    let res = await fetch(`https://localhost:3333/api/profile/${id}`,{
+    let res = await fetch(`https://localhost:3333/api/users/${id}?profile=true`,{
       headers: {
         "Content-type": "application/json",
         Authorization: `bearer ${localStorage.getItem("token")}`,

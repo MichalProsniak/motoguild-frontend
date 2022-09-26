@@ -38,12 +38,13 @@ const ProfilPage = () => {
 
     useEffect(() => {
         userData()
+        
     },[id])
 
     return (
         <div>
                 {profil &&
-                <UserData user={profil.user} />
+                <UserData profil={profil} />
             }
         </div>
       )
