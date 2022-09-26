@@ -12,10 +12,6 @@ import { useNavigate } from 'react-router';
 
 const libraries = ["places"];
 export default function NewRideBody(){
-    const { isLoaded } = useLoadScript({
-      googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-      libraries,
-    });
     const [mapInfo, setMapInfo] = useState([]);
     const [isValidRide, setIsValidRide] = useState(true);
     const [newRide, setNewRide] = useState({
@@ -37,6 +33,11 @@ export default function NewRideBody(){
       const [routes, setRoutes] = useState([])
       const [isLoading, setIsLoading] = useState(true)
       const [isRoute, setIsRoute] = useState(false)
+
+      const { isLoaded } =  useLoadScript({
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+        libraries,
+      })
     
       function handleChange(event)
       {
@@ -117,7 +118,7 @@ export default function NewRideBody(){
           ></textarea>
             <p>Wybierz istniejącą trasę:</p>
             {!isLoading && <CustomAutocomplete saveRoute={setNewRide} setIsRoute={setIsRoute} routes={routes}/>}
-            {isLoaded && isRoute && (
+            {isRoute && (
               <SmallMap
                 isLoaded={isLoaded}
                 size={3}

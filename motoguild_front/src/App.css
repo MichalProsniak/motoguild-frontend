@@ -44,6 +44,33 @@ body {
   }
 }
 
+.user{
+  position: relative;
+  margin: 0 auto;
+  border: groove;
+  border-color: red;
+  border-radius: 40px;
+  height: 300px;
+  width: 1000px;
+}
+
+.user-image{
+  float: right;
+}
+
+.user-data{
+  float: left;
+  margin: 0;
+  position: absolute;         
+  top: 50%;                         
+  transform: translate(0, -50%) ;
+}
+
+.user-data-element{
+  color: white;
+  text-align: left;
+}
+
 .card {
   padding: 2em;
 }
@@ -469,9 +496,6 @@ label {
   font-size: 16px;
   margin-left: 5px;
   margin-right: 5px;
-}
-
-.group-page-info-created {
 }
 
 .group-page-info-rating {
@@ -1051,9 +1075,6 @@ label {
   width: 100%;
 }
 
-.post-avatar {
-}
-
 .navbar-profile-pic {
   margin-left: 10px;
 }
@@ -1123,12 +1144,6 @@ label {
 .post-card {
   display: flex;
   flex-direction: row;
-}
-
-.post-add-card {
-}
-
-.add-post-card {
 }
 
 .add-post-input {

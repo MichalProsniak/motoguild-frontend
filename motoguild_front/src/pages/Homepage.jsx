@@ -33,7 +33,6 @@ const Homepage = ({ user }) => {
   };
 
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
     const interval = setInterval(() => {
       setLoadedMaps((prev) => prev > 0 && prev - 1);
     }, 1000);

@@ -1,6 +1,3 @@
-import GetCookie from "../hooks/getCookie";
-import RemoveCookie from "../hooks/removeCookie";
-import SetCookie from "../hooks/setCookie";
 
 export async function getGroup(currentGroup) {
   try {
@@ -203,7 +200,7 @@ export async function getRoutes(currentPage, itemsPerPage) {
 export async function getUserData(id) {
   try {
     const res = await fetch(
-      `https://localhost:3333/api/user/${id}`,
+      `https://localhost:3333/api/user/${id}?selectedData=true`,
       {
         headers: {
           "Content-type": "application/json",
@@ -325,7 +322,6 @@ export async function testLogin() {
     const data = await res.text();
     return data;
   } catch (error) {
-    console.log("XD");
     console.log(error);
   }
 }
@@ -401,3 +397,18 @@ export async function getLoggedUserData() {
   }
 }
 
+
+export async function ProfileData(id){
+  try{
+    let res = await fetch(`https://localhost:3333/api/users/${id}?profile=true`,{
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const data = await res.json();
+    return data;
+  }catch(error){
+    console.log(error)
+  }
+}
