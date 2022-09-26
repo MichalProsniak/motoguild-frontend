@@ -6,10 +6,9 @@ export default function SmallMap(props) {
   const [duration, setDuration] = useState("");
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const stopsForMap = props.stops.map(stop => {
-      return {location : stop.place,
-              stopover: true}
-  })
+  const stopsForMap = props.stops.map((stop) => {
+    return { location: stop.place, stopover: true };
+  });
 
   useEffect(() => {
     try {
@@ -24,16 +23,15 @@ export default function SmallMap(props) {
               origin: props.originPoint,
               destination: props.destinationPoint,
               travelMode: google.maps.TravelMode.DRIVING,
-              waypoints: stopsForMap
-                // {
-                //   location: "Warszawa",
-                //   stopover: true,
-                // },
-                // {
-                //   location: "Poznań",
-                //   stopover: true,
-                // },
-              ,
+              waypoints: stopsForMap,
+              // {
+              //   location: "Warszawa",
+              //   stopover: true,
+              // },
+              // {
+              //   location: "Poznań",
+              //   stopover: true,
+              // },
             },
             (result, status) => {
               if (status === google.maps.DirectionsStatus.OK) {

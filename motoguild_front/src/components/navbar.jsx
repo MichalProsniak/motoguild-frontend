@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
 import pictures from "../images/piesek.jpg";
-import logo from "../images/logo.png";
+import logo from "../images/motoguild-start.png";
 import Logout from "./Logout";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -71,17 +71,17 @@ function OffcanvasExample() {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/">
-              Strona główna
+              <span class="nav-text-custom">Strona główna</span>
             </Nav.Link>
           </li>
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/groups">
-              Grupy
+              <span class="nav-text-custom">Grupy</span>
             </Nav.Link>
           </li>
           <li className={classNameRides2}>
             <Nav.Link
-              className="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggl"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -90,16 +90,18 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRides}
             >
-              Rajdy
+              <span class="nav-text-custom red-bold">Ustawki</span>
             </Nav.Link>
             <div className={classNameRides} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/rides">
                 <span className="dropdown-item-custom-link">
-                  Przeglądaj Rajdy
+                  <span class="nav-text-custom">Przeglądaj Ustawki</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-ride">
-                <span className="dropdown-item-custom-link">Stwórz Rajd</span>
+                <span className="dropdown-item-custom-link">
+                  <span class="nav-text-custom">Zaplanuj ustawkę</span>
+                </span>
               </Nav.Link>
             </div>
           </li>
@@ -115,16 +117,18 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRoutes}
             >
-              Trasy
+              <span class="nav-text-custom">Trasy</span>
             </Nav.Link>
             <div className={classNameRoutes} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/routes">
                 <span className="dropdown-item-custom-link">
-                  Przeglądaj Trasy
+                  <span class="nav-text-custom">Przeglądaj Trasy</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-route">
-                <span className="dropdown-item-custom-link">Stwórz Trasę</span>
+                <span className="dropdown-item-custom-link">
+                  <span class="nav-text-custom">Stwórz Trasę</span>
+                </span>
               </Nav.Link>
             </div>
           </li>
@@ -133,7 +137,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/login">
-                Zaloguj
+                <span class="nav-text-custom">Zaloguj</span>
               </Nav.Link>
             </li>
           )}
@@ -142,7 +146,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/register">
-                Zarejestruj
+                <span class="nav-text-custom">Zarejestruj</span>
               </Nav.Link>
             </li>
           )}

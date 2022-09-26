@@ -27,7 +27,7 @@ const AddPost = ({ loggedUser, addPost }) => {
     <Container className="post">
       <form onSubmit={onSubmit}>
         <Row className="post-add-card">
-          <Col sm={9}>
+          <Col sm={10}>
             <div>
               <input
                 className="add-post-input"
@@ -38,7 +38,7 @@ const AddPost = ({ loggedUser, addPost }) => {
               />
             </div>
           </Col>
-          <Col sm={3}>
+          <Col sm={2}>
             <input
               className="add-post-button"
               type="submit"
