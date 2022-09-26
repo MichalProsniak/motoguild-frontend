@@ -8,5 +8,9 @@ export default function Logout() {
     navigate("/");
     window.location.reload(false);
   }
-  return <span onClick={handleClick}>Wyloguj</span>;
+  return (
+    <span className="nav-text-custom" onClick={handleClick}>
+      Wyloguj
+    </span>
+  );
 }
