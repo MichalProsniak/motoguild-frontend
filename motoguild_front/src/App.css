@@ -4,6 +4,14 @@
   text-align: center;
 }
 
+body{
+  background-image: url(images/start-background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+}
+
 .page-title {
   margin: 20px;
 }
