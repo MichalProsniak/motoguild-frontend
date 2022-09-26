@@ -1,33 +1,41 @@
 import {
     GoogleMap,
     useLoadScript,
-    MarkerF,
+    MarkerF
   } from "@react-google-maps/api";
   import { useState, useEffect } from "react";
-  import geocode from "react-geocode";
-
-
   
   const libraries = ["places"];
-  
   export default function EventMap(props) {
     const { isLoaded } = useLoadScript({
       googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
       libraries,
     });
 
-    const [eventCoordinates, setEventCoordinates] = useState(null);
+    const [eventCoordinates, setEventCoordinates] = useState(null)
 
     useEffect(() => {
         async function calculateEventCoordinates() {
+          if (
+            props.place.current.value
+          ) {
+            console.log("XXXX")
+            return;
+          }
+          else {
+            
             const geocoder = new google.maps.Geocoder();
             const results = await geocoder.geocode({
                 address: props.place,
             });
-            setEventCoordinates(results[0].geometry.location);}
-
+            console.log(results)
+            setEventCoordinates(results)
+          }
+        }
+          
         calculateEventCoordinates();
-
+      }, [props.place]);
+    
 
     return (
       <div>
@@ -41,13 +49,13 @@ import {
               mapTypeControl: false,
             }}
           >
-            {props.place && <MarkerF position={props.place} />}
-
-
-            <MarkerF />
-
+            {eventCoordinates && <MarkerF position={eventCoordinates}/>}
+            
           </GoogleMap>
         )}
+        <br></br>
+        <br></br>
       </div>
     );
-}}
+  }
+  
