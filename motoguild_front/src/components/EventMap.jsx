@@ -16,30 +16,25 @@ import {
 
     useEffect(() => {
         async function calculateEventCoordinates() {
-          if (
-            props.place.current.value
-          ) {
-            console.log("XXXX")
+          if (!props.isOrigin) {
             return;
           }
           else {
-            
             const geocoder = new google.maps.Geocoder();
             const results = await geocoder.geocode({
-                address: props.place,
+                address: props.place.current.value,
             });
-            console.log(results)
-            setEventCoordinates(results)
+            setEventCoordinates(results.results[0].geometry.location)
           }
         }
           
         calculateEventCoordinates();
-      }, [props.place]);
+      }, [props.place, props.isOrigin]);
     
 
     return (
       <div>
-        {isLoaded && (
+        {isLoaded && !props.isOrigin && (
           <GoogleMap
             zoom={7}
             center={props.coordinates}
@@ -48,8 +43,20 @@ import {
               streetViewControl: false,
               mapTypeControl: false,
             }}
+          > 
+          </GoogleMap>
+        )}
+        {isLoaded && props.isOrigin && (
+          <GoogleMap
+            zoom={7}
+            center={eventCoordinates}
+            mapContainerClassName="googlemap"
+            options={{
+              streetViewControl: false,
+              mapTypeControl: false,
+            }}
           >
-            {eventCoordinates && <MarkerF position={eventCoordinates}/>}
+            {props.isOrigin && <MarkerF position={eventCoordinates}/>}
             
           </GoogleMap>
         )}

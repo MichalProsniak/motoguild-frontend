@@ -130,7 +130,7 @@ export default function NewEventBody() {
                         <p className="error-message">Wypełnij wszystkie pola</p>)}
                 </div>
              </form>
-             <EventMap place={originRef} coordinates={coordinates} />
+             <EventMap place={originRef} coordinates={coordinates} isOrigin={isOrigin}/>
         </div>
     );
 }

@@ -1,8 +1,6 @@
 import { useLoadScript } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
-import SmallMap from "./SmallMap";
-
-
+import EventSmallMap from './EventSmallMap'
 
 const libraries = ["places"];
 
@@ -20,15 +18,8 @@ export default function EventBody(props) {
             <p>{props.event.name}</p>
         </div>
         <div className="event-page-map">
-        {isLoaded && (
-            <SmallMap
-            style="event-info-text"
-            isLoaded={isLoaded}
-            size={2}
-            originPoint={props.event.Place}
-            setMapInfo={setMapInfo}
-            />
-        )}
+            <EventSmallMap place={props.event.place}/>
+    
         <div className="event-page-map-card">
             <div className="event-page-map-card-header">
             <p>Informacje o wydarzeniu</p>
