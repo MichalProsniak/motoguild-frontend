@@ -30,7 +30,6 @@ function App() {
       if (localStorage.getItem('token'))
       {
         setIsToken(true)
-        
       }
       else{
         setIsToken(false)
@@ -45,7 +44,6 @@ function App() {
       {isToken && <Navbar />}
         <Routes>
           <Route element={<ProtectedRoute />}>
-            {/* <Route path="/" element={<Homepage />} /> */}
             <Route path="create-ride" element={<CreateRidePage />} />
             <Route path="create-route" element={<CreateRoutePage />} />
             <Route path="groups" element={<AllGroupsPage />}/>

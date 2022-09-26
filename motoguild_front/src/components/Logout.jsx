@@ -1,5 +1,4 @@
 import React from "react";
-import RemoveCookie from "../hooks/removeCookie";
 import { useNavigate } from "react-router";
 
 export default function Logout() {

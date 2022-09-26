@@ -35,6 +35,27 @@
   }
 }
 
+.user{
+  position: relative;
+  margin: 0 auto;
+  border: double;
+  border-color: red;
+  border-radius: 40px;
+  height: 300px;
+  width: 1000px;
+}
+
+.user-data{
+  margin: 0;
+  position: absolute;         
+  top: 50%;                         
+  transform: translate(0, -50%) ;
+}
+
+.user-data-element{
+ text-align: left;
+}
+
 .card {
   padding: 2em;
 }

@@ -56,7 +56,6 @@ const Login = () => {
         <br></br>
         <button className="btn btn-secondary">Zaloguj</button>
       </form>
-      {!isValidData && <p>{errorMessage}</p>}
     </div>
   );
 };
