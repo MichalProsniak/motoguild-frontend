@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { loginUser, testLogin } from "../helpnigFunctions/ApiCaller";
 import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     userName: "",
@@ -33,6 +33,10 @@ const Login = () => {
     }
   }
 
+  function handleRegister() {
+    props.setIsRegistration(true);
+  }
+
   return (
     <div className="login-form-container">
       <form onSubmit={handleSubmit}>
@@ -54,7 +58,11 @@ const Login = () => {
         ></input>
         {!isValidData && <p className="error-message">{errorMessage}</p>}
         <br></br>
-        <button className="btn btn-secondary">Zaloguj</button>
+        <button className="btn btn-dark">Zaloguj</button>
+        <p className="login-form-register-text">Nie masz konta?</p>
+        <button className="btn btn-outline-dark" onClick={handleRegister}>
+          Zarejestruj się
+        </button>
       </form>
     </div>
   );
