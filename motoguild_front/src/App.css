@@ -53,7 +53,12 @@ body{
   width: 1000px;
 }
 
+.user-image{
+  float: right;
+}
+
 .user-data{
+  float: left;
   margin: 0;
   position: absolute;         
   top: 50%;                         
