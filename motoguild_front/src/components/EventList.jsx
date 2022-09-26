@@ -51,6 +51,7 @@ export default function EventList() {
                 <Pagination
                     pagination={paginationData}
                     setCurrentPage={setCurrentPage}
+                    
                 />  
             )}
         </div>
