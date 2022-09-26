@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { useLoadScript, Autocomplete } from "@react-google-maps/api";
-import BigMap from "./BigMap.jsx";
 import { createNewEvent } from "../helpnigFunctions/ApiCaller.js";
+import { EventMap } from "./EventMap.jsx";
+
 
 const libraries = ["places"];
 export default function NewEventBody() {
@@ -61,7 +62,7 @@ export default function NewEventBody() {
         
         setNewEvent((prevState) => ({
             ...prevState,
-            Place: originRef.current.value,
+            place: originRef.current.value,
         }));
         setIsPlace(true);
     }
@@ -125,13 +126,7 @@ export default function NewEventBody() {
                         <p className="error-message">Wypełnij wszystkie pola</p>)}
                 </div>
              </form>
-             {isLoaded && (
-                <BigMap
-                    coordinates={coordinates}
-                    isOrigin={isOrigin}
-                    originRef={originRef}
-                    />
-                )}
+             {isLoaded && <EventMap place={originRef} />}
         </div>
     );
 }
