@@ -254,8 +254,9 @@ label {
 }
 
 .group-container {
-  background-color: #ffffff;
-  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  /* filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25)); */
   margin: auto;
   margin-bottom: 20px;
   border-radius: 15px;
@@ -268,11 +269,52 @@ label {
   width: 800px;
 }
 
+.groups-page-header{
+  color: white;
+}
+.custom-page-item{
+  margin-left: 3px;
+  margin-right: 3px;
+  color: black;
+}
+.custom-page-link{
+  color: black;
+}
+.custom-active{
+  color: white;
+  background-color: #951717;
+  border: 1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  align-content: center;
+}
+.custom-pagination {
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-left: 40%;
+  max-height: 30px;
+  max-width: 20%;
+  justify-content: center;
+  align-self: center;
+}
+
 .group-header {
   text-align: left;
   margin: 10px;
   width: 75%;
   height: 30px;
+}
+
+.group-header-title{
+  font-size: 25px;
+}
+
+.group-header-title:hover {
+  border: 1px solid red;
+  color:#951717;
 }
 
 .group-header > a {
@@ -312,9 +354,9 @@ label {
 }
 
 .group-participants-text {
-  font-size: 13px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .group-rating {
@@ -334,16 +376,26 @@ label {
 .group-apply-button {
   width: 80px;
   height: 40px;
+  background-color: white;
+  color: #951717;
+  border: 1px solid #951717;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+}
+
+.group-apply-button:hover {
+  background-color: #d14b4e;
 }
 
 .group-apply-button-text-ask {
   font-size: 12px;
-  margin-top: -5px;
+  /* margin-top: -5px; */
 }
 
 .group-apply-button-text-apply {
   font-size: 12px;
-  margin-top: 3px;
+  /* margin-top: 3px; */
 }
 
 .group-page-container-col2 {
