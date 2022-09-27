@@ -11,9 +11,12 @@ export default function GroupMemberForList(props) {
 
   async function deleteMember()
   {
-    console.log(`delete ${props.member.userName}`)
-    await deleteUserFromGroup(props.group.id, props.member.id);
-    window.location.reload(false);
+    if (window.confirm(`Jesteś pewny, że chcesz wyrzucić użytkownika ${props.member.userName} z grupy ${props.group.name}?`))
+    {
+      await deleteUserFromGroup(props.group.id, props.member.id);
+      window.location.reload(false);
+    }
+    
   }
 
   return (

@@ -30,8 +30,12 @@ export default function GroupForList(props) {
 
   async function deleteUserFromGroup()
   {
-    await deleteLoggedUserFromGroup(props.id)
-    window.location.reload(false);
+    if (window.confirm(`Jesteś pewny, że chcesz opuścić grupę ${props.name}?`))
+    {
+      await deleteLoggedUserFromGroup(props.id)
+      window.location.reload(false);
+    }
+    
   }
 
   async function addUserToPendingUsers()
