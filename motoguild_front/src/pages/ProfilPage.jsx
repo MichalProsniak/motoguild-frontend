@@ -1,51 +1,65 @@
 import React from "react";
-import jwt from 'jwt-decode'
 import { useEffect } from "react";
 import { useState } from "react";
-import { ProfileData } from "../helpnigFunctions/ApiCaller";
+import { ProfileData} from "../helpnigFunctions/ApiCaller";
 import UserData from "../components/Profil/UserData"
+import Group from "../components/Profil/Group";
+import jwt from "jwt-decode"
+
 
 const ProfilPage = () => {
     const [id, setId] = useState()
     const [profil,setProfil] = useState()
-
-    const userId = async () =>{
-        if (localStorage.getItem('token')){
-                var deToten = jwt(localStorage.getItem('token'))
-                Object.keys(deToten).forEach(async function (key) {
-                    let res = key.split("/");
-                    if (res.length > 1) {
-                        if (res[res.length - 1] === "serialnumber") {
-                            var loggedUserId =  deToten[key]
-                            setId(loggedUserId)
-                        }
-                    }
-                }
-            );
-        }
-    }
+    const [profilGroups, setProfilGroups] = useState()
 
     const userData = async () =>{
-        if(id){
-            var data = await ProfileData(id)
-            setProfil(data)
-        }
+        var data = await ProfileData(id)
+        setProfil(data)
+    }
+
+    const profileId = async () =>{
+        var deToken = jwt(localStorage.getItem("token"))
+            Object.keys(deToken).forEach(function (key) {
+                let res = key.split("/");
+                if (res.length > 1) {
+                    if (res[res.length - 1] === "serialnumber") {
+                        var loggedUserId =  deToken[key]
+                        setId(loggedUserId)
+                    }
+                }
+            }
+        );
     }
 
     useEffect(()=> {
-        userId()
+         profileId()
     },[localStorage.getItem('token')])
 
     useEffect(() => {
-        userData()
-        
+        if(id){
+            userData()
+        }
     },[id])
 
+    useEffect(() =>{
+        if(profil){
+            setProfilGroups(profil.groups)
+        }
+    },[profil])
     return (
-        <div>
-                {profil &&
-                <UserData profil={profil} />
-            }
+        <div className="page-conteiner">
+            <div>
+                {profil &&<UserData profil={profil} />
+                
+                }
+            </div>
+            <div className="group-profile">
+                <h1>Grupy</h1>
+               {profilGroups && profilGroups.map((group) => (<Group key={group.id} group={group} />))}
+            </div>
+            <div className="ride-profile">
+                <h1>Trasy</h1>
+            </div>
         </div>
       )
     }
