@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-body {
+html {
   background-image: url(images/start-background.jpg);
   background-repeat: no-repeat;
   background-position: center;
@@ -15,6 +15,10 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: auto;
+}
+
+body {
+  background-color: transparent;
 }
 
 .page-title {
