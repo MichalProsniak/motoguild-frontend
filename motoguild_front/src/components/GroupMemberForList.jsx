@@ -20,12 +20,16 @@ export default function GroupMemberForList(props) {
     <div className="group-page-member-container">
       <Image className="group-page-member-photo" src={picture} />
       <div className="group-page-member">
-        <p className="group-page-member-name">{props.member.userName}</p>
+        {isMemberTheOwner ?
+         <p className="group-page-member-name">{props.member.userName}<i class="bi bi-bookmark-star-fill icon-red"></i></p>:
+         <p className="group-page-member-name">{props.member.userName}</p>
+         }
+        
         <div className="group-page-member-rating">
           <Rating
             initialValue={props.member.rating}
             readonly={true}
-            size="16"
+            size="20"
             emptyColor="darkgrey"
           />
         </div>
