@@ -43,6 +43,8 @@ export default function GroupBody(props) {
             </div>}
         
         </div>}
+        <br></br>
+        <br></br>
         <div>
         { isUserInGroup && <PostsForPage link="group" /> }
         { !isUserInGroup && <GroupDescription description={props.group.description} isPrivate={props.group.isPrivate} isPending={isUserInPendingUsers} id={props.group.id} />}
