@@ -31,12 +31,15 @@ export default function GroupBody(props) {
         <br></br>
         {props.group.pendingUsers.length !== 0 && <div>
           {isUserTheOwner && props.group.isPrivate && 
+          <div>
+            <p className="group-page-members-header">Oczekujący</p>
             <div className="group-page-members-container">
-              <p className="group-page-members-header">Oczekujący</p>
+              
               {props.group.pendingUsers.map((member) => (
                 <PendingMemberForList key={member.id} member={member} group={props.group} />
               ))}
               
+            </div>
             </div>}
         
         </div>}
