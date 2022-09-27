@@ -6,8 +6,11 @@ const Posts = ({loggedUser, onAdd, posts}) => {
     return(
         <div>
             <AddPost loggedUser={loggedUser} addPost={onAdd}/>
-            {posts&&posts.map((post)=> (<Post key={post.id} post={post} loggedUser={loggedUser}/>
-            ))}
+            <div className="posts-scrolling">
+                {posts&&posts.map((post)=> (<Post key={post.id} post={post} loggedUser={loggedUser}/>
+                ))}
+            </div>
+            
         </div>
     )
 }

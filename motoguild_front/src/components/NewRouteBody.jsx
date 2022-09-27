@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import BigMap from "./BigMap.jsx";
 import { createNewRoute } from "../helpnigFunctions/ApiCaller.js";
@@ -12,7 +12,7 @@ export default function NewRouteBody() {
   const [isDestination, setIsDestination] = useState(false);
   const [isStop1, setIsStop1] = useState(false);
   const [isStop1Saved, setIsStop1Saved] = useState(false);
-  const [stops, setStops] = useState([]);
+  const [stopsToSave, setStopsToSave] = useState([]);
   const [stop1, setStop1] = useState({
     name: "Stop1",
     place: "",
@@ -30,6 +30,7 @@ export default function NewRouteBody() {
     description: "",
     rating: 0,
     owner: { id: 1, userName: "b-man", email: "www@665.pl", rating: 0 },
+    stops: [],
   });
 
   const [coordinates, setCoordinates] = useState({
@@ -75,8 +76,6 @@ export default function NewRouteBody() {
       newRoute.startPlace === "" ||
       newRoute.name === ""
     ) {
-      console.log(stops);
-      console.log(stop1);
       event.preventDefault();
       setAllInputsCorrect(false);
       return;
@@ -109,28 +108,38 @@ export default function NewRouteBody() {
   }
 
   function saveStop1() {
-    const stop1Exists = stops.some((element) => {
+    const stop1Exists = stopsToSave.some((element) => {
       if (element.place === stop1.place) {
         return true;
       }
       return false;
     });
     if (isStop1 && !stop1Exists) {
-      setStops((prevState) => [...prevState, stop1]);
+      setStopsToSave((prevState) => [...prevState, stop1]);
       setIsStop1Saved(true);
     }
   }
 
   const handleRemoveStop = (e) => {
-    setStops(stops.filter((item) => item.place != e.target.outerText));
-    console.log(stops);
+    setStopsToSave(
+      stopsToSave.filter((item) => item.place != e.target.outerText)
+    );
   };
 
+  useEffect(() => {
+    setNewRoute((prevState) => ({
+      ...prevState,
+      stops: stopsToSave,
+    }));
+  }, [stopsToSave]);
+
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="create-ride-body">
+    <div className="create-route-body">
+      <form onSubmit={handleSubmit}>
         <div className="left-column">
-          <label name="name">Nazwa trasy</label>
+          <label className="label-custom" name="name">
+            Nazwa trasy
+          </label>
           <input
             className="standard-input"
             type="text"
@@ -139,7 +148,9 @@ export default function NewRouteBody() {
             onChange={handleChange}
             placeholder="Wpisz nazwę trasy"
           ></input>
-          <label name="startPoint">Początek trasy</label>
+          <label className="label-custom" name="startPoint">
+            Początek trasy
+          </label>
           {isLoaded && (
             <Autocomplete onPlaceChanged={handleSelectOrigin}>
               <input
@@ -152,7 +163,9 @@ export default function NewRouteBody() {
               ></input>
             </Autocomplete>
           )}
-          <label name="endPoint">Koniec trasy</label>
+          <label className="label-custom" name="endPoint">
+            Koniec trasy
+          </label>
           {isLoaded && (
             <div>
               <Autocomplete onPlaceChanged={handleSelectDestination}>
@@ -167,9 +180,9 @@ export default function NewRouteBody() {
               </Autocomplete>
             </div>
           )}
-        </div>
-        <div className="right-column">
-          <label name="place">Dodaj przystanek:</label>
+          <label className="label-custom" name="place">
+            Dodaj przystanek:
+          </label>
           {isLoaded && (
             <div className="add-stops-container">
               <Autocomplete onPlaceChanged={handleSelectStop1}>
@@ -191,13 +204,22 @@ export default function NewRouteBody() {
               </button>
             </div>
           )}
-          {stops.length > 0 &&
-            stops.map((stop) => (
-              <div onClick={handleRemoveStop} key={stop.place}>
+          {stopsToSave.length > 0 && (
+            <p className="added-stops-header">Dodane przystanki:</p>
+          )}
+          {stopsToSave.length > 0 &&
+            stopsToSave.map((stop) => (
+              <div
+                className="stops-list"
+                onClick={handleRemoveStop}
+                key={stop.place}
+              >
                 <i className="delete-button bi bi-trash3">{stop.place}</i>
               </div>
             ))}
-          <label name="description">Krótki opis</label>
+          <label className="label-custom" name="description">
+            Krótki opis
+          </label>
           <textarea
             className="description-input"
             type="text"
@@ -206,9 +228,10 @@ export default function NewRouteBody() {
             onChange={handleChange}
             placeholder="Dodaj krótki opis..."
           ></textarea>
-        </div>
-        <div>
-          <button type="submit" className="btn btn-secondary">
+          <button
+            type="submit"
+            className="btn btn-secondary create-route-submit-btn"
+          >
             Stwórz
           </button>
           {!allInputsCorrect && (
@@ -217,18 +240,20 @@ export default function NewRouteBody() {
             </p>
           )}
         </div>
+        <div className="right-column">
+          {isLoaded && (
+            <BigMap
+              coordinates={coordinates}
+              originRef={originRef}
+              destinationRef={destinationRef}
+              isOrigin={isOrigin}
+              isDestination={isDestination}
+              stops={stopsToSave}
+              isStops={isStop1Saved}
+            />
+          )}
+        </div>
       </form>
-      {isLoaded && (
-        <BigMap
-          coordinates={coordinates}
-          originRef={originRef}
-          destinationRef={destinationRef}
-          isOrigin={isOrigin}
-          isDestination={isDestination}
-          stops={stops}
-          isStops={isStop1Saved}
-        />
-      )}
     </div>
   );
 }
