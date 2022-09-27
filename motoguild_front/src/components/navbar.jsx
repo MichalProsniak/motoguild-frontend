@@ -19,15 +19,8 @@ function OffcanvasExample() {
   const [classNameEvents, setClassNameEvents] = useState("dropdown-menu");
   const [classNameEvents2, setClassNameEvents2] = useState("nav-item dropdown");
 
-
-
   function handleClickRoutes() {
     setIsClickedRoutes((prevState) => !prevState);
-    if (isClickedRides) {
-      setIsClickedRides((prevState) => !prevState);
-      setClassNameRides("dropdown-menu");
-      setClassNameRides2("nav-item dropdown");
-    }
     isClickedRoutes
       ? setClassNameRoutes("dropdown-menu")
       : setClassNameRoutes("dropdown-menu show");
@@ -38,11 +31,6 @@ function OffcanvasExample() {
 
   function handleClickRides() {
     setIsClickedRides((prevState) => !prevState);
-    if (isClickedRoutes) {
-      setIsClickedRoutes((prevState) => !prevState);
-      setClassNameRoutes("dropdown-menu");
-      setClassNameRoutes2("nav-item dropdown");
-    }
     isClickedRides
       ? setClassNameRides("dropdown-menu")
       : setClassNameRides("dropdown-menu show");
@@ -53,11 +41,6 @@ function OffcanvasExample() {
 
   function handleClickEvents() {
     setIsClickedEvents((prevState) => !prevState);
-    if (isClickedRoutes) {
-      setIsClickedRoutes((prevState) => !prevState);
-      setClassNameRoutes("dropdown-menu");
-      setClassNameRoutes2("nav-item dropdown");
-    }
     isClickedEvents
       ? setClassNameEvents("dropdown-menu")
       : setClassNameEvents("dropdown-menu show");
@@ -106,6 +89,9 @@ function OffcanvasExample() {
               aria-haspopup="true"
               aria-expanded="false"
               onClick={handleClickRides}
+              onBlur={() => {
+                setTimeout(() => handleClickRides(), 100);
+              }}
             >
               <span className="nav-text-custom red-bold">Ustawki</span>
             </Nav.Link>
@@ -133,6 +119,9 @@ function OffcanvasExample() {
               aria-haspopup="true"
               aria-expanded="false"
               onClick={handleClickRoutes}
+              onBlur={() => {
+                setTimeout(() => handleClickRoutes(), 100);
+              }}
             >
               <span className="nav-text-custom">Trasy</span>
             </Nav.Link>
@@ -147,7 +136,6 @@ function OffcanvasExample() {
                   <span className="nav-text-custom">Stwórz Trasę</span>
                 </span>
               </Nav.Link>
-            
             </div>
           </li>
           <li className={classNameEvents2}>
@@ -160,6 +148,9 @@ function OffcanvasExample() {
               aria-haspopup="true"
               aria-expanded="false"
               onClick={handleClickEvents}
+              onBlur={() => {
+                setTimeout(() => handleClickEvents(), 100);
+              }}
             >
               <span className="nav-text-custom">Wydarzenia</span>
             </Nav.Link>
