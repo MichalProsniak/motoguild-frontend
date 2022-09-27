@@ -7,14 +7,14 @@
 }
 
 body {
-    background-image: url(images/start-background.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  background-image: url(images/start-background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: auto;
 }
 
 .page-title {
@@ -1182,10 +1182,10 @@ label {
   border-radius: 10px;
 }
 
-.posts-scrolling{
+.posts-scrolling {
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 40vh;
+  height: 300px;
   width: 100%;
   padding: 10px;
   padding-right: 15px;
@@ -1201,7 +1201,7 @@ label {
   margin: auto;
   /* overflow-y: scroll;
   overflow-x: hidden; */
-  height: 40vh;
+  height: 450px;
   width: 55%;
   padding: 10px;
   padding-right: 15px;
@@ -1358,7 +1358,6 @@ label {
   display: flex;
   flex-direction: row;
 }
-
 
 .add-post-input {
   border: 1px solid lightgray;
