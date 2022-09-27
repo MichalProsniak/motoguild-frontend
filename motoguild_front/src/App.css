@@ -575,8 +575,8 @@ label {
   text-align: left;
 }
 
-.group-page-info-important{
-  margin-left: auto; 
+.group-page-info-important {
+  margin-left: auto;
   margin-right: 0;
   margin-top: 20px;
 }
@@ -598,7 +598,7 @@ label {
 }
 
 .group-page-info-rating {
-  margin-top: -5px; 
+  margin-top: -5px;
   text-align: left;
 }
 
@@ -614,19 +614,19 @@ label {
   border-radius: 10px;
   margin: auto;
 }
-.acceptance-info{
-  color:#951717;
+.acceptance-info {
+  color: #951717;
 }
-.icon-red{
+.icon-red {
   font-size: 16px;
-  color:#951717;
+  color: #951717;
 }
 
 .icon {
   font-size: 16px;
   margin-left: 5px;
 }
-.icon:hover{
+.icon:hover {
   color: #951717;
   cursor: pointer;
 }
@@ -635,12 +635,12 @@ label {
   margin-left: 5px;
   margin-top: -4px;
 }
-.icon2:hover{
+.icon2:hover {
   color: #951717;
   cursor: pointer;
 }
 
-.group-description-container{
+.group-description-container {
   background-color: rgba(233, 233, 233, 0.867);
   box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
   width: 80%;
@@ -703,8 +703,8 @@ label {
 }
 
 .ride-page-container {
-  border: 1px solid lightgray;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
   border-radius: 10px;
   width: 1000px;
   margin: auto;
@@ -727,6 +727,8 @@ label {
   margin: auto;
   margin-top: 15px;
   margin-bottom: 0px;
+  font-family: "Comfortaa", cursive;
+  color: black;
 }
 
 .ride-page-info {
@@ -738,6 +740,7 @@ label {
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   justify-content: space-between;
+  background-color: white;
 }
 
 .ride-page-info > p {
@@ -843,8 +846,8 @@ label {
 }
 
 .route-page-container {
-  border: 1px solid lightgray;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
   border-radius: 10px;
   width: 1000px;
   margin: auto;
@@ -867,6 +870,8 @@ label {
   margin: auto;
   margin-top: 15px;
   margin-bottom: 0px;
+  font-family: "Comfortaa", cursive;
+  color: black;
 }
 
 .route-page-info {
@@ -878,6 +883,7 @@ label {
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   justify-content: space-between;
+  background-color: white;
 }
 
 .route-page-info > p {
@@ -1170,6 +1176,8 @@ label {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
 }
 
 .posts-homepage {
@@ -1189,7 +1197,7 @@ label {
   border-radius: 5px;
   font-size: 12px;
   background-color: rgba(233, 233, 233, 0.867);
-  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border: 1px solid darkgray;
   margin: 5px;
   padding: 15px 20px;
 }
@@ -1356,7 +1364,7 @@ label {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: lightgray;
+  background-color: darkgray;
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
