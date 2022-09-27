@@ -1215,6 +1215,18 @@ label {
   width: 90%;
 }
 
+.custom-red-button {
+  background-color: #951717;
+  border: 1px solid #6e0b0b;
+  font-weight: 500;
+}
+
+.custom-red-button:hover {
+  background-color: #d14b4e;
+  border: 1px solid rgb(228, 150, 150);
+  font-weight: 500;
+}
+
 .rating-list {
   padding-top: 7px;
   margin-left: 27px;
@@ -1605,6 +1617,16 @@ label {
   width: 80%;
 }
 
+.login-form-container > form > label {
+  margin-left: 33px;
+  margin-right: 35px;
+}
+
+.register-form-container > form > label {
+  margin-left: 33px;
+  margin-right: 35px;
+}
+
 .delete-button:hover {
   cursor: pointer;
   color: red;
@@ -1778,4 +1800,17 @@ label {
 
 .red-bold:hover {
   color: #d14b4e;
+}
+
+.motoguild-red {
+  color: #951717;
+  cursor: pointer;
+}
+
+.motoguild-red:hover {
+  color: #d14b4e;
+}
+
+.bold {
+  font-weight: 500;
 }
