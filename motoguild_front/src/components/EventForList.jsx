@@ -1,4 +1,4 @@
-import SmallMap from "./SmallMap";
+import EventSmallMap from "./EventSmallMap";
 import { useLoadScript } from "@react-google-maps/api";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -23,12 +23,8 @@ export default function EventForList(props) {
             <Row>
             <Col sm={4}>
                 {isLoaded && (
-                <SmallMap
-                    isLoaded={isLoaded}
-                    size={1}
-                    originPoint={props.startPlace}
-                    setLoadedMaps={props.setLoadedMaps}
-                    loadedMaps={props.loadedMaps}
+                <EventSmallMap
+                    place = {props.place}
                 />
                 )}
             </Col>
@@ -37,7 +33,9 @@ export default function EventForList(props) {
                 style="ride-info-text-for-list"
                 nameId={props.id}
                 nameText={props.name}
-                Place={props.place}
+                place={props.place}
+                start = {props.start}
+                stop = {props.stop}
                 />
             </Col>
             <Col>
