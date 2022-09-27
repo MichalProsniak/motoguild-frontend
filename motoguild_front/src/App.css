@@ -1161,8 +1161,8 @@ label {
 
 .posts {
   margin: auto;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
   height: 40vh;
   width: 90%;
   padding: 10px;
@@ -1172,10 +1172,23 @@ label {
   border-radius: 10px;
 }
 
-.posts-homepage {
-  margin: auto;
+.posts-scrolling{
   overflow-y: scroll;
   overflow-x: hidden;
+  height: 40vh;
+  width: 100%;
+  padding: 10px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  /* margin-left: 5%; */
+}
+
+.posts-homepage {
+  margin: auto;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
   height: 40vh;
   width: 55%;
   padding: 10px;
@@ -1190,8 +1203,10 @@ label {
   font-size: 12px;
   background-color: rgba(233, 233, 233, 0.867);
   box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding: 15px 20px;
+  width: 90%;
 }
 
 .stops-list {
@@ -1317,6 +1332,7 @@ label {
   display: flex;
   flex-direction: row;
 }
+
 
 .add-post-input {
   border: 1px solid lightgray;
