@@ -44,7 +44,7 @@ body {
   }
 }
 
-.user{
+.user {
   position: relative;
   margin: 0 auto;
   border: groove;
@@ -54,19 +54,19 @@ body {
   width: 1000px;
 }
 
-.user-image{
+.user-image {
   float: right;
 }
 
-.user-data{
+.user-data {
   float: left;
   margin: 0;
-  position: absolute;         
-  top: 50%;                         
-  transform: translate(0, -50%) ;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
-.user-data-element{
+.user-data-element {
   color: white;
   text-align: left;
 }
@@ -87,6 +87,8 @@ body {
 
 .add-stops-container {
   display: flex;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .add-stops-container > div {
@@ -98,19 +100,41 @@ body {
 
 .add-stops-container > button {
   width: 100px;
-  margin-right: 30px;
+  margin-right: 23px;
 }
 
 .create-ride-body {
   background-color: rgba(233, 233, 233, 0.867);
   box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
   border-radius: 5px;
-  display: grid;
-  grid-template: auto auto / 1fr 1fr;
-  gap: 17px;
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 50px;
-  padding-bottom: 25px;
+  padding-right: 30px;
+  padding-bottom: 20px;
   align-self: center;
+}
+
+.create-ride-body > form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.create-ride-body > form > div {
+  width: 50%;
+}
+
+.create-ride-new-route-container {
+  margin-top: 10px;
+}
+
+.create-ride-new-route-container > a {
+  color: #951717;
+}
+
+.create-ride-new-route-container > a:hover {
+  color: #d14b4e;
 }
 
 .standard-input {
@@ -129,6 +153,39 @@ body {
   display: block;
   margin-left: 5%;
   height: 100px;
+  width: 90%;
+  resize: none;
+}
+
+.create-route-body {
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  align-self: center;
+}
+
+.create-route-body > form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.create-route-body > form > div {
+  width: 50%;
+}
+
+.ride-description-input {
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  text-indent: 5px;
+  display: block;
+  margin-left: 5%;
+  height: 150px;
   width: 90%;
   resize: none;
 }
@@ -154,11 +211,18 @@ label {
 }
 .googlemap {
   width: 100%;
-  height: 300px;
+  height: 345px;
   margin: auto;
-  margin-top: 25px;
+  margin-top: 55px;
   border-radius: 10px;
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
 }
+
+.create-route-submit-btn {
+  margin-top: 15px;
+}
+
 .googlemap-small {
   width: 200px;
   height: 150px;
@@ -298,6 +362,13 @@ label {
   width: 30%;
   height: 22px;
   max-width: 130px;
+  transition: 0.3s;
+}
+
+.add-comment-button:hover {
+  border: 1px solid #d14b4e;
+  color: #d14b4e;
+  background-color: rgb(255, 234, 234);
 }
 
 .group {
@@ -324,18 +395,18 @@ label {
   width: 800px;
 }
 
-.groups-page-header{
+.groups-page-header {
   color: white;
 }
-.custom-page-item{
+.custom-page-item {
   margin-left: 3px;
   margin-right: 3px;
   color: black;
 }
-.custom-page-link{
+.custom-page-link {
   color: black;
 }
-.custom-active{
+.custom-active {
   color: white;
   background-color: #951717;
   border: 1px solid black;
@@ -363,13 +434,13 @@ label {
   height: 30px;
 }
 
-.group-header-title{
+.group-header-title {
   font-size: 25px;
 }
 
 .group-header-title:hover {
   border: 1px solid red;
-  color:#951717;
+  color: #951717;
 }
 
 .group-header > a {
@@ -579,7 +650,7 @@ label {
 }
 
 .group-page-members-header {
-  color:white;
+  color: white;
   font-size: 30px;
   font-weight: 600;
   width: 90%;
@@ -1080,6 +1151,44 @@ label {
   padding: 15px 20px;
 }
 
+.stops-list {
+  padding-top: 1px;
+  margin-left: 26px;
+  margin-right: 25px;
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  background-color: white;
+  text-indent: 5px;
+  display: block;
+  height: 30px;
+  width: 90%;
+}
+
+.rating-list {
+  padding-top: 7px;
+  margin-left: 27px;
+  margin-right: 25px;
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  background-color: white;
+  height: 30px;
+  width: 90%;
+}
+
+.label-custom {
+  font-weight: 500;
+  font-size: 16px;
+  margin-right: 25px;
+}
+
+.added-stops-header {
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 25px;
+}
+
 .upcoming-events-card {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   height: 300px;
@@ -1186,6 +1295,13 @@ label {
   height: 26px;
   max-width: 100px;
   float: right;
+  transition: 0.3s;
+}
+
+.add-post-button:hover {
+  border: 1px solid #d14b4e;
+  color: #d14b4e;
+  background-color: rgb(255, 234, 234);
 }
 
 ::-webkit-scrollbar {
@@ -1204,7 +1320,7 @@ label {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #000000;
+  background-color: #951717;
 }
 
 .error-message {
@@ -1271,16 +1387,42 @@ label {
 
 .suggestion {
   background-color: white;
-  width: 90%;
-  margin-left: 5%;
+  margin: auto;
+  width: 100%;
   border-bottom: 1px solid black;
-  border-left: 1px solid black;
   border-right: 1px solid black;
-  border-radius: 5px;
-}
-.suggestion :hover {
-  background-color: #888;
   cursor: pointer;
+  height: 70px;
+  transition: 0.3s;
+}
+.suggestion:hover {
+  background-color: #adadad;
+  color: white;
+}
+
+.suggestion-rating {
+  margin-top: -5px;
+}
+
+.suggestion-title-rating {
+  display: flex;
+  gap: 5px;
+  font-weight: 500;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.create-ride-map-container {
+  margin-top: 20px;
+}
+
+.create-ride-map-container > div > div > .googlemap-slides {
+  width: 480px;
+  margin-left: 26px;
+  margin-bottom: -40px;
+  border: none;
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
 }
 
 .start-page-text {
@@ -1299,8 +1441,7 @@ label {
 }
 
 .all-suggestions {
-  border: 1px solid lightgray;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid darkgray;
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 200px;
@@ -1308,7 +1449,7 @@ label {
   margin-left: 5%;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  background-color: white;
 }
 
 .start-page-text-header {

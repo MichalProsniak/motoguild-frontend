@@ -52,7 +52,7 @@ export default function BigMap(props) {
   }, [props.isOrigin, props.isDestination, props.isStops, props.stops]);
 
   return (
-    <div>
+    <>
       {isLoaded && (
         <GoogleMap
           zoom={7}
@@ -69,6 +69,6 @@ export default function BigMap(props) {
           )}
         </GoogleMap>
       )}
-    </div>
+    </>
   );
 }
