@@ -15,13 +15,12 @@ function OffcanvasExample() {
   const [isClickedRides, setIsClickedRides] = useState(false);
   const [classNameRides, setClassNameRides] = useState("dropdown-menu");
   const [classNameRides2, setClassNameRides2] = useState("nav-item dropdown");
+  const [isClickedEvents, setIsClickedEvents] = useState(false);
+  const [classNameEvents, setClassNameEvents] = useState("dropdown-menu");
+  const [classNameEvents2, setClassNameEvents2] = useState("nav-item dropdown");
+
   function handleClickRoutes() {
     setIsClickedRoutes((prevState) => !prevState);
-    if (isClickedRides) {
-      setIsClickedRides((prevState) => !prevState);
-      setClassNameRides("dropdown-menu");
-      setClassNameRides2("nav-item dropdown");
-    }
     isClickedRoutes
       ? setClassNameRoutes("dropdown-menu")
       : setClassNameRoutes("dropdown-menu show");
@@ -32,17 +31,22 @@ function OffcanvasExample() {
 
   function handleClickRides() {
     setIsClickedRides((prevState) => !prevState);
-    if (isClickedRoutes) {
-      setIsClickedRoutes((prevState) => !prevState);
-      setClassNameRoutes("dropdown-menu");
-      setClassNameRoutes2("nav-item dropdown");
-    }
     isClickedRides
       ? setClassNameRides("dropdown-menu")
       : setClassNameRides("dropdown-menu show");
     isClickedRides
       ? setClassNameRides2("nav-item dropdown")
       : setClassNameRides2("nav-item dropdown show");
+  }
+
+  function handleClickEvents() {
+    setIsClickedEvents((prevState) => !prevState);
+    isClickedEvents
+      ? setClassNameEvents("dropdown-menu")
+      : setClassNameEvents("dropdown-menu show");
+    isClickedEvents
+      ? setClassNameEvents2("nav-item dropdown")
+      : setClassNameEvents2("nav-item dropdown show");
   }
   return (
     <Navbar className="navbar navbar-expand-lg navbar-custom">
@@ -67,12 +71,12 @@ function OffcanvasExample() {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/">
-              <span class="nav-text-custom">Strona główna</span>
+              <span className="nav-text-custom">Strona główna</span>
             </Nav.Link>
           </li>
           <li className="nav-item active">
             <Nav.Link className="nav-link" href="/groups">
-              <span class="nav-text-custom">Grupy</span>
+              <span className="nav-text-custom">Grupy</span>
             </Nav.Link>
           </li>
           <li className={classNameRides2}>
@@ -85,18 +89,21 @@ function OffcanvasExample() {
               aria-haspopup="true"
               aria-expanded="false"
               onClick={handleClickRides}
+              onBlur={() => {
+                setTimeout(() => handleClickRides(), 100);
+              }}
             >
-              <span class="nav-text-custom red-bold">Ustawki</span>
+              <span className="nav-text-custom red-bold">Ustawki</span>
             </Nav.Link>
             <div className={classNameRides} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/rides">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Przeglądaj Ustawki</span>
+                  <span className="nav-text-custom">Przeglądaj Ustawki</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-ride">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Zaplanuj ustawkę</span>
+                  <span className="nav-text-custom">Zaplanuj ustawkę</span>
                 </span>
               </Nav.Link>
             </div>
@@ -112,18 +119,50 @@ function OffcanvasExample() {
               aria-haspopup="true"
               aria-expanded="false"
               onClick={handleClickRoutes}
+              onBlur={() => {
+                setTimeout(() => handleClickRoutes(), 100);
+              }}
             >
-              <span class="nav-text-custom">Trasy</span>
+              <span className="nav-text-custom">Trasy</span>
             </Nav.Link>
             <div className={classNameRoutes} aria-labelledby="navbarDropdown">
               <Nav.Link className="dropdown-item-custom" href="/routes">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Przeglądaj Trasy</span>
+                  <span className="nav-text-custom">Przeglądaj Trasy</span>
                 </span>
               </Nav.Link>
               <Nav.Link className="dropdown-item-custom" href="/create-route">
                 <span className="dropdown-item-custom-link">
-                  <span class="nav-text-custom">Stwórz Trasę</span>
+                  <span className="nav-text-custom">Stwórz Trasę</span>
+                </span>
+              </Nav.Link>
+            </div>
+          </li>
+          <li className={classNameEvents2}>
+            <Nav.Link
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={handleClickEvents}
+              onBlur={() => {
+                setTimeout(() => handleClickEvents(), 100);
+              }}
+            >
+              <span className="nav-text-custom">Wydarzenia</span>
+            </Nav.Link>
+            <div className={classNameEvents} aria-labelledby="navbarDropdown">
+              <Nav.Link className="dropdown-item-custom" href="/events">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Przeglądaj Wydarzenia</span>
+                </span>
+              </Nav.Link>
+              <Nav.Link className="dropdown-item-custom" href="/create-event">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Stwórz Wydarzenie</span>
                 </span>
               </Nav.Link>
             </div>
@@ -133,7 +172,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/login">
-                <span class="nav-text-custom">Zaloguj</span>
+                <span className="nav-text-custom">Zaloguj</span>
               </Nav.Link>
             </li>
           )}
@@ -142,7 +181,7 @@ function OffcanvasExample() {
           ) : (
             <li className="nav-item active">
               <Nav.Link className="nav-link" href="/register">
-                <span class="nav-text-custom">Zarejestruj</span>
+                <span className="nav-text-custom">Zarejestruj</span>
               </Nav.Link>
             </li>
           )}

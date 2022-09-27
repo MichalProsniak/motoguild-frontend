@@ -24,30 +24,32 @@ const AddPost = ({ loggedUser, addPost }) => {
   };
 
   return (
-    <Container className="post">
-      <form onSubmit={onSubmit}>
-        <Row className="post-add-card">
-          <Col sm={10}>
-            <div>
+    <div className="add-post-container">
+      <div className="add-post-section">
+        <form onSubmit={onSubmit}>
+          <Row className="post-add-card">
+            <Col sm={10}>
+              <div>
+                <input
+                  className="add-post-input"
+                  type="text"
+                  placeholder="Dodaj post"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                />
+              </div>
+            </Col>
+            <Col sm={2}>
               <input
-                className="add-post-input"
-                type="text"
-                placeholder="Dodaj post"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
+                className="add-post-button"
+                type="submit"
+                value="Dodaj post"
               />
-            </div>
-          </Col>
-          <Col sm={2}>
-            <input
-              className="add-post-button"
-              type="submit"
-              value="Dodaj post"
-            />
-          </Col>
-        </Row>
-      </form>
-    </Container>
+            </Col>
+          </Row>
+        </form>
+      </div>
+    </div>
   );
 };
 

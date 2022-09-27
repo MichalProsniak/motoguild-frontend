@@ -3,9 +3,11 @@ import React from "react";
 
 export default function CreateRoutePage() {
   return (
-    <div className="container-custom">
-      <h1 className="page-title">Dodaj trasę</h1>
-      <NewRouteBody />
+    <div className="navbar-margin">
+      <div className="container-custom">
+        <h1 className="header-custom-font">Dodaj trasę</h1>
+        <NewRouteBody />
+      </div>
     </div>
   );
 }

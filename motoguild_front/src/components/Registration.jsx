@@ -48,7 +48,9 @@ const Registration = (props) => {
         <p className="back-to-login-text" onClick={handleBackToLogin}>
           <i class="bi bi-arrow-left"></i> Wróć do logowania
         </p>
-        <label name="userName">Nazwa użytkownika</label>
+        <label className="label-custom" name="userName">
+          Nazwa użytkownika
+        </label>
         <input
           className="input-login-register"
           type="text"
@@ -56,7 +58,9 @@ const Registration = (props) => {
           value={user.userName}
           onChange={handleChange}
         ></input>
-        <label name="email">Adres e-mail</label>
+        <label className="label-custom" name="email">
+          Adres e-mail
+        </label>
         <input
           className="input-login-register"
           type="email"
@@ -64,7 +68,9 @@ const Registration = (props) => {
           value={user.email}
           onChange={handleChange}
         ></input>
-        <label name="password">Hasło</label>
+        <label className="label-custom" name="password">
+          Hasło
+        </label>
         <input
           className="input-login-register"
           type="password"
@@ -72,7 +78,9 @@ const Registration = (props) => {
           value={user.password}
           onChange={handleChange}
         ></input>
-        <label name="passwordConfirm">Potwierdź hasło</label>
+        <label className="label-custom" name="passwordConfirm">
+          Potwierdź hasło
+        </label>
         <input
           className="input-login-register"
           type="password"
@@ -84,7 +92,7 @@ const Registration = (props) => {
           <p className="error-message">Wprowadź prawidłowe dane!</p>
         )}
         <br></br>
-        <button className="btn btn-dark">Zarejestruj</button>
+        <button className="btn btn-dark custom-red-button">Zarejestruj</button>
       </form>
     </div>
   );
