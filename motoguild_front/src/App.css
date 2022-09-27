@@ -569,9 +569,16 @@ label {
 
 .group-page-info-name {
   height: 25px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   margin: 5px;
+  text-align: left;
+}
+
+.group-page-info-important{
+  margin-left: auto; 
+  margin-right: 0;
+  margin-top: 20px;
 }
 
 .group-page-info-privacy {
@@ -583,15 +590,16 @@ label {
 }
 
 .group-page-info-owner {
-  text-align: left;
+  text-align: right;
   font-size: 16px;
   margin-left: 5px;
   margin-right: 5px;
+  margin-top: -10px;
 }
 
 .group-page-info-rating {
-  margin-left: 5px;
-  margin-top: -3px;
+  margin-top: -5px; 
+  text-align: left;
 }
 
 .group-page-members-container {
@@ -605,6 +613,41 @@ label {
   gap: 15px;
   border-radius: 10px;
   margin: auto;
+}
+.acceptance-info{
+  color:#951717;
+}
+.icon-red{
+  font-size: 16px;
+  color:#951717;
+}
+
+.icon {
+  font-size: 16px;
+  margin-left: 5px;
+}
+.icon:hover{
+  color: #951717;
+  cursor: pointer;
+}
+.icon2 {
+  font-size: 20px;
+  margin-left: 5px;
+  margin-top: -4px;
+}
+.icon2:hover{
+  color: #951717;
+  cursor: pointer;
+}
+
+.group-description-container{
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  width: 80%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10%;
 }
 
 .group-page-member-container {
@@ -643,10 +686,11 @@ label {
 }
 
 .group-page-member-name {
+  margin-top: -15px;
   margin-bottom: 0px;
   width: 100%;
   text-align: left;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .group-page-members-header {
@@ -1116,12 +1160,11 @@ label {
 }
 
 .posts {
-  border: 1px solid lightgray;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  margin: auto;
   overflow-y: scroll;
   overflow-x: hidden;
-  max-height: 300px;
-  width: 500px;
+  height: 40vh;
+  width: 90%;
   padding: 10px;
   padding-right: 15px;
   display: flex;

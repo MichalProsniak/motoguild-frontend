@@ -60,9 +60,9 @@ export default function GroupForList(props) {
           <div className="group-rating">
             <Rating initialValue={props.rating} readonly={true} size="13" emptyColor="darkgrey"/>
           </div>
-          <div className="group-description">
+          {/* <div className="group-description">
             <p>{props.description}</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="group-apply-button-container">

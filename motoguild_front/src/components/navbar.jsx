@@ -15,6 +15,12 @@ function OffcanvasExample() {
   const [isClickedRides, setIsClickedRides] = useState(false);
   const [classNameRides, setClassNameRides] = useState("dropdown-menu");
   const [classNameRides2, setClassNameRides2] = useState("nav-item dropdown");
+  const [isClickedEvents, setIsClickedEvents] = useState(false);
+  const [classNameEvents, setClassNameEvents] = useState("dropdown-menu");
+  const [classNameEvents2, setClassNameEvents2] = useState("nav-item dropdown");
+
+
+
   function handleClickRoutes() {
     setIsClickedRoutes((prevState) => !prevState);
     if (isClickedRides) {
@@ -43,6 +49,21 @@ function OffcanvasExample() {
     isClickedRides
       ? setClassNameRides2("nav-item dropdown")
       : setClassNameRides2("nav-item dropdown show");
+  }
+
+  function handleClickEvents() {
+    setIsClickedEvents((prevState) => !prevState);
+    if (isClickedRoutes) {
+      setIsClickedRoutes((prevState) => !prevState);
+      setClassNameRoutes("dropdown-menu");
+      setClassNameRoutes2("nav-item dropdown");
+    }
+    isClickedEvents
+      ? setClassNameEvents("dropdown-menu")
+      : setClassNameEvents("dropdown-menu show");
+    isClickedEvents
+      ? setClassNameEvents2("nav-item dropdown")
+      : setClassNameEvents2("nav-item dropdown show");
   }
   return (
     <Navbar className="navbar navbar-expand-lg navbar-custom">
@@ -124,6 +145,33 @@ function OffcanvasExample() {
               <Nav.Link className="dropdown-item-custom" href="/create-route">
                 <span className="dropdown-item-custom-link">
                   <span className="nav-text-custom">Stwórz Trasę</span>
+                </span>
+              </Nav.Link>
+            
+            </div>
+          </li>
+          <li className={classNameEvents2}>
+            <Nav.Link
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={handleClickEvents}
+            >
+              <span className="nav-text-custom">Wydarzenia</span>
+            </Nav.Link>
+            <div className={classNameEvents} aria-labelledby="navbarDropdown">
+              <Nav.Link className="dropdown-item-custom" href="/events">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Przeglądaj Wydarzenia</span>
+                </span>
+              </Nav.Link>
+              <Nav.Link className="dropdown-item-custom" href="/create-event">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Stwórz Wydarzenie</span>
                 </span>
               </Nav.Link>
             </div>
