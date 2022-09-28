@@ -16,7 +16,6 @@ export default function GroupMemberForList(props) {
       await deleteUserFromGroup(props.group.id, props.member.id);
       window.location.reload(false);
     }
-    
   }
 
   return (

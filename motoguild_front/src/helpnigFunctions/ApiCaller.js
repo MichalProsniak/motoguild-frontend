@@ -302,7 +302,7 @@ export async function loginUser(user) {
       body: JSON.stringify(user),
     });
     const resposne = await res.text();
-    if (resposne.length == 498) {
+    if (resposne.length > 96) {
       localStorage.setItem("token", resposne);
     }
   } catch (error) {

@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import BigMap from "./BigMap.jsx";
 import { createNewRoute } from "../helpnigFunctions/ApiCaller.js";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
 
 const libraries = ["places"];
 export default function NewRouteBody() {
@@ -13,6 +15,7 @@ export default function NewRouteBody() {
   const [isStop1, setIsStop1] = useState(false);
   const [isStop1Saved, setIsStop1Saved] = useState(false);
   const [stopsToSave, setStopsToSave] = useState([]);
+  const [stopsChangeCounter, setStopsChangeCounter] = useState(0);
   const [stop1, setStop1] = useState({
     name: "Stop1",
     place: "",
@@ -59,9 +62,9 @@ export default function NewRouteBody() {
   }
 
   function handleChangeStop1(event) {
-    setIsStop1(false);
+    // setIsStop1(false);
     const { name, value } = event.target;
-    setIsStop1Saved(false);
+    // setIsStop1Saved(false);
     setStop1((prevState) => ({
       ...prevState,
       [name]: value,
@@ -204,19 +207,50 @@ export default function NewRouteBody() {
               </button>
             </div>
           )}
-          {stopsToSave.length > 0 && (
-            <p className="added-stops-header">Dodane przystanki:</p>
-          )}
           {stopsToSave.length > 0 &&
-            stopsToSave.map((stop) => (
-              <div
-                className="stops-list"
-                onClick={handleRemoveStop}
-                key={stop.place}
-              >
-                <i className="delete-button bi bi-trash3">{stop.place}</i>
-              </div>
-            ))}
+            <DragDropContext onDragEnd={(param) => {
+              const source = param.source.index;
+              let destination = null;
+              if (param.destination)
+              {
+                destination = param.destination.index;
+              }
+              if(destination)
+              {
+                stopsToSave.splice(destination, 0, stopsToSave.splice(source, 1)[0])
+                setStopsToSave(stopsToSave)
+                setStopsChangeCounter(prevState => prevState + 1)
+              }
+            }} >
+              
+              <p className="added-stops-header">Dodane przystanki:</p>
+              <Droppable droppableId="droppable-1" >
+                {(provided, snapshot) => (
+                  <div ref={provided.innerRef}>
+                    {stopsToSave.map((stop, i) => (
+                      <Draggable key={stop.place} draggableId={`draggable-${stop.place}`} index={i} >
+                      {(provided, snapshot) => (
+                        <div
+                        className="stops-list"
+                        key={stop.place}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        style={{...provided.draggableProps.style, boxShadow: snapshot.isDragging ? "0 0 .4rem #666" : "none"}}
+                        >
+                          <p><i {...provided.dragHandleProps} className="bi bi-grip-horizontal"></i><i onClick={handleRemoveStop} className="delete-button bi bi-trash3">{stop.place}</i></p>
+                          
+                        </div>
+                      )}
+                      
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+                
+              </Droppable>
+            </DragDropContext>
+          }
           <label className="label-custom" name="description">
             Krótki opis
           </label>
@@ -250,6 +284,7 @@ export default function NewRouteBody() {
               isDestination={isDestination}
               stops={stopsToSave}
               isStops={isStop1Saved}
+              stopsChange={stopsChangeCounter}
             />
           )}
         </div>
