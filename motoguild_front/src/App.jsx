@@ -52,6 +52,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="create-ride" element={<CreateRidePage />} />
             <Route path="create-route" element={<CreateRoutePage />} />
+            <Route path="create-group" element={<CreateGroupPage />} />
             <Route path="groups" element={<AllGroupsPage />} />
             <Route path="groups/:id" element={<GroupPage />} />
             {/* <Route path="profile" element={<ProfilPage />} /> */}
