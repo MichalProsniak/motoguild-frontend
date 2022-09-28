@@ -390,7 +390,7 @@ label {
   border-radius: 10px;
   border: 1px solid lightgray;
 }
-.group-profile{
+.group-profile {
   background: #f4f4f4;
   float: left;
   padding: 10px;
@@ -399,7 +399,7 @@ label {
   width: 500px;
 }
 
-.ride-profile{
+.ride-profile {
   background: #f4f4f4;
   float: right;
   padding: 10px;
@@ -408,8 +408,8 @@ label {
   width: 500px;
 }
 
-.page-conteiner{
-  margin:0 auto;
+.page-conteiner {
+  margin: 0 auto;
   width: 53%;
 }
 
@@ -1197,11 +1197,21 @@ label {
 .for-list-user {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
+  border-radius: 5px;
+  height: fit-content;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(233, 233, 233, 0.867);
+  border: 1px solid lightgray;
+}
+
+.for-list-user-profile-page {
+  display: flex;
+  flex-direction: column;
   margin: 3px auto;
   border-radius: 5px;
   height: fit-content;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
- 
   border: 1px solid lightgray;
   float: right;
   width: 20%;
