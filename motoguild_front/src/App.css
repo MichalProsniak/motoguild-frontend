@@ -56,7 +56,7 @@ body {
   position: relative;
   margin: 0 auto;
   border: groove;
-  border-color: red;
+  border-color: white;
   border-radius: 40px;
   height: 300px;
   width: 1000px;
@@ -390,6 +390,28 @@ label {
   border-radius: 10px;
   border: 1px solid lightgray;
 }
+.group-profile{
+  background: #f4f4f4;
+  float: left;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.ride-profile{
+  background: #f4f4f4;
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.page-conteiner{
+  margin:0 auto;
+  width: 53%;
+}
 
 .group-container {
   background-color: rgba(233, 233, 233, 0.867);
@@ -405,6 +427,21 @@ label {
   height: 100px;
   flex-wrap: wrap;
   width: 800px;
+}
+
+.group-profile-container {
+  background-color: #ffffff;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  flex-wrap: wrap;
+  width: auto;
 }
 
 .groups-page-header {
@@ -442,7 +479,7 @@ label {
 .group-header {
   text-align: left;
   margin: 10px;
-  width: 75%;
+  width: 50%;
   height: 30px;
 }
 
@@ -473,6 +510,14 @@ label {
 
 .group-details {
   margin-top: -20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.group-details-profile {
+  margin: auto 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1152,12 +1197,14 @@ label {
 .for-list-user {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin: 3px auto;
   border-radius: 5px;
   height: fit-content;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  background-color: rgba(233, 233, 233, 0.867);
+ 
   border: 1px solid lightgray;
+  float: right;
+  width: 20%;
 }
 
 .for-list-user-avatar {

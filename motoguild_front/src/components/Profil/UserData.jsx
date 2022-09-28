@@ -1,7 +1,14 @@
+import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import Image from "react-bootstrap/Image";
 
 const UserData = ({profil}) => {
-  console.log(profil)
+  const [pictures, setPictrues] = useState("src/images/LWG.jpg")
+
+  if(profil.image != null){
+    setPictrues(profil.image)
+  }
+  
   return (
     <div className="user">
         <div className="user-data">
@@ -13,6 +20,13 @@ const UserData = ({profil}) => {
               readonly={true}
               size={70}
               className="ride-info-text-stars"
+            />
+        </div>
+        <div className="user-image">
+        <Image
+              className="img fluid rounded-circle navbar-profile-pic"
+              style={{ height: "300px", width: "300px" }}
+              src={pictures}
             />
         </div>
     </div>
