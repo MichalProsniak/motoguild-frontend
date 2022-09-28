@@ -6,18 +6,28 @@ import { Rating } from "react-simple-star-rating";
 import SmallMap from "./SmallMap.jsx";
 import { useLoadScript } from "@react-google-maps/api";
 import DateFrontToBack from "../helpnigFunctions/DateFrontToBack";
-import { createNewGroup } from "../helpnigFunctions/ApiCaller";
+import {
+  createNewGroup,
+  uploadGroupImage,
+  deleteGroupImage,
+} from "../helpnigFunctions/ApiCaller";
 import { Link } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewGroupBody() {
   const [isValidGroup, setIsValidGroup] = useState(false);
+  const [localImage, setLocalImage] = useState();
   const [newGroup, setNewGroup] = useState({
     name: "",
     description: "",
     isPrivate: false,
+    groupImage: "",
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [imagePath, setImagePath] = useState("");
+  const [styles, setStyles] = useState({
+    backgroundImage: "url('https://localhost:3333/api/upload/noimage')",
+  });
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -38,14 +48,16 @@ export default function NewGroupBody() {
       setIsValidGroup(false);
       return;
     }
+    event.preventDefault();
     setIsValidGroup(true);
-    const groupToSave = {
+    const res = await uploadImage(localImage);
+    const groupToSave = await {
       name: newGroup.name,
       description: newGroup.description,
       isPrivate: newGroup.isPrivate,
+      groupImage: res,
     };
-    console.log(groupToSave);
-    await createNewGroup(groupToSave);
+    await createNewGroup(await groupToSave);
   }
 
   function handlePrivate() {
@@ -60,6 +72,28 @@ export default function NewGroupBody() {
       ...prevState,
       isPrivate: false,
     }));
+  }
+
+  async function uploadImage(files) {
+    const data = new FormData();
+    data.append("file", files[0]);
+    const res = await uploadGroupImage(data);
+    const path = await res.text();
+    await setImagePath(path);
+    var string = `https://localhost:3333/api/upload/${path}`;
+    setStyles({
+      backgroundImage: `url(${string})`,
+    });
+    return path;
+  }
+
+  function handleLocalImage(e) {
+    setLocalImage(e.target.files);
+  }
+
+  async function handleDeletePhoto() {
+    await deleteGroupImage(imagePath);
+    setImagePath("");
   }
 
   return (
@@ -102,6 +136,25 @@ export default function NewGroupBody() {
           onChange={handlePrivate}
           value={true}
           checked={newGroup.isPrivate === true}
+        ></input>
+        <br></br>
+        {imagePath != "" && (
+          <div className="create-group-photo-container">
+            <label className="label-custom">Zdjęcie grupy</label>
+            <div className="create-group-photo" style={styles}></div>
+            <span
+              className="create-group-photo-delete-text"
+              onClick={handleDeletePhoto}
+            >
+              Usuń zdjęcie
+            </span>
+          </div>
+        )}
+        <input
+          type="file"
+          name="file"
+          onChange={handleLocalImage}
+          placeholder="Upload an image"
         ></input>
         <br></br>
         <button className="btn btn-secondary create-group-submit-btn">

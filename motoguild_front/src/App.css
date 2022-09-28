@@ -236,6 +236,53 @@ label {
   margin: 10px;
 }
 
+.create-group-photo {
+  width: 195px;
+  height: 195px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.group-photo-image {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.group-photo-image-for-list {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.create-group-photo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.create-group-photo-delete-text {
+  font-weight: 600;
+}
+
+.create-group-photo-delete-text:hover {
+  color: #951717;
+  cursor: pointer;
+}
+
+.create-group-photo-container > label {
+  margin: 0px;
+  margin-top: 10px;
+}
+
 .standard-button {
   display: block;
   max-height: 50px;

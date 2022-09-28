@@ -177,6 +177,18 @@ export async function createNewPost(route, id, post) {
   }
 }
 
+export async function uploadGroupImage(image) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/upload`, {
+      method: "POST",
+      body: image,
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getRides(currentPage, itemsPerPage) {
   try {
     const res = await fetch(
@@ -403,6 +415,16 @@ export async function deleteLoggedUserFromGroup(groupId) {
         },
       }
     );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteGroupImage(imageName) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/upload/${imageName}`, {
+      method: "DELETE",
+    });
   } catch (error) {
     console.log(error);
   }
