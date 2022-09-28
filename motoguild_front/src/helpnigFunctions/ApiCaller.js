@@ -1,4 +1,3 @@
-
 export async function getGroup(currentGroup) {
   try {
     const res = await fetch(
@@ -303,7 +302,7 @@ export async function loginUser(user) {
       body: JSON.stringify(user),
     });
     const resposne = await res.text();
-    if (resposne.length > 90) {
+    if (resposne.length == 498) {
       localStorage.setItem("token", resposne);
     }
   } catch (error) {
@@ -328,13 +327,16 @@ export async function testLogin() {
 
 export async function addUserToGroup(groupId) {
   try {
-    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/logged`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
+    const res = await fetch(
+      `https://localhost:3333/api/groups/${groupId}/participants/logged`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
       }
-    });
+    );
   } catch (error) {
     console.log(error);
   }
@@ -342,13 +344,16 @@ export async function addUserToGroup(groupId) {
 
 export async function addUserToGroupsPendingUsers(groupId) {
   try {
-    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/pendingusers/1`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
+    const res = await fetch(
+      `https://localhost:3333/api/groups/${groupId}/pendingusers/1`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
       }
-    });
+    );
   } catch (error) {
     console.log(error);
   }
@@ -356,13 +361,16 @@ export async function addUserToGroupsPendingUsers(groupId) {
 
 export async function addUserToPrivateGroup(groupId, userId) {
   try {
-    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/${userId}`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
+    const res = await fetch(
+      `https://localhost:3333/api/groups/${groupId}/participants/${userId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
       }
-    });
+    );
   } catch (error) {
     console.log(error);
   }
@@ -370,13 +378,16 @@ export async function addUserToPrivateGroup(groupId, userId) {
 
 export async function deleteLoggedUserFromGroup(groupId) {
   try {
-    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/logged`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
+    const res = await fetch(
+      `https://localhost:3333/api/groups/${groupId}/participants/logged`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
       }
-    });
+    );
   } catch (error) {
     console.log(error);
   }
@@ -384,13 +395,16 @@ export async function deleteLoggedUserFromGroup(groupId) {
 
 export async function deleteUserFromGroup(groupId, userId) {
   try {
-    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/participants/${userId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
+    const res = await fetch(
+      `https://localhost:3333/api/groups/${groupId}/participants/${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
       }
-    });
+    );
   } catch (error) {
     console.log(error);
   }
@@ -398,13 +412,16 @@ export async function deleteUserFromGroup(groupId, userId) {
 
 export async function deleteUserFromPendingUsers(groupId, userId) {
   try {
-    const res = await fetch(`https://localhost:3333/api/groups/${groupId}/pendingusers/${userId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
+    const res = await fetch(
+      `https://localhost:3333/api/groups/${groupId}/pendingusers/${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
       }
-    });
+    );
   } catch (error) {
     console.log(error);
   }
@@ -425,19 +442,21 @@ export async function getLoggedUserData() {
   }
 }
 
-
-export async function ProfileData(id){
-  try{
-    let res = await fetch(`https://localhost:3333/api/users/${id}?profile=true`,{
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `bearer ${localStorage.getItem("token")}`,
-      },
-    });
+export async function ProfileData(id) {
+  try {
+    let res = await fetch(
+      `https://localhost:3333/api/users/${id}?profile=true`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     const data = await res.json();
     return data;
-  }catch(error){
-    console.log(error)
+  } catch (error) {
+    console.log(error);
   }
 }
 
