@@ -209,6 +209,33 @@ label {
   font-size: large;
 }
 
+.create-group-body {
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  align-self: center;
+  justify-content: center;
+}
+
+.create-group-body > form {
+  width: 100%;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-group-body > form > label {
+  margin: auto;
+  margin-top: 15px;
+}
+
+.create-group-submit-btn {
+  margin: 10px;
+}
+
 .standard-button {
   display: block;
   max-height: 50px;

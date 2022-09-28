@@ -81,6 +81,21 @@ export async function createNewRoute(newRoute) {
   }
 }
 
+export async function createNewGroup(newGroup) {
+  try {
+    const res = await fetch("https://localhost:3333/api/groups/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(newGroup),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function createNewRide(newRide) {
   try {
     const res = await fetch("https://localhost:3333/api/rides", {
