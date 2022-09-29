@@ -24,7 +24,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import CreateEventPage from "./pages/CreateEventPage";
 import AllEventsPage from "./pages/AllEventsPage";
 import EventPage from "./pages/EventPage";
-
+import ProfilePage from "./pages/ProfilPage";
 
 function App() {
   const ProtectedRoute = () => {
@@ -52,6 +52,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="create-ride" element={<CreateRidePage />} />
             <Route path="create-route" element={<CreateRoutePage />} />
+            <Route path="create-group" element={<CreateGroupPage />} />
             <Route path="groups" element={<AllGroupsPage />} />
             <Route path="groups/:id" element={<GroupPage />} />
             {/* <Route path="profile" element={<ProfilPage />} /> */}
@@ -60,12 +61,17 @@ function App() {
             <Route path="/routes" element={<AllRoutesPage />} />
             <Route path="/routes/:id" element={<RoutePage />} />
           </Route>
-          <Route path="/" element={<StartPage />}/>
+          <Route path="/" element={<StartPage />} />
           {/* <Route path="/register" element={<Register />}/>
           <Route path="/login" element={<Login />}/> */}
           <Route exact path="/events" element={<AllEventsPage />}></Route>
           <Route exact path="/events/:id" element={<EventPage />}></Route>
-          <Route exact path="/create-event" element={<CreateEventPage />}></Route>
+          <Route
+            exact
+            path="/create-event"
+            element={<CreateEventPage />}
+          ></Route>
+          <Route exact path="/profile" element={<ProfilePage />}></Route>
         </Routes>
       </Router>
     </div>

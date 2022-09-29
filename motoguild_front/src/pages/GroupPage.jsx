@@ -20,12 +20,12 @@ export default function GroupPage() {
     }
     getGroupInfo();
     getUser();
-  
   }, []);
   return (
-
-    <div className="container-custom">
-      {!isLoading && <GroupBody group={group} user={user}/>}
+    <div className="navbar-margin">
+      <div className="container-custom">
+        {!isLoading && <GroupBody group={group} user={user} />}
+      </div>
     </div>
   );
 }

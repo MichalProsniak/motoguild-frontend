@@ -6,11 +6,19 @@
   text-align: center;
 }
 
-body {
+html {
   background-image: url(images/start-background.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: auto;
+}
+
+body {
+  background-color: transparent;
 }
 
 .page-title {
@@ -48,7 +56,7 @@ body {
   position: relative;
   margin: 0 auto;
   border: groove;
-  border-color: red;
+  border-color: white;
   border-radius: 40px;
   height: 300px;
   width: 1000px;
@@ -73,6 +81,10 @@ body {
 
 .card {
   padding: 2em;
+}
+
+.navbar-margin {
+  margin-top: 90px;
 }
 
 .container-custom {
@@ -197,6 +209,80 @@ label {
   font-size: large;
 }
 
+.create-group-body {
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  align-self: center;
+  justify-content: center;
+}
+
+.create-group-body > form {
+  width: 100%;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-group-body > form > label {
+  margin: auto;
+  margin-top: 15px;
+}
+
+.create-group-submit-btn {
+  margin: 10px;
+}
+
+.create-group-photo {
+  width: 195px;
+  height: 195px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.group-photo-image {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.group-photo-image-for-list {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.create-group-photo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.create-group-photo-delete-text {
+  font-weight: 600;
+}
+
+.create-group-photo-delete-text:hover {
+  color: #951717;
+  cursor: pointer;
+}
+
+.create-group-photo-container > label {
+  margin: 0px;
+  margin-top: 10px;
+}
+
 .standard-button {
   display: block;
   max-height: 50px;
@@ -243,7 +329,7 @@ label {
 }
 
 .rides-routes-container {
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 .googlemap-slides-containter-text {
@@ -378,6 +464,28 @@ label {
   border-radius: 10px;
   border: 1px solid lightgray;
 }
+.group-profile {
+  background: #f4f4f4;
+  float: left;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.ride-profile {
+  background: #f4f4f4;
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.page-conteiner {
+  margin: 0 auto;
+  width: 53%;
+}
 
 .group-container {
   background-color: rgba(233, 233, 233, 0.867);
@@ -393,6 +501,21 @@ label {
   height: 100px;
   flex-wrap: wrap;
   width: 800px;
+}
+
+.group-profile-container {
+  background-color: #ffffff;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  flex-wrap: wrap;
+  width: auto;
 }
 
 .groups-page-header {
@@ -430,7 +553,7 @@ label {
 .group-header {
   text-align: left;
   margin: 10px;
-  width: 75%;
+  width: 50%;
   height: 30px;
 }
 
@@ -461,6 +584,14 @@ label {
 
 .group-details {
   margin-top: -20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.group-details-profile {
+  margin: auto 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -697,7 +828,7 @@ label {
   color: white;
   font-size: 30px;
   font-weight: 600;
-  width: 90%;
+  width: 100%;
   margin: 0px;
   height: 50px;
 }
@@ -708,7 +839,7 @@ label {
   border-radius: 10px;
   width: 1000px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 100px;
   margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -807,11 +938,11 @@ label {
   background-color: white;
   margin-left: 60px;
   margin-top: -390px;
-  z-index: 99;
+  z-index: 3;
 }
 .ride-page-map-card-container {
   display: flex;
-  z-index: 99;
+  z-index: 3;
 }
 
 .ride-page-map-card-header {
@@ -851,7 +982,7 @@ label {
   border-radius: 10px;
   width: 1000px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 100px;
   margin-bottom: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -941,7 +1072,7 @@ label {
 }
 .route-page-map-card-container {
   display: flex;
-  z-index: 99;
+  z-index: 3;
 }
 .route-page-map-card {
   display: flex;
@@ -953,7 +1084,7 @@ label {
   background-color: white;
   margin-left: 60px;
   margin-top: -390px;
-  z-index: 99;
+  z-index: 3;
 }
 
 .route-page-map-card-header {
@@ -1046,6 +1177,9 @@ label {
   background-color: rgba(0, 0, 0, 0.59);
   color: white;
   box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  z-index: 99;
 }
 
 .navbar-custom-container {
@@ -1145,6 +1279,18 @@ label {
   border: 1px solid lightgray;
 }
 
+.for-list-user-profile-page {
+  display: flex;
+  flex-direction: column;
+  margin: 3px auto;
+  border-radius: 5px;
+  height: fit-content;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid lightgray;
+  float: right;
+  width: 20%;
+}
+
 .for-list-user-avatar {
   margin: auto;
   margin-top: 10px;
@@ -1169,7 +1315,7 @@ label {
   margin: auto;
   /* overflow-y: scroll;
   overflow-x: hidden; */
-  height: 40vh;
+  height: 500px;
   width: 90%;
   padding: 10px;
   padding-right: 15px;
@@ -1178,27 +1324,22 @@ label {
   border-radius: 10px;
 }
 
-.posts-scrolling{
+.posts-scrolling {
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 40vh;
+  height: 420px;
   width: 100%;
-  padding: 10px;
-  padding-right: 15px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  /* margin-left: 5%; */
-  /* background-color: rgba(233, 233, 233, 0.867);
-  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1); */
 }
 
 .posts-homepage {
   margin: auto;
   /* overflow-y: scroll;
   overflow-x: hidden; */
-  height: 40vh;
-  width: 55%;
+  height: 500px;
+  width: 65%;
   padding: 10px;
   padding-right: 15px;
   display: flex;
@@ -1216,7 +1357,25 @@ label {
   border: 1px solid darkgray;
   margin: 5px;
   padding: 15px 20px;
-  width: 90%;
+  width: 99%;
+}
+
+.add-post-section {
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid darkgray;
+  margin-left: 5px;
+  margin-right: 27px;
+  padding: 15px 20px;
+  width: 100%;
+}
+
+.add-post-container {
+  display: flex;
 }
 
 .stops-list {
@@ -1307,6 +1466,7 @@ label {
 .header-custom-font {
   font-family: "Comfortaa", cursive;
   color: white;
+  margin-top: 50px;
 }
 
 .dropdown-item-custom-link:hover {
@@ -1354,7 +1514,6 @@ label {
   display: flex;
   flex-direction: row;
 }
-
 
 .add-post-input {
   border: 1px solid lightgray;
@@ -1457,7 +1616,6 @@ label {
 
 .homepage-best-routes {
   margin-top: 40px;
-  margin-bottom: 30px;
   width: 100%;
 }
 

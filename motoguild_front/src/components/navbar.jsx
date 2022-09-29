@@ -18,6 +18,9 @@ function OffcanvasExample() {
   const [isClickedEvents, setIsClickedEvents] = useState(false);
   const [classNameEvents, setClassNameEvents] = useState("dropdown-menu");
   const [classNameEvents2, setClassNameEvents2] = useState("nav-item dropdown");
+  const [isClickedGroups, setIsClickedGroups] = useState(false);
+  const [classNameGroups, setClassNameGroups] = useState("dropdown-menu");
+  const [classNameGroups2, setClassNameGroups2] = useState("nav-item dropdown");
 
   function handleClickRoutes() {
     setIsClickedRoutes((prevState) => !prevState);
@@ -37,6 +40,16 @@ function OffcanvasExample() {
     isClickedRides
       ? setClassNameRides2("nav-item dropdown")
       : setClassNameRides2("nav-item dropdown show");
+  }
+
+  function handleClickGroups() {
+    setIsClickedGroups((prevState) => !prevState);
+    isClickedGroups
+      ? setClassNameGroups("dropdown-menu")
+      : setClassNameGroups("dropdown-menu show");
+    isClickedGroups
+      ? setClassNameGroups2("nav-item dropdown")
+      : setClassNameGroups2("nav-item dropdown show");
   }
 
   function handleClickEvents() {
@@ -74,11 +87,37 @@ function OffcanvasExample() {
               <span className="nav-text-custom">Strona główna</span>
             </Nav.Link>
           </li>
-          <li className="nav-item active">
-            <Nav.Link className="nav-link" href="/groups">
+
+          <li className={classNameGroups2}>
+            <Nav.Link
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={handleClickGroups}
+              onBlur={() => {
+                setTimeout(() => handleClickGroups(), 100);
+              }}
+            >
               <span className="nav-text-custom">Grupy</span>
             </Nav.Link>
+            <div className={classNameGroups} aria-labelledby="navbarDropdown">
+              <Nav.Link className="dropdown-item-custom" href="/groups">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Przeglądaj Grupy</span>
+                </span>
+              </Nav.Link>
+              <Nav.Link className="dropdown-item-custom" href="/create-group">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Stwórz Grupę</span>
+                </span>
+              </Nav.Link>
+            </div>
           </li>
+
           <li className={classNameRides2}>
             <Nav.Link
               className="nav-link dropdown-toggl"
