@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import EventSmallMap from './EventSmallMap'
 import PostsForPage from "./PostsForPage";
 import ImportantEventInfo from "./ImportantEventInfo";
+import { getEvent } from "../helpnigFunctions/ApiCaller";
 
 const libraries = ["places"];
 
 export default function EventBody(props) {
+    console.log(props.event.owner);
     const [mapInfo, setMapInfo] = useState([]);
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
@@ -18,10 +20,13 @@ export default function EventBody(props) {
         <div className="event-page-container">
             <div className="event-page-header">
             <p>{props.event.name}</p>
+            
+            
+            <p></p>
         </div>
         <div className="event-page-map">
             <EventSmallMap place={props.event.place}/>
-    
+        <div className="event-page-map-card-container">
         <div className="event-page-map-card">
             <div className="event-page-map-card-header">
                 <p>Informacje o wydarzeniu</p>
@@ -38,10 +43,16 @@ export default function EventBody(props) {
             <ImportantEventInfo
                 style="event-info-text"
                 place={props.event.place}
-                />
-
-
-        </div></div></div>
+                startDate={props.event.startDate}
+                stopDate={props.event.stopDate}></ImportantEventInfo>
+        </div>
+        
+        {/* <div className="event-page-navigation-button">
+            <button className="btn btn-primary">Nawiguj</button>
+        </div> */}
+        </div>
+        </div>
+        </div>
 
         <div className="event-page-info">
             <div className="event-page-info-header">

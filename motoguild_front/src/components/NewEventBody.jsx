@@ -117,8 +117,8 @@ export default function NewEventBody() {
                         className="event-standard-input"
                         ></input>
 
-                    <label className="label-custom" name="startHour">
-                        Godzina rozpoczęcia
+                    <label  name="startHour">
+                        Godzina Rozpoczęcia
                     </label>
                     <input
                          className="event-standard-input"
@@ -139,7 +139,7 @@ export default function NewEventBody() {
                         ></input>
                     </div>
                 
-                <div className="right-column">
+                <div>
                     <label name="description">Opis</label>
                     <textarea
                         type="text"
