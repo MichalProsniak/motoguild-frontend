@@ -62,9 +62,9 @@ body {
   width: 1000px;
 }
 
-.small-message{
+.small-message {
   position: relative;
-  bottom: 1ex; 
+  bottom: 1ex;
   font-size: 10px;
 }
 
@@ -277,6 +277,18 @@ label {
   background-size: cover;
   border-radius: 50%;
   margin: auto;
+}
+
+.ride-participants-list {
+  border: 1px solid darkgray;
+  box-shadow: 0px 0px 5px 0px rgba(66, 68, 90, 1);
+  border-radius: 4px;
+  width: 48%;
+  margin: 1%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .create-group-photo-container {
@@ -492,7 +504,7 @@ label {
   width: 500px;
 }
 
-.group-owner-profile{
+.group-owner-profile {
   background: #f4f4f4;
   float: right;
   padding: 10px;
@@ -510,7 +522,7 @@ label {
   width: 500px;
 }
 
-.ride-owner-profile{
+.ride-owner-profile {
   background: #f4f4f4;
   float: right;
   padding: 10px;
@@ -519,7 +531,7 @@ label {
   width: 500px;
 }
 
-.event-profile{
+.event-profile {
   background: #f4f4f4;
   float: left;
   padding: 10px;
@@ -527,12 +539,12 @@ label {
   border: 1px solid lightgray;
   width: 500px;
 }
-.element-conteiner{
-  position: relative; 
+.element-conteiner {
+  position: relative;
   margin: 0;
 }
 
-.event-owner-profile{
+.event-owner-profile {
   background: #f4f4f4;
   float: right;
   padding: 10px;
@@ -615,7 +627,7 @@ label {
   height: 30px;
 }
 
-.ride-profile-container{
+.ride-profile-container {
   background-color: #ffffff;
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
   margin: 0 auto;
@@ -629,7 +641,7 @@ label {
   width: 400px;
 }
 
-.event-profile-container{
+.event-profile-container {
   background-color: #ffffff;
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
   margin: 0 auto;
@@ -643,13 +655,12 @@ label {
   width: 400px;
 }
 
-.ride-header{
+.ride-header {
   text-align: left;
   line-height: 1px;
   margin: auto 0;
   margin-left: 0px;
   width: 55%;
-
 }
 
 .group-header-title {
@@ -982,7 +993,7 @@ label {
   font-size: 14px;
   border-radius: 10px 10px 0px 0px;
   color: white;
-  background-color: darkblue;
+  background-color: #951717;
   font-weight: 600;
   width: 100%;
   height: 30px;
@@ -1045,7 +1056,7 @@ label {
   height: 27px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 0px 0px;
-  background-color: darkblue;
+  background-color: #951717;
 }
 
 .ride-page-map-card-header > p {
@@ -1125,7 +1136,7 @@ label {
   font-size: 14px;
   border-radius: 10px 10px 0px 0px;
   color: white;
-  background-color: darkblue;
+  background-color: #951717;
   font-weight: 600;
   width: 100%;
   height: 30px;
@@ -1187,7 +1198,7 @@ label {
   height: 27px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 0px 0px;
-  background-color: darkblue;
+  background-color: #951717;
 }
 
 .route-page-map-card-header > p {
@@ -1429,7 +1440,7 @@ label {
   border-radius: 10px;
 }
 
-.profil-scroling{
+.profil-scroling {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 420px;
@@ -1669,7 +1680,7 @@ label {
 }
 
 .error-message {
-  color:#951717;
+  color: #951717;
 }
 
 /* Slideshow */
@@ -2096,14 +2107,10 @@ label {
   font-weight: 500;
 }
 
-
-
 .event-page-map {
   width: 100%;
   height: 430px;
   margin: 50px;
-  
-  
 }
 
 .event-page-header {
@@ -2241,7 +2248,6 @@ label {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-
 }
 
 .create-event-body {
@@ -2253,7 +2259,6 @@ label {
   padding-right: 30px;
   padding-bottom: 20px;
   align-self: center;
-  
 }
 
 .create-event-body > form {

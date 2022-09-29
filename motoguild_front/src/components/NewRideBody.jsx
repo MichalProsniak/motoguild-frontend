@@ -55,9 +55,11 @@ export default function NewRideBody() {
     if (newRide.name.length < 5 || newRide.name.length > 25)
     {
       setIsNameCorrect(false)
+      return false;
     }
     else {
       setIsNameCorrect(true)
+      return true;
     }
   }
 
@@ -66,9 +68,11 @@ export default function NewRideBody() {
     if (newRide.description.length < 5 || newRide.description.length > 150)
     {
       setIsDescriptionCorrect(false)
+      return false;
     }
     else {
       setIsDescriptionCorrect(true)
+      return true;
     }
   }
 
@@ -95,20 +99,21 @@ export default function NewRideBody() {
       (chosenYear === year && chosenMonth === month && chosenDay === day && chosenHour - hour === 1 && chosenMinutes < minutes))
       {
         setIsRideDateCorrect(false)
-        return;
+        return false;
       }
       setIsRideDateCorrect(true)
+      return true;
   }
 
   async function handleSubmit(event) {
-    checkIfDescriptionIsCorrect()
-    checkIfNameIsCorrect()
-    checkIfDateIsCorrect()
+    const isDescription = await checkIfDescriptionIsCorrect()
+    const isName = await checkIfNameIsCorrect()
+    const isDate = await checkIfDateIsCorrect()
 
     if (
-      !isNameCorrect ||
-      !isDescriptionCorrect ||
-      !isRideDateCorrect ||
+      !isName ||
+      !isDescription ||
+      !isDate ||
       !isRoute
     ) {
       event.preventDefault();
