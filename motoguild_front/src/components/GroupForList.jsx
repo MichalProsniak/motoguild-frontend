@@ -54,7 +54,7 @@ export default function GroupForList(props) {
   });
 
   useEffect(() => {
-    var string = `https://localhost:3333/api/upload/${props.groupImage}`;
+    var string = `https://localhost:3333/api/upload/GroupPictures/${props.groupImage}`;
     setStyles({
       backgroundImage: `url(${string})`,
     });

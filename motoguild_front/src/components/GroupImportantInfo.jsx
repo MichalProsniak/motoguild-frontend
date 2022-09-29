@@ -11,7 +11,7 @@ export default function GroupImportantInfo(props) {
   });
 
   useEffect(() => {
-    var string = `https://localhost:3333/api/upload/${props.group.groupImage}`;
+    var string = `https://localhost:3333/api/upload/GroupPictures/${props.group.groupImage}`;
     setStyles({
       backgroundImage: `url(${string})`,
     });

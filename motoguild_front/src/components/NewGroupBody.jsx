@@ -11,7 +11,7 @@ import {
   uploadGroupImage,
   deleteGroupImage,
 } from "../helpnigFunctions/ApiCaller";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewGroupBody() {
@@ -28,6 +28,7 @@ export default function NewGroupBody() {
   const [styles, setStyles] = useState({
     backgroundImage: "url('https://localhost:3333/api/upload/noimage')",
   });
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -57,7 +58,8 @@ export default function NewGroupBody() {
       isPrivate: newGroup.isPrivate,
       groupImage: res,
     };
-    await createNewGroup(await groupToSave);
+    const newGroupId = await createNewGroup(await groupToSave);
+    navigate(`/groups/${newGroupId}`);
   }
 
   function handlePrivate() {
@@ -80,7 +82,7 @@ export default function NewGroupBody() {
     const res = await uploadGroupImage(data);
     const path = await res.text();
     await setImagePath(path);
-    var string = `https://localhost:3333/api/upload/${path}`;
+    var string = `https://localhost:3333/api/upload/GroupPictures/${path}`;
     setStyles({
       backgroundImage: `url(${string})`,
     });

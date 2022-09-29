@@ -91,6 +91,8 @@ export async function createNewGroup(newGroup) {
       },
       body: JSON.stringify(newGroup),
     });
+    const data = await res.json();
+    return data.id;
   } catch (error) {
     console.log(error);
   }
@@ -179,7 +181,7 @@ export async function createNewPost(route, id, post) {
 
 export async function uploadGroupImage(image) {
   try {
-    const res = await fetch(`https://localhost:3333/api/upload`, {
+    const res = await fetch(`https://localhost:3333/api/upload/GroupPictures`, {
       method: "POST",
       body: image,
     });
