@@ -24,6 +24,7 @@ const Group = ({ group }) => {
   return (
     <div className="group-profile-container">
       <div className="group-photo-container">
+        {console.log(group)}
         <Link to={`/groups/${group.id}`} replace>
           <div className="group-photo-image-for-list-profile" style={styleGroup}></div>
         </Link>
