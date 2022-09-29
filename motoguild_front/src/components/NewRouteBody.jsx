@@ -79,9 +79,11 @@ export default function NewRouteBody() {
     if (newRoute.name.length < 5 || newRoute.name.length > 25)
     {
       setIsNameCorrect(false)
+      return false
     }
     else {
       setIsNameCorrect(true)
+      return true
     }
   }
 
@@ -90,20 +92,22 @@ export default function NewRouteBody() {
     if (newRoute.description.length < 5 || newRoute.description.length > 150)
     {
       setIsDescriptionCorrect(false)
+      return false
     }
     else {
       setIsDescriptionCorrect(true)
+      return true
     }
   }
 
   async function handleSubmit(event) {
-    checkIfDescriptionIsCorrect();
-    checkIfNameIsCorrect();
+    const isName = await checkIfDescriptionIsCorrect();
+    const isDescription = await checkIfNameIsCorrect();
     if (
       !isOrigin ||
       !isDestination ||
-      !isDescriptionCorrect ||
-      !isNameCorrect
+      !isDescription ||
+      !isName
     ) {
       event.preventDefault();
       setAllInputsCorrect(false);
