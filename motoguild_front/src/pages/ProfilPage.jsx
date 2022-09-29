@@ -52,7 +52,6 @@ const ProfilPage = () => {
             setProfilRides(profil.routes)
             setProfilEvents(profil.events)
             setProfilRoute(profil.routes)
-            console.log(profil)
         }
     },[profil])
 

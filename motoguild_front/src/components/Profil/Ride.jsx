@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
-import Image from "react-bootstrap/Image";
+import { useState, useEffect } from "react"
 import { Rating } from "react-simple-star-rating";
 
 const Ride = ({ride}) =>{
-    const [ownerPictrue, setOwnerPictru] = useState("src/images/LWG.jpg")
-    if(ride.image != null){
-        setPictrue(ride.image)
-    }
-    if(ride.owner.image != null){
-        setOwnerPictru(ride.owner.image)
-    }
+    const [styleUser, setStyleUser] = useState({
+        backgroundImage: "url('https://localhost:3333/api/upload/noimage')"
+        ,})
+    
+        useEffect(() => {
+          var stringUser=`https://localhost:3333/api/upload/User/${ride.owner.image}`;
+          setStyleUser({backgroundImage: `url(${stringUser})`})
+    
+        },[])
+
 
     return(
     <div className="ride-profile-container">
@@ -26,11 +28,8 @@ const Ride = ({ride}) =>{
             </div>
         </div>
         <div className="for-list-user-profile-page">
-              <Image
-                className="img fluid rounded-circle for-list-user-avatar"
-                src={ownerPictrue}
-              />
-              <h3 className="for-list-user-text">{ride.owner.userName}</h3>
+            <div className="group-photo-image-for-list-profile-owner" style={styleUser}></div>
+            <h3 className="for-list-user-text">{ride.owner.userName}</h3>
             </div>
     </div>
     )

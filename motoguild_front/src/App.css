@@ -107,9 +107,6 @@ body {
   width: 100%;
 }
 
-.add-stops-container > div > .standard-input {
-}
-
 .add-stops-container > button {
   width: 100px;
   margin-right: 23px;
@@ -258,6 +255,22 @@ label {
   background-position: center;
   background-size: cover;
   border-radius: 50%;
+}
+
+.group-photo-image-for-list-profile {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+.group-photo-image-for-list-profile-owner {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  margin: auto;
 }
 
 .create-group-photo-container {
