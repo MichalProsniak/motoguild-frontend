@@ -117,6 +117,23 @@ export async function createNewRide(newRide) {
   }
 }
 
+export async function joinRide(userId) {
+  try {
+    const res = await fetch("https://localhost:3333/api/rides", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(newRide),
+    });
+    const data = await res.json();
+    return data.id;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getComments(postId) {
   try {
     const res = await fetch(
@@ -413,6 +430,40 @@ export async function deleteLoggedUserFromGroup(groupId) {
   try {
     const res = await fetch(
       `https://localhost:3333/api/groups/${groupId}/participants/logged`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function addLoggedUserToRide(rideId) {
+  try {
+    const res = await fetch(
+      `https://localhost:3333/api/rides/${rideId}/participants/logged`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteLoggedUserFromRide(rideId) {
+  try {
+    const res = await fetch(
+      `https://localhost:3333/api/rides/${rideId}/participants/logged`,
       {
         method: "DELETE",
         headers: {

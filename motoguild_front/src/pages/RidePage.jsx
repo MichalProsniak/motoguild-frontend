@@ -7,6 +7,7 @@ export default function RidePage() {
   const currentRide = useParams().id;
   const [ride, setRide] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [buttonClicked, setButtonClicked] = useState(0);
 
   useEffect(() => {
     async function getCurrentRideData() {
@@ -15,7 +16,13 @@ export default function RidePage() {
       setIsLoading(false);
     }
     getCurrentRideData();
-  }, []);
+  }, [buttonClicked]);
 
-  return <div>{!isLoading && <RideBody ride={ride} />}</div>;
+  return (
+    <div>
+      {!isLoading && (
+        <RideBody ride={ride} setButtonClicked={setButtonClicked} />
+      )}
+    </div>
+  );
 }
