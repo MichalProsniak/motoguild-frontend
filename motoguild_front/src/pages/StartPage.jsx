@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import Login from "../components/Login";
 import Registration from "../components/Registration";
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router";
 import Homepage from "./Homepage";
 import logo from "../images/motoguild-start.png";

@@ -7,7 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Homepage from "./pages/Homepage";
 import CreateRidePage from "./pages/CreateRidePage";
 import CreateRoutePage from "./pages/CreateRoutePage";
 import CreateGroupPage from "./pages/CreateGroupPage";
@@ -18,7 +17,6 @@ import AllRoutesPage from "./pages/AllRoutesPage";
 import RoutePage from "./pages/RoutePage";
 import GroupPage from "./pages/GroupPage";
 import StartPage from "./pages/StartPage";
-// import ProfilPage from "./pages/ProfilPage";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import CreateEventPage from "./pages/CreateEventPage";
@@ -55,22 +53,15 @@ function App() {
             <Route path="create-group" element={<CreateGroupPage />} />
             <Route path="groups" element={<AllGroupsPage />} />
             <Route path="groups/:id" element={<GroupPage />} />
-            {/* <Route path="profile" element={<ProfilPage />} /> */}
             <Route path="/rides" element={<AllRidesPage />} />
             <Route path="/rides/:id" element={<RidePage />} />
             <Route path="/routes" element={<AllRoutesPage />} />
             <Route path="/routes/:id" element={<RoutePage />} />
           </Route>
           <Route path="/" element={<StartPage />} />
-          {/* <Route path="/register" element={<Register />}/>
-          <Route path="/login" element={<Login />}/> */}
           <Route exact path="/events" element={<AllEventsPage />}></Route>
           <Route exact path="/events/:id" element={<EventPage />}></Route>
-          <Route
-            exact
-            path="/create-event"
-            element={<CreateEventPage />}
-          ></Route>
+          <Route exact path="/create-event" element={<CreateEventPage />}></Route>
           <Route exact path="/profile" element={<ProfilePage />}></Route>
         </Routes>
       </Router>

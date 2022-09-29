@@ -12,10 +12,10 @@ import jwt from "jwt-decode"
 const ProfilPage = () => {
     const [id, setId] = useState()
     const [profil,setProfil] = useState()
-    const [profilGroups, setProfilGroups] = useState()
-    const [profilRides, setProfilRides] = useState()
-    const [profilEvents, setProfilEvents] = useState()
-    const [profilRoutes, setProfilRoute] = useState()
+    const [profilGroups, setProfilGroups] = useState([])
+    const [profilRides, setProfilRides] = useState([])
+    const [profilEvents, setProfilEvents] = useState([])
+    const [profilRoutes, setProfilRoute] = useState([])
 
     const userData = async () =>{
         var data = await ProfileData(id)
@@ -60,7 +60,7 @@ const ProfilPage = () => {
                 {profil &&
                     <UserData profil={profil} />
                 }
-            {profilGroups &&
+            {profilGroups.length > 0 &&
                 <div className="group-profile">
                 <h1>Grupy</h1>
                 <div className="profil-scroling">
@@ -68,7 +68,7 @@ const ProfilPage = () => {
                 </div>
                 </div>
             }
-            {profilRides &&
+            {profilRides.length > 0 &&
                 <div className="ride-profile">
                     <h1>Ustawki</h1>
                     <div className="profil-scroling">
@@ -76,7 +76,7 @@ const ProfilPage = () => {
                     </div>
                 </div>
             } 
-             {profilEvents &&
+             {profilEvents.length > 0 &&
             <div className="event-profile">
                 <h1>Wydarzenia</h1>
                 <div className="profil-scroling">
@@ -84,8 +84,8 @@ const ProfilPage = () => {
                 </div>
             </div>
             }
-            {profilRoutes &&
-            <div className="event-profile">
+            {profilRoutes.length > 0 &&
+            <div className="route-profile">
                 <h1>Trasy</h1>
                 <div className="profil-scroling">
                   {profilRoutes.map((route) => (<Route key={route.id} route={route} />))}

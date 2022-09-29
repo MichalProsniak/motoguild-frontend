@@ -1,14 +1,30 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Image from "react-bootstrap/Image";
-import pictures from "../images/piesek.jpg";
 import logo from "../images/motoguild-start.png";
 import Logout from "./Logout";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { testLogin } from "../helpnigFunctions/ApiCaller"
 
 function OffcanvasExample() {
-  const navigate = useNavigate();
+
+
+  const [styleUser, setStyleUser] = useState({
+    backgroundImage: "url('https://localhost:3333/api/upload/user/noimage')"
+    ,})
+
+    // useEffect(() => {
+    //   async function image(){
+    //     var user = await testLogin
+    //     var photo = await user.image
+    //     return photo
+    //   }
+    //   console.log(image)
+    //   var stringUser=`https://localhost:3333/api/upload/User/${image}`;
+
+    //   setStyleUser({backgroundImage: `url(${stringUser})`})
+
+    // },[])
+
   const [isClickedRoutes, setIsClickedRoutes] = useState(false);
   const [classNameRoutes, setClassNameRoutes] = useState("dropdown-menu");
   const [classNameRoutes2, setClassNameRoutes2] = useState("nav-item dropdown");
@@ -21,6 +37,9 @@ function OffcanvasExample() {
   const [isClickedGroups, setIsClickedGroups] = useState(false);
   const [classNameGroups, setClassNameGroups] = useState("dropdown-menu");
   const [classNameGroups2, setClassNameGroups2] = useState("nav-item dropdown");
+  const [isClickedProfil, setIsClickedProfil] = useState(false);
+  const [classNameProfil, setClassNameProfil] = useState("dropdown-menu");
+  const [classNameProfil2, setClassNameProfil2] = useState("nav-item dropdown");
 
   function handleClickRoutes() {
     setIsClickedRoutes((prevState) => !prevState);
@@ -60,6 +79,16 @@ function OffcanvasExample() {
     isClickedEvents
       ? setClassNameEvents2("nav-item dropdown")
       : setClassNameEvents2("nav-item dropdown show");
+  }
+
+  function handleClickProfile() {
+    setIsClickedProfil((prevState) => !prevState);
+    isClickedProfil
+      ? setClassNameProfil("dropdown-menu")
+      : setClassNameProfil("dropdown-menu show");
+    isClickedProfil
+      ? setClassNameProfil2("nav-item dropdown")
+      : setClassNameProfil2("nav-item dropdown show");
   }
   return (
     <Navbar className="navbar navbar-expand-lg navbar-custom">
@@ -225,23 +254,40 @@ function OffcanvasExample() {
             </li>
           )}
           {localStorage.getItem("token") ? (
-            <li className="nav-item active">
-              <Nav.Link to="/" className="nav-link logout-link">
+          <li>
+          <Nav.Link
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={handleClickProfile}
+              onBlur={() => {
+                setTimeout(() => handleClickProfile(), 100);
+              }}
+            ><span className="nav-text-custom">
+              <div className="group-photo-image-for-list-profile-owner" style={styleUser}></div>
+            </span>
+            </Nav.Link>
+            <div className={classNameProfil} aria-labelledby="navbarDropdown">
+              <Nav.Link className="dropdown-item-custom" href="/profile">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Profil</span>
+                </span>
+              </Nav.Link>
+              <Nav.Link className="dropdown-item-custom" href="/settings">
+                <span className="dropdown-item-custom-link">
+                  <span className="nav-text-custom">Ustawienia</span>
+                </span>
+              </Nav.Link>
+              <Nav.Link className="dropdown-item-custom" href="/">
                 <Logout />
               </Nav.Link>
-            </li>
-          ) : (
-            ""
-          )}
-          <li>
-            <Link to="profile">
-              <Image
-                className="img fluid rounded-circle navbar-profile-pic"
-                style={{ height: "50px", width: "50px" }}
-                src={pictures}
-              />
-            </Link>
-          </li>
+            </div>
+          </li>) : ("")
+          }
         </ul>
       </div>
     </Navbar>

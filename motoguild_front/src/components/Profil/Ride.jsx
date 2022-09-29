@@ -20,10 +20,10 @@ const Ride = ({ride}) =>{
             <Link to={`/rides/${ride.id}`} replace>
                 <p>{ride.name}</p>
             </Link>
-            <h6>{ride.startPlace} <i className="bi bi-arrow-down-left"></i></h6><br></br><h6> {ride.endingPlace} </h6>
             <div className="group-details-profile">
-                <div className="group-rating">
-                    <Rating initialValue={ride.rating} readonly={true} size="30" />
+                <h6>{ride.startPlace} <i className="bi bi-arrow-down-left"></i></h6><br></br><h6> {ride.endingPlace} </h6>
+                <div className="group-profile-rating">
+                    <Rating initialValue={ride.minimumRating} readonly={true} size="30" />
                 </div>
             </div>
         </div>
