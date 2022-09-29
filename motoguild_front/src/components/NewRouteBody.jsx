@@ -3,10 +3,11 @@ import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import BigMap from "./BigMap.jsx";
 import { createNewRoute } from "../helpnigFunctions/ApiCaller.js";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewRouteBody() {
+  const navigate = useNavigate();
   const originRef = useRef();
   const destinationRef = useRef();
   const stop1Ref = useRef();
@@ -84,7 +85,9 @@ export default function NewRouteBody() {
       return;
     }
     setAllInputsCorrect(true);
-    await createNewRoute(newRoute);
+    event.preventDefault();
+    const newRouteId = await createNewRoute(newRoute);
+    navigate(`/routes/${newRouteId}`);
   }
   function handleSelectOrigin() {
     setNewRoute((prevState) => ({
@@ -207,50 +210,70 @@ export default function NewRouteBody() {
               </button>
             </div>
           )}
-          {stopsToSave.length > 0 &&
-            <DragDropContext onDragEnd={(param) => {
-              const source = param.source.index;
-              let destination = null;
-              if (param.destination)
-              {
-                destination = param.destination.index;
-              }
-              if(destination)
-              {
-                stopsToSave.splice(destination, 0, stopsToSave.splice(source, 1)[0])
-                setStopsToSave(stopsToSave)
-                setStopsChangeCounter(prevState => prevState + 1)
-              }
-            }} >
-              
+          {stopsToSave.length > 0 && (
+            <DragDropContext
+              onDragEnd={(param) => {
+                const source = param.source.index;
+                let destination = null;
+                if (param.destination) {
+                  destination = param.destination.index;
+                }
+                if (destination) {
+                  stopsToSave.splice(
+                    destination,
+                    0,
+                    stopsToSave.splice(source, 1)[0]
+                  );
+                  setStopsToSave(stopsToSave);
+                  setStopsChangeCounter((prevState) => prevState + 1);
+                }
+              }}
+            >
               <p className="added-stops-header">Dodane przystanki:</p>
-              <Droppable droppableId="droppable-1" >
+              <Droppable droppableId="droppable-1">
                 {(provided, snapshot) => (
                   <div ref={provided.innerRef}>
                     {stopsToSave.map((stop, i) => (
-                      <Draggable key={stop.place} draggableId={`draggable-${stop.place}`} index={i} >
-                      {(provided, snapshot) => (
-                        <div
-                        className="stops-list"
+                      <Draggable
                         key={stop.place}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        style={{...provided.draggableProps.style, boxShadow: snapshot.isDragging ? "0 0 .4rem #666" : "none"}}
-                        >
-                          <p><i {...provided.dragHandleProps} className="bi bi-grip-horizontal"></i><i onClick={handleRemoveStop} className="delete-button bi bi-trash3">{stop.place}</i></p>
-                          
-                        </div>
-                      )}
-                      
+                        draggableId={`draggable-${stop.place}`}
+                        index={i}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className="stops-list"
+                            key={stop.place}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            style={{
+                              ...provided.draggableProps.style,
+                              boxShadow: snapshot.isDragging
+                                ? "0 0 .4rem #666"
+                                : "none",
+                            }}
+                          >
+                            <p>
+                              <i
+                                {...provided.dragHandleProps}
+                                className="bi bi-grip-horizontal"
+                              ></i>
+                              <i
+                                onClick={handleRemoveStop}
+                                className="delete-button bi bi-trash3"
+                              >
+                                {stop.place}
+                              </i>
+                            </p>
+                          </div>
+                        )}
                       </Draggable>
                     ))}
                     {provided.placeholder}
                   </div>
                 )}
-                
               </Droppable>
             </DragDropContext>
-          }
+          )}
           <label className="label-custom" name="description">
             Krótki opis
           </label>
