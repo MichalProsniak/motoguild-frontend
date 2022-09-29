@@ -29,24 +29,26 @@ export default function RideBody(props) {
     async function getUser() {
       const data = await getLoggedUserData();
       setUser(data);
+      return data.id;
     }
-
-    async function userJoined() {
+    async function userJoined(userId) {
       let joined = false;
       props.ride.participants.forEach((element) => {
-        if (element.id == user.id) {
-          console.log(user.id, "j");
+        if (element.id == userId) {
           joined = true;
         }
       });
       if (joined) {
-        return setUserJoined(true);
+        setUserJoined(true);
       } else {
-        return setUserJoined(false);
+        setUserJoined(false);
       }
     }
-    getUser();
-    userJoined();
+    async function helperFunction() {
+      const userId = await getUser();
+      await userJoined(userId);
+    }
+    helperFunction();
   }, [props.ride]);
 
   async function handleJoin() {
