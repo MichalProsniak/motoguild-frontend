@@ -25,6 +25,7 @@ export default function EventForList(props) {
                 {isLoaded && (
                 <EventSmallMap
                     place = {props.place}
+                    size={1}
                 />
                 )}
             </Col>

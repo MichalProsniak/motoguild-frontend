@@ -16,7 +16,7 @@ export default function EventSmallMap(props) {
     calculateEventCoordinates();
   }, []);
 
-  return (
+  if (props.size == 1)  return (
     <div>
       <GoogleMap
         zoom={6}
@@ -31,4 +31,21 @@ export default function EventSmallMap(props) {
       </GoogleMap>
     </div>
   );
+
+  if (props.size == 2) return (
+    <div>
+    <GoogleMap
+      zoom={6}
+      center={eventCoordinates}
+      mapContainerClassName="googlemap"
+      options={{
+        streetViewControl: false,
+        mapTypeControl: false,
+      }}
+    >
+      <MarkerF position={eventCoordinates} />
+    </GoogleMap>
+  </div>
+  );
+
 }

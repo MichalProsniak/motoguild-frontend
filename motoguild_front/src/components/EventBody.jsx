@@ -4,6 +4,7 @@ import EventSmallMap from './EventSmallMap'
 import PostsForPage from "./PostsForPage";
 import ImportantEventInfo from "./ImportantEventInfo";
 import { getEvent } from "../helpnigFunctions/ApiCaller";
+import EventMap from "./EventMap";
 
 const libraries = ["places"];
 
@@ -25,7 +26,9 @@ export default function EventBody(props) {
             <p></p>
         </div>
         <div className="event-page-map">
-            <EventSmallMap place={props.event.place}/>
+            <EventSmallMap
+            place={props.event.place}
+            size={2}/>
         <div className="event-page-map-card-container">
         <div className="event-page-map-card">
             <div className="event-page-map-card-header">
