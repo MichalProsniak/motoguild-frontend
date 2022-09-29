@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import { createNewEvent } from "../helpnigFunctions/ApiCaller.js";
 import EventMap from "./EventMap.jsx";
+import DateFrontToBack from "../helpnigFunctions/DateFrontToBack.js";
 
 const libraries = ["places"];
 export default function NewEventBody() {
@@ -13,8 +14,9 @@ export default function NewEventBody() {
         name: "",
         place: "",
         description: "",
-        start: "",
-        stop: "",
+        startDate: "",
+        startHour: "",
+        stopDate: "",
         owner: { id: 1, userName: "b-man", email: "www@665.pl", rating: 0 },
     });
 
@@ -46,15 +48,25 @@ export default function NewEventBody() {
             newEvent.description === "" ||
             newEvent.place === "" ||
             newEvent.name === "" ||
-            newEvent.start === "" ||
-            newEvent.stop === ""
+            newEvent.startDate === "" ||
+            newEvent.startHour === "" ||
+            newEvent.stopDate === ""
         ) {
             event.preventDefault();
             setAllInputsCorrect(false);
             return;
         }
         setAllInputsCorrect(true);
-        await createNewEvent(newEvent);       
+        const newDate = DateFrontToBack(newEvent.startDate, newEvent.startHour);
+        const eventToSave = {
+            name: newEvent.name,
+            description: newEvent.description,
+            place: newEvent.place,
+            startDate: newDate,
+            stopDate: newEvent.stopDate,
+            owner: newEvent.owner,
+        };
+        await createNewEvent(eventToSave);       
     }
 
     function handleSelectPlace() {
@@ -72,7 +84,7 @@ export default function NewEventBody() {
 
     return (
         <div>
-            <button onClick={test}>xxxxxx</button>
+            
             <form onSubmit={handleSubmit} className="create-event-body">
                 <div className="left-column">
                     <label name="name">Nazwa wydarzenia</label>
@@ -81,7 +93,7 @@ export default function NewEventBody() {
                         name="name"
                         value={newEvent.name}
                         onChange={handleChange}
-                        className="standard-input"
+                        className="event-standard-input"
                         ></input>
                     <label name="place">Miejsce</label>
                     {isLoaded && (
@@ -91,26 +103,39 @@ export default function NewEventBody() {
                                 name="place"
                                 value={newEvent.place}
                                 onChange={handleChange}
-                                className="standard-input"
+                                className="event-standard-input"
                                 ref={originRef}
                                 ></input>
                         </Autocomplete>
                     )}
-                    <label name="start">Data Rozpoczęcia</label>
+                    <label name="startDate">Data Rozpoczęcia</label>
                     <input 
                         type="date" 
-                        name="start" 
-                        value={newEvent.start} 
+                        name="startDate" 
+                        value={newEvent.startDate} 
                         onChange={handleChange} 
-                        className="standard-input"
+                        className="event-standard-input"
                         ></input>
-                    <label name="stop">Data Zakończenia</label>
+
+                    <label className="label-custom" name="startHour">
+                        Godzina rozpoczęcia
+                    </label>
+                    <input
+                         className="event-standard-input"
+                         type="time"
+                         name="startHour"
+                        value={newEvent.startHour}
+                        onChange={handleChange}
+                    ></input>
+                        
+                
+                    <label name="stopDate">Data Zakończenia</label>
                     <input 
                         type="date" 
-                        name="stop" 
-                        value={newEvent.stop} 
+                        name="stopDate" 
+                        value={newEvent.stopDate} 
                         onChange={handleChange} 
-                        className="standard-input"
+                        className="event-standard-input"
                         ></input>
                     </div>
                 
@@ -121,11 +146,11 @@ export default function NewEventBody() {
                         name="description"
                         value={newEvent.description}
                         onChange={handleChange}
-                        className="description-input"
+                        className="event-description-input"
                         ></textarea>
                 </div>
                 <div>
-                    <button type="submit" className="standard-button">Stwórz</button>
+                    <button type="submit" className="event-standard-button">Stwórz</button>
                     {!allInputsCorrect && (
                         <p className="error-message">Wypełnij wszystkie pola</p>)}
                 </div>
