@@ -20,6 +20,7 @@ export default function RideBody(props) {
   const [mapInfo, setMapInfo] = useState([]);
   const [user, setUser] = useState({});
   const [userJoined, setUserJoined] = useState(false);
+  const [userIsOwner, setUserIsOwner] = useState(false);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -44,9 +45,15 @@ export default function RideBody(props) {
         setUserJoined(false);
       }
     }
+    async function userOwner(userId) {
+      if (props.ride.owner.id == userId) {
+        setUserIsOwner(true);
+      }
+    }
     async function helperFunction() {
       const userId = await getUser();
       await userJoined(userId);
+      await userOwner(userId);
     }
     helperFunction();
   }, [props.ride]);
@@ -116,7 +123,7 @@ export default function RideBody(props) {
               {props.ride.owner.userName}
             </p>
             <div className="ride-page-button">
-              {userJoined && (
+              {!userIsOwner && userJoined && (
                 <button
                   className="btn btn-secondary custom-red-button"
                   onClick={handleQuit}
