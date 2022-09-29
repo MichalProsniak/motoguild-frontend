@@ -7,8 +7,7 @@ import SmallMap from "./SmallMap.jsx";
 import { useLoadScript } from "@react-google-maps/api";
 import DateFrontToBack from "../helpnigFunctions/DateFrontToBack";
 import { createNewRide } from "../helpnigFunctions/ApiCaller";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewRideBody() {
@@ -33,6 +32,7 @@ export default function NewRideBody() {
       rating: 0,
     },
   });
+  const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRoute, setIsRoute] = useState(false);
@@ -116,6 +116,7 @@ export default function NewRideBody() {
       return;
     }
     setIsValidRide(true);
+    event.preventDefault();
     const newDate = DateFrontToBack(newRide.rideDate, newRide.rideHour);
     const rideTosave = {
       name: newRide.name,
@@ -126,7 +127,8 @@ export default function NewRideBody() {
       startTime: newDate,
       route: newRide.route,
     };
-    await createNewRide(rideTosave);
+    const newRideId = await createNewRide(rideTosave);
+    navigate(`/rides/${newRideId}`);
   }
 
   function handleRating(rate) {

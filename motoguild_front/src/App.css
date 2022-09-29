@@ -113,9 +113,6 @@ body {
   width: 100%;
 }
 
-.add-stops-container > div > .standard-input {
-}
-
 .add-stops-container > button {
   width: 100px;
   margin-right: 23px;
@@ -264,6 +261,22 @@ label {
   background-position: center;
   background-size: cover;
   border-radius: 50%;
+}
+
+.group-photo-image-for-list-profile {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+.group-photo-image-for-list-profile-owner {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  margin: auto;
 }
 
 .create-group-photo-container {
@@ -479,7 +492,47 @@ label {
   width: 500px;
 }
 
+.group-owner-profile{
+  background: #f4f4f4;
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
 .ride-profile {
+  background: #f4f4f4;
+  float: left;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.ride-owner-profile{
+  background: #f4f4f4;
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+
+.event-profile{
+  background: #f4f4f4;
+  float: left;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
+.element-conteiner{
+  position: relative; 
+  margin: 0;
+}
+
+.event-owner-profile{
   background: #f4f4f4;
   float: right;
   padding: 10px;
@@ -512,16 +565,15 @@ label {
 .group-profile-container {
   background-color: #ffffff;
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-  margin: auto;
-  margin-bottom: 20px;
+  margin: 0 auto;
+  margin-top: 10px;
   border-radius: 15px;
-  margin-top: 30px;
   border: 1px solid lightgray;
   display: flex;
   flex-direction: row;
   height: 100px;
   flex-wrap: wrap;
-  width: auto;
+  width: 400px;
 }
 
 .groups-page-header {
@@ -561,6 +613,43 @@ label {
   margin: 10px;
   width: 50%;
   height: 30px;
+}
+
+.ride-profile-container{
+  background-color: #ffffff;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: 0 auto;
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  flex-wrap: wrap;
+  width: 400px;
+}
+
+.event-profile-container{
+  background-color: #ffffff;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  margin: 0 auto;
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  flex-wrap: wrap;
+  width: 400px;
+}
+
+.ride-header{
+  text-align: left;
+  line-height: 1px;
+  margin: auto 0;
+  margin-left: 0px;
+  width: 55%;
+
 }
 
 .group-header-title {
@@ -1331,6 +1420,16 @@ label {
 }
 
 .posts-scrolling {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.profil-scroling{
   overflow-y: scroll;
   overflow-x: hidden;
   height: 420px;
