@@ -4,10 +4,10 @@ import GetDayMonthYear from "../helpnigFunctions/GetDayMonthYear";
 import GetHourMinutes from "../helpnigFunctions/GetHourMinutes";
 
 export default function ImportantEventInfo(props) {
-    const dayMonthYearStart = GetDayMonthYear(props.start)
-    const dayMonthYearStop = GetDayMonthYear(props.stop)
-    const hourMinutesStart = GetHourMinutes(props.start)
-    const hourMinutesStop = GetHourMinutes(props.stop)
+    const dayMonthYearStart = GetDayMonthYear(props.startDate)
+    const dayMonthYearStop = GetDayMonthYear(props.stopDate)
+    const hourMinutesStart = GetHourMinutes(props.startDate)
+    const hourMinutesStop = GetHourMinutes(props.stopDate)
    
     return (
         <div className={props.style}>
@@ -27,9 +27,9 @@ export default function ImportantEventInfo(props) {
         <p>
             <i className="bi bi-calendar-check"></i> {dayMonthYearStop}
         </p>
-        <p>
+        {/* <p>
             <i className="bi bi-alarm"></i> {hourMinutesStop}
-        </p>   
+        </p>    */}
         </div>
     );
     }

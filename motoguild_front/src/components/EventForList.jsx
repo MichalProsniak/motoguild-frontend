@@ -30,12 +30,13 @@ export default function EventForList(props) {
             </Col>
             <Col className="text-container" sm={5}>
                 <ImportantEventInfo
-                style="ride-info-text-for-list"
+                style="event-info-text-for-list"
                 nameId={props.id}
                 nameText={props.name}
                 place={props.place}
-                start = {props.start}
-                stop = {props.stop}
+                
+                startDate = {props.startDate}
+                stopDate = {props.stopDate}
                 />
             </Col>
             <Col>
