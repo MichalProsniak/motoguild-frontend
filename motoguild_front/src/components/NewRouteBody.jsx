@@ -26,6 +26,8 @@ export default function NewRouteBody() {
   // {id: 1, name: 'Stop1', place: 'Warszawa', description: 'Opis'}
 
   const [allInputsCorrect, setAllInputsCorrect] = useState(true);
+  const [isNameCorrect, setIsNameCorrect] = useState(true);
+  const [isDescriptionCorrect, setIsDescriptionCorrect] = useState(true);
 
   const [newRoute, setNewRoute] = useState({
     name: "",
@@ -72,13 +74,36 @@ export default function NewRouteBody() {
     }));
   }
 
+  function checkIfNameIsCorrect()
+  {
+    if (newRoute.name.length < 5 || newRoute.name.length > 25)
+    {
+      setIsNameCorrect(false)
+    }
+    else {
+      setIsNameCorrect(true)
+    }
+  }
+
+  function checkIfDescriptionIsCorrect()
+  {
+    if (newRoute.description.length < 5 || newRoute.description.length > 150)
+    {
+      setIsDescriptionCorrect(false)
+    }
+    else {
+      setIsDescriptionCorrect(true)
+    }
+  }
+
   async function handleSubmit(event) {
-    // event.preventDefault()
+    checkIfDescriptionIsCorrect();
+    checkIfNameIsCorrect();
     if (
-      newRoute.description === "" ||
-      newRoute.endingPlace === "" ||
-      newRoute.startPlace === "" ||
-      newRoute.name === ""
+      !isOrigin ||
+      !isDestination ||
+      !isDescriptionCorrect ||
+      !isNameCorrect
     ) {
       event.preventDefault();
       setAllInputsCorrect(false);
@@ -144,7 +169,7 @@ export default function NewRouteBody() {
       <form onSubmit={handleSubmit}>
         <div className="left-column">
           <label className="label-custom" name="name">
-            Nazwa trasy
+            Nazwa trasy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <input
             className="standard-input"
@@ -154,8 +179,9 @@ export default function NewRouteBody() {
             onChange={handleChange}
             placeholder="Wpisz nazwę trasy"
           ></input>
+          {!isNameCorrect && <p className="error-message">Nazwa trasy musi mieć od 5 do 25 znaków!</p>}
           <label className="label-custom" name="startPoint">
-            Początek trasy
+            Początek trasy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           {isLoaded && (
             <Autocomplete onPlaceChanged={handleSelectOrigin}>
@@ -170,7 +196,7 @@ export default function NewRouteBody() {
             </Autocomplete>
           )}
           <label className="label-custom" name="endPoint">
-            Koniec trasy
+            Koniec trasy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           {isLoaded && (
             <div>
@@ -275,7 +301,7 @@ export default function NewRouteBody() {
             </DragDropContext>
           )}
           <label className="label-custom" name="description">
-            Krótki opis
+            Krótki opis<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <textarea
             className="description-input"
@@ -285,6 +311,7 @@ export default function NewRouteBody() {
             onChange={handleChange}
             placeholder="Dodaj krótki opis..."
           ></textarea>
+          {!isDescriptionCorrect && <p className="error-message">Opis trasy musi mieć od 5 do 150 znaków!</p>}
           <button
             type="submit"
             className="btn btn-secondary create-route-submit-btn"
@@ -293,7 +320,7 @@ export default function NewRouteBody() {
           </button>
           {!allInputsCorrect && (
             <p className="error-message">
-              Musisz uzupełnić wszystkie pola, żeby stworzyć nową trasę
+              <span className="error-message small-message"><i className="bi bi-asterisk"></i></span>Uzupełnij wszystkie wymagane pola!
             </p>
           )}
         </div>

@@ -21,7 +21,7 @@ export default function EventSmallMap(props) {
       <GoogleMap
         zoom={6}
         center={eventCoordinates}
-        mapContainerClassName="googlemap"
+        mapContainerClassName="googlemap-small"
         options={{
           streetViewControl: false,
           mapTypeControl: false,

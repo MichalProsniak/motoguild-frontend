@@ -13,6 +13,10 @@ const libraries = ["places"];
 export default function NewRideBody() {
   const [mapInfo, setMapInfo] = useState([]);
   const [isValidRide, setIsValidRide] = useState(true);
+  const [isNameCorrect, setIsNameCorrect] = useState(true);
+  const [isDescriptionCorrect, setIsDescriptionCorrect] = useState(true);
+  const [isRideDateCorrect, setIsRideDateCorrect] = useState(true);
+
   const [newRide, setNewRide] = useState({
     name: "",
     description: "",
@@ -45,12 +49,66 @@ export default function NewRideBody() {
       [name]: value,
     }));
   }
+
+  function checkIfNameIsCorrect()
+  {
+    if (newRide.name.length < 5 || newRide.name.length > 25)
+    {
+      setIsNameCorrect(false)
+    }
+    else {
+      setIsNameCorrect(true)
+    }
+  }
+
+  function checkIfDescriptionIsCorrect()
+  {
+    if (newRide.description.length < 5 || newRide.description.length > 150)
+    {
+      setIsDescriptionCorrect(false)
+    }
+    else {
+      setIsDescriptionCorrect(true)
+    }
+  }
+
+  function checkIfDateIsCorrect()
+  {
+    var today = new Date();
+    const day = parseInt(today.getDate())
+    const month = parseInt(today.getMonth() + 1)
+    const year = parseInt(today.getFullYear())
+    const hour = parseInt(today.getHours())
+    const minutes = parseInt(today.getMinutes())
+    const chosenDateList = newRide.rideDate.split("-")
+    const chosenHourList = newRide.rideHour.split(":")
+    const chosenDay = parseInt(chosenDateList[2])
+    const chosenMonth = parseInt(chosenDateList[1])
+    const chosenYear = parseInt(chosenDateList[0])
+    const chosenHour = parseInt(chosenHourList[0])
+    const chosenMinutes = parseInt(chosenHourList[1])
+    if (newRide.rideHour === "" || newRide.rideDate === "" ||
+      chosenYear < year || 
+      (chosenYear === year && chosenMonth < month) || 
+      (chosenYear === year && chosenMonth === month && chosenDay < day) || 
+      (chosenYear === year && chosenMonth === month && chosenDay === day && chosenHour - hour < 1) ||
+      (chosenYear === year && chosenMonth === month && chosenDay === day && chosenHour - hour === 1 && chosenMinutes < minutes))
+      {
+        setIsRideDateCorrect(false)
+        return;
+      }
+      setIsRideDateCorrect(true)
+  }
+
   async function handleSubmit(event) {
+    checkIfDescriptionIsCorrect()
+    checkIfNameIsCorrect()
+    checkIfDateIsCorrect()
+
     if (
-      newRide.name.length < 4 ||
-      newRide.description.length < 4 ||
-      newRide.rideDate === "" ||
-      newRide.rideHour === "" ||
+      !isNameCorrect ||
+      !isDescriptionCorrect ||
+      !isRideDateCorrect ||
       !isRoute
     ) {
       event.preventDefault();
@@ -95,7 +153,7 @@ export default function NewRideBody() {
       <form onSubmit={handleSubmit}>
         <div className="left-column">
           <label className="label-custom" name="name">
-            Nazwa przejazdu
+            Nazwa ustawki<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <input
             className="standard-input"
@@ -104,8 +162,9 @@ export default function NewRideBody() {
             value={newRide.name}
             onChange={handleChange}
           ></input>
+          {!isNameCorrect && <p className="error-message">Nazwa ustawki musi mieć od 5 do 25 znaków!</p>}
           <label className="label-custom" name="rideDate">
-            Data przejazdu
+            Data ustawki<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <input
             className="standard-input"
@@ -115,7 +174,7 @@ export default function NewRideBody() {
             onChange={handleChange}
           ></input>
           <label className="label-custom" name="rideHour">
-            Godzina przejazdu
+            Godzina ustawki<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <input
             className="standard-input"
@@ -124,6 +183,7 @@ export default function NewRideBody() {
             value={newRide.rideHour}
             onChange={handleChange}
           ></input>
+          {!isRideDateCorrect && <p className="error-message">Ustawka morze odbyć się najwcześniej za godzinę!</p>}
           <label className="label-custom">
             Minimalna ocena wymagana by dołączyć
           </label>
@@ -137,7 +197,7 @@ export default function NewRideBody() {
             />
           </div>
           <label className="label-custom" name="description">
-            Krótki opis
+            Krótki opis<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <textarea
             className="ride-description-input"
@@ -146,6 +206,7 @@ export default function NewRideBody() {
             value={newRide.description}
             onChange={handleChange}
           ></textarea>
+          {!isDescriptionCorrect && <p className="error-message">Opis trasy musi mieć od 5 do 150 znaków!</p>}
           <button
             type="submit"
             className="btn btn-secondary create-route-submit-btn"
@@ -154,7 +215,7 @@ export default function NewRideBody() {
           </button>
         </div>
         <div className="right-column">
-          <label className="label-custom">Wybierz istniejącą trasę:</label>
+          <label className="label-custom">Wybierz istniejącą trasę<span className="error-message small-message"><i className="bi bi-asterisk"></i></span></label>
           {!isLoading && (
             <CustomAutocomplete
               saveRoute={setNewRide}

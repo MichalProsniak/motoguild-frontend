@@ -41,8 +41,8 @@ export default function EventList() {
                         name={event.name}
                         place={event.place}
                         owner={event.owner}
-                        start={event.start}
-                        stop={event.stop}
+                        startDate={event.startDate}
+                        stopDate={event.stopDate}
                         setLoadedMaps={setLoadedMaps}
                         loadedMaps={loadedMaps}
                     />

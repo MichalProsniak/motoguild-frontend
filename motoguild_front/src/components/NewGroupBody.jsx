@@ -17,6 +17,9 @@ const libraries = ["places"];
 export default function NewGroupBody() {
   const [isValidGroup, setIsValidGroup] = useState(false);
   const [localImage, setLocalImage] = useState();
+  const [isNameCorrect, setIsNameCorrect] = useState(true);
+  const [isDescriptionCorrect, setIsDescriptionCorrect] = useState(true);
+
   const [newGroup, setNewGroup] = useState({
     name: "",
     description: "",
@@ -38,18 +41,44 @@ export default function NewGroupBody() {
     }));
   }
 
+  function checkIfNameIsCorrect()
+  {
+    if (newGroup.name.length < 5 || newGroup.name.length > 25)
+    {
+      setIsNameCorrect(false)
+      return false
+    }
+    else {
+      setIsNameCorrect(true)
+      return true
+    }
+  }
+
+  function checkIfDescriptionIsCorrect()
+  {
+    if (newGroup.description.length < 5 || newGroup.description.length > 150)
+    {
+      setIsDescriptionCorrect(false)
+      return false
+    }
+    else {
+      setIsDescriptionCorrect(true)
+      return true
+    }
+  }
+
   async function handleSubmit(event) {
+    event.preventDefault();
+    const isName = await checkIfNameIsCorrect();
+    const isDescription = checkIfDescriptionIsCorrect();
     if (
-      newGroup.name.length < 4 ||
-      newGroup.description.length < 4 ||
-      newGroup.rideDate === "" ||
-      newGroup.rideHour === ""
+      !isName ||
+      !isDescription
     ) {
       event.preventDefault();
       setIsValidGroup(false);
       return;
     }
-    event.preventDefault();
     setIsValidGroup(true);
     const res = await uploadImage(localImage);
     const groupToSave = await {
@@ -77,16 +106,21 @@ export default function NewGroupBody() {
   }
 
   async function uploadImage(files) {
-    const data = new FormData();
-    data.append("file", files[0]);
-    const res = await uploadGroupImage(data);
-    const path = await res.text();
-    await setImagePath(path);
-    var string = `https://localhost:3333/api/upload/GroupPictures/${path}`;
-    setStyles({
-      backgroundImage: `url(${string})`,
-    });
-    return path;
+    if (files)
+    {
+      const data = new FormData();
+      data.append("file", files[0]);
+      const res = await uploadGroupImage(data);
+      const path = await res.text();
+      await setImagePath(path);
+      var string = `https://localhost:3333/api/upload/GroupPictures/${path}`;
+      setStyles({
+        backgroundImage: `url(${string})`,
+      });
+      return path;
+    }
+    return "";
+    
   }
 
   function handleLocalImage(e) {
@@ -102,7 +136,7 @@ export default function NewGroupBody() {
     <div className="create-group-body">
       <form onSubmit={handleSubmit}>
         <label name="name" className="label-custom">
-          Nazwa grupy
+          Nazwa grupy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
         </label>
         <input
           className="standard-input"
@@ -111,9 +145,9 @@ export default function NewGroupBody() {
           value={newGroup.name}
           onChange={handleChange}
         ></input>
-
+         {!isNameCorrect && <p className="error-message">Nazwa trasy musi mieć od 5 do 25 znaków!</p>}
         <label name="description" className="label-custom">
-          Krótki opis
+          Krótki opis<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
         </label>
         <textarea
           className="description-input"
@@ -123,6 +157,7 @@ export default function NewGroupBody() {
           onChange={handleChange}
           checked={false}
         ></textarea>
+        {!isDescriptionCorrect && <p className="error-message">Opis trasy musi mieć od 5 do 150 znaków!</p>}
         <label className="label-custom">Publiczna grupa</label>
         <input
           type="radio"
