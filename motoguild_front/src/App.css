@@ -62,6 +62,12 @@ body {
   width: 1000px;
 }
 
+.small-message{
+  position: relative;
+  bottom: 1ex; 
+  font-size: 10px;
+}
+
 .user-image {
   float: right;
 }
@@ -1564,7 +1570,7 @@ label {
 }
 
 .error-message {
-  color: red;
+  color:#951717;
 }
 
 /* Slideshow */
