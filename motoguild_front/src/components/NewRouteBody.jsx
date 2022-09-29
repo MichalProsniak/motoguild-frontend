@@ -3,10 +3,11 @@ import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import BigMap from "./BigMap.jsx";
 import { createNewRoute } from "../helpnigFunctions/ApiCaller.js";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewRouteBody() {
+  const navigate = useNavigate();
   const originRef = useRef();
   const destinationRef = useRef();
   const stop1Ref = useRef();
@@ -25,6 +26,8 @@ export default function NewRouteBody() {
   // {id: 1, name: 'Stop1', place: 'Warszawa', description: 'Opis'}
 
   const [allInputsCorrect, setAllInputsCorrect] = useState(true);
+  const [isNameCorrect, setIsNameCorrect] = useState(true);
+  const [isDescriptionCorrect, setIsDescriptionCorrect] = useState(true);
 
   const [newRoute, setNewRoute] = useState({
     name: "",
@@ -71,20 +74,45 @@ export default function NewRouteBody() {
     }));
   }
 
+  function checkIfNameIsCorrect()
+  {
+    if (newRoute.name.length < 5 || newRoute.name.length > 25)
+    {
+      setIsNameCorrect(false)
+    }
+    else {
+      setIsNameCorrect(true)
+    }
+  }
+
+  function checkIfDescriptionIsCorrect()
+  {
+    if (newRoute.description.length < 5 || newRoute.description.length > 150)
+    {
+      setIsDescriptionCorrect(false)
+    }
+    else {
+      setIsDescriptionCorrect(true)
+    }
+  }
+
   async function handleSubmit(event) {
-    // event.preventDefault()
+    checkIfDescriptionIsCorrect();
+    checkIfNameIsCorrect();
     if (
-      newRoute.description === "" ||
-      newRoute.endingPlace === "" ||
-      newRoute.startPlace === "" ||
-      newRoute.name === ""
+      !isOrigin ||
+      !isDestination ||
+      !isDescriptionCorrect ||
+      !isNameCorrect
     ) {
       event.preventDefault();
       setAllInputsCorrect(false);
       return;
     }
     setAllInputsCorrect(true);
-    await createNewRoute(newRoute);
+    event.preventDefault();
+    const newRouteId = await createNewRoute(newRoute);
+    navigate(`/routes/${newRouteId}`);
   }
   function handleSelectOrigin() {
     setNewRoute((prevState) => ({
@@ -141,7 +169,7 @@ export default function NewRouteBody() {
       <form onSubmit={handleSubmit}>
         <div className="left-column">
           <label className="label-custom" name="name">
-            Nazwa trasy
+            Nazwa trasy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <input
             className="standard-input"
@@ -151,8 +179,9 @@ export default function NewRouteBody() {
             onChange={handleChange}
             placeholder="Wpisz nazwę trasy"
           ></input>
+          {!isNameCorrect && <p className="error-message">Nazwa trasy musi mieć od 5 do 25 znaków!</p>}
           <label className="label-custom" name="startPoint">
-            Początek trasy
+            Początek trasy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           {isLoaded && (
             <Autocomplete onPlaceChanged={handleSelectOrigin}>
@@ -167,7 +196,7 @@ export default function NewRouteBody() {
             </Autocomplete>
           )}
           <label className="label-custom" name="endPoint">
-            Koniec trasy
+            Koniec trasy<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           {isLoaded && (
             <div>
@@ -207,52 +236,72 @@ export default function NewRouteBody() {
               </button>
             </div>
           )}
-          {stopsToSave.length > 0 &&
-            <DragDropContext onDragEnd={(param) => {
-              const source = param.source.index;
-              let destination = null;
-              if (param.destination)
-              {
-                destination = param.destination.index;
-              }
-              if(destination)
-              {
-                stopsToSave.splice(destination, 0, stopsToSave.splice(source, 1)[0])
-                setStopsToSave(stopsToSave)
-                setStopsChangeCounter(prevState => prevState + 1)
-              }
-            }} >
-              
+          {stopsToSave.length > 0 && (
+            <DragDropContext
+              onDragEnd={(param) => {
+                const source = param.source.index;
+                let destination = null;
+                if (param.destination) {
+                  destination = param.destination.index;
+                }
+                if (destination) {
+                  stopsToSave.splice(
+                    destination,
+                    0,
+                    stopsToSave.splice(source, 1)[0]
+                  );
+                  setStopsToSave(stopsToSave);
+                  setStopsChangeCounter((prevState) => prevState + 1);
+                }
+              }}
+            >
               <p className="added-stops-header">Dodane przystanki:</p>
-              <Droppable droppableId="droppable-1" >
+              <Droppable droppableId="droppable-1">
                 {(provided, snapshot) => (
                   <div ref={provided.innerRef}>
                     {stopsToSave.map((stop, i) => (
-                      <Draggable key={stop.place} draggableId={`draggable-${stop.place}`} index={i} >
-                      {(provided, snapshot) => (
-                        <div
-                        className="stops-list"
+                      <Draggable
                         key={stop.place}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        style={{...provided.draggableProps.style, boxShadow: snapshot.isDragging ? "0 0 .4rem #666" : "none"}}
-                        >
-                          <p><i {...provided.dragHandleProps} className="bi bi-grip-horizontal"></i><i onClick={handleRemoveStop} className="delete-button bi bi-trash3">{stop.place}</i></p>
-                          
-                        </div>
-                      )}
-                      
+                        draggableId={`draggable-${stop.place}`}
+                        index={i}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className="stops-list"
+                            key={stop.place}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            style={{
+                              ...provided.draggableProps.style,
+                              boxShadow: snapshot.isDragging
+                                ? "0 0 .4rem #666"
+                                : "none",
+                            }}
+                          >
+                            <p>
+                              <i
+                                {...provided.dragHandleProps}
+                                className="bi bi-grip-horizontal"
+                              ></i>
+                              <i
+                                onClick={handleRemoveStop}
+                                className="delete-button bi bi-trash3"
+                              >
+                                {stop.place}
+                              </i>
+                            </p>
+                          </div>
+                        )}
                       </Draggable>
                     ))}
                     {provided.placeholder}
                   </div>
                 )}
-                
               </Droppable>
             </DragDropContext>
-          }
+          )}
           <label className="label-custom" name="description">
-            Krótki opis
+            Krótki opis<span className="error-message small-message"><i className="bi bi-asterisk"></i></span>
           </label>
           <textarea
             className="description-input"
@@ -262,6 +311,7 @@ export default function NewRouteBody() {
             onChange={handleChange}
             placeholder="Dodaj krótki opis..."
           ></textarea>
+          {!isDescriptionCorrect && <p className="error-message">Opis trasy musi mieć od 5 do 150 znaków!</p>}
           <button
             type="submit"
             className="btn btn-secondary create-route-submit-btn"
@@ -270,7 +320,7 @@ export default function NewRouteBody() {
           </button>
           {!allInputsCorrect && (
             <p className="error-message">
-              Musisz uzupełnić wszystkie pola, żeby stworzyć nową trasę
+              <span className="error-message small-message"><i className="bi bi-asterisk"></i></span>Uzupełnij wszystkie wymagane pola!
             </p>
           )}
         </div>

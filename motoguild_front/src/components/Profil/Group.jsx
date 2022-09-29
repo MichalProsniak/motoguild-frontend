@@ -2,23 +2,31 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Image from "react-bootstrap/Image";
 import { Rating } from "react-simple-star-rating";
+import { useEffect } from "react";
 
 const Group = ({ group }) => {
-  const [picture, setPictrue] = useState("src/images/LWG.jpg");
-  const [ownerPictrue, setOwnerPictru] = useState("src/images/LWG.jpg");
+  const [styleGroup, setStyleGroup] = useState({
+    backgroundImage: "url('https://localhost:3333/api/upload/noimage')"
+    ,})
+  const [styleUser, setStyleUser] = useState({
+    backgroundImage: "url('https://localhost:3333/api/upload/noimage')"
+    ,})
 
-  if (group.image != null) {
-    setPictrue(group.image);
-  }
-  if (group.owner.image != null) {
-    setOwnerPictru(group.owner.image);
-  }
+    useEffect(() => {
+      var stringUser=`https://localhost:3333/api/upload/User/${group.owner.image}`;
+      var stringGroup= `https://localhost:3333/api/upload/GroupPictures/${group.groupImage}`;
+
+      setStyleUser({backgroundImage: `url(${stringUser})`})
+      setStyleGroup({backgroundImage: `url(${stringGroup})`})
+
+    },[])
 
   return (
     <div className="group-profile-container">
       <div className="group-photo-container">
+        {console.log(group)}
         <Link to={`/groups/${group.id}`} replace>
-          <Image className="group-photo" src={picture} />
+          <div className="group-photo-image-for-list-profile" style={styleGroup}></div>
         </Link>
       </div>
       <div className="group-header">
@@ -32,10 +40,7 @@ const Group = ({ group }) => {
         </div>
       </div>
       <div className="for-list-user-profile-page">
-        <Image
-          className="img fluid rounded-circle for-list-user-avatar"
-          src={ownerPictrue}
-        />
+        <div className="group-photo-image-for-list-profile-owner" style={styleUser}></div>
         <h3 className="for-list-user-text">{group.owner.userName}</h3>
       </div>
     </div>

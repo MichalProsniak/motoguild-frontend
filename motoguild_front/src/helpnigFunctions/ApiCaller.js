@@ -76,6 +76,8 @@ export async function createNewRoute(newRoute) {
       },
       body: JSON.stringify(newRoute),
     });
+    const data = await res.json();
+    return data.id;
   } catch (error) {
     console.log(error);
   }
@@ -108,6 +110,8 @@ export async function createNewRide(newRide) {
       },
       body: JSON.stringify(newRide),
     });
+    const data = await res.json();
+    return data.id;
   } catch (error) {
     console.log(error);
   }
