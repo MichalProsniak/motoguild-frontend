@@ -81,6 +81,21 @@ export async function createNewRoute(newRoute) {
   }
 }
 
+export async function createNewGroup(newGroup) {
+  try {
+    const res = await fetch("https://localhost:3333/api/groups/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(newGroup),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function createNewRide(newRide) {
   try {
     const res = await fetch("https://localhost:3333/api/rides", {
@@ -157,6 +172,18 @@ export async function createNewPost(route, id, post) {
       },
       body: JSON.stringify(post),
     });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function uploadGroupImage(image) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/upload`, {
+      method: "POST",
+      body: image,
+    });
+    return res;
   } catch (error) {
     console.log(error);
   }
@@ -302,7 +329,7 @@ export async function loginUser(user) {
       body: JSON.stringify(user),
     });
     const resposne = await res.text();
-    if (resposne.length == 498) {
+    if (resposne.length > 96) {
       localStorage.setItem("token", resposne);
     }
   } catch (error) {
@@ -388,6 +415,16 @@ export async function deleteLoggedUserFromGroup(groupId) {
         },
       }
     );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteGroupImage(imageName) {
+  try {
+    const res = await fetch(`https://localhost:3333/api/upload/${imageName}`, {
+      method: "DELETE",
+    });
   } catch (error) {
     console.log(error);
   }

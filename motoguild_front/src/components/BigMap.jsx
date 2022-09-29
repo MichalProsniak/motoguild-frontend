@@ -49,7 +49,7 @@ export default function BigMap(props) {
       }
     }
     calculateRoute();
-  }, [props.isOrigin, props.isDestination, props.isStops, props.stops]);
+  }, [props.isOrigin, props.isDestination, props.isStops, props.stops, props.stopsChange]);
 
   return (
     <>

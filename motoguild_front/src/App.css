@@ -209,6 +209,80 @@ label {
   font-size: large;
 }
 
+.create-group-body {
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  align-self: center;
+  justify-content: center;
+}
+
+.create-group-body > form {
+  width: 100%;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-group-body > form > label {
+  margin: auto;
+  margin-top: 15px;
+}
+
+.create-group-submit-btn {
+  margin: 10px;
+}
+
+.create-group-photo {
+  width: 195px;
+  height: 195px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.group-photo-image {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.group-photo-image-for-list {
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.create-group-photo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.create-group-photo-delete-text {
+  font-weight: 600;
+}
+
+.create-group-photo-delete-text:hover {
+  color: #951717;
+  cursor: pointer;
+}
+
+.create-group-photo-container > label {
+  margin: 0px;
+  margin-top: 10px;
+}
+
 .standard-button {
   display: block;
   max-height: 50px;
@@ -390,7 +464,7 @@ label {
   border-radius: 10px;
   border: 1px solid lightgray;
 }
-.group-profile{
+.group-profile {
   background: #f4f4f4;
   float: left;
   padding: 10px;
@@ -408,7 +482,7 @@ label {
   width: 500px;
 }
 
-.ride-profile{
+.ride-profile {
   background: #f4f4f4;
   float: left;
   padding: 10px;
@@ -435,8 +509,8 @@ label {
   width: 500px;
 }
 
-.page-conteiner{
-  margin:0 auto;
+.page-conteiner {
+  margin: 0 auto;
   width: 53%;
 }
 
@@ -1260,11 +1334,21 @@ label {
 .for-list-user {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
+  border-radius: 5px;
+  height: fit-content;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(233, 233, 233, 0.867);
+  border: 1px solid lightgray;
+}
+
+.for-list-user-profile-page {
+  display: flex;
+  flex-direction: column;
   margin: 3px auto;
   border-radius: 5px;
   height: fit-content;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
- 
   border: 1px solid lightgray;
   float: right;
   width: 20%;

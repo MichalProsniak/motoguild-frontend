@@ -1,45 +1,34 @@
-import {
-    GoogleMap,
-    MarkerF
-  } from "@react-google-maps/api";
-  import { useState, useEffect } from "react";
-  
-  
-  export default function EventSmallMap(props) {
-    const [eventCoordinates, setEventCoordinates] = useState(null)
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
+import { useState, useEffect } from "react";
 
-    useEffect(() => {
-        async function calculateEventCoordinates() {
-          
-            const geocoder = new google.maps.Geocoder();
-            const results = await geocoder.geocode({
-                address: props.place,
-            });
-            setEventCoordinates(results.results[0].geometry.location)
+export default function EventSmallMap(props) {
+  const [eventCoordinates, setEventCoordinates] = useState(null);
 
-        }
-          
-        calculateEventCoordinates();
-      }, []);
-    
+  useEffect(() => {
+    async function calculateEventCoordinates() {
+      const geocoder = new google.maps.Geocoder();
+      const results = await geocoder.geocode({
+        address: props.place,
+      });
+      setEventCoordinates(results.results[0].geometry.location);
+    }
 
-    return (
-      <div>
+    calculateEventCoordinates();
+  }, []);
 
-        <GoogleMap
+  return (
+    <div>
+      <GoogleMap
         zoom={6}
         center={eventCoordinates}
         mapContainerClassName="googlemap"
         options={{
-            streetViewControl: false,
-            mapTypeControl: false,
+          streetViewControl: false,
+          mapTypeControl: false,
         }}
-        >
-            <MarkerF position={eventCoordinates}/>
-        
-        </GoogleMap>
-
-      </div>
-    );
-  }
-  
+      >
+        <MarkerF position={eventCoordinates} />
+      </GoogleMap>
+    </div>
+  );
+}
