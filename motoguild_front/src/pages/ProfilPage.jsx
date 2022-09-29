@@ -5,6 +5,7 @@ import UserData from "../components/Profil/UserData"
 import Group from "../components/Profil/Group";
 import Ride from "../components/Profil/Ride";
 import Event from "../components/Profil/Event";
+import Route from "../components/Profil/Route";
 import jwt from "jwt-decode"
 
 
@@ -12,11 +13,9 @@ const ProfilPage = () => {
     const [id, setId] = useState()
     const [profil,setProfil] = useState()
     const [profilGroups, setProfilGroups] = useState()
-    const [profilGroupsOwner, setProfilGroupsOwner] = useState()
     const [profilRides, setProfilRides] = useState()
-    const [profilRidesOwner, setProfilRidesOwner] = useState()
-    const [profilEvents, setProfileEvents] = useState()
-    const [profilEventsOwner, setProfilEventsOwner] = useState()
+    const [profilEvents, setProfilEvents] = useState()
+    const [profilRoutes, setProfilRoute] = useState()
 
     const userData = async () =>{
         var data = await ProfileData(id)
@@ -50,75 +49,50 @@ const ProfilPage = () => {
     useEffect(() =>{
         if(profil){
             setProfilGroups(profil.groups)
-            setProfilGroupsOwner(profil.ownedGroups)
             setProfilRides(profil.routes)
-            setProfilRidesOwner(profil.ownedRides)
-            setProfileEvents(profil.events)
-            setProfilEventsOwner(profil.ownedEvents)
+            setProfilEvents(profil.events)
+            setProfilRoute(profil.routes)
             console.log(profil)
         }
     },[profil])
 
     return (
         <div className="page-conteiner">
-            <div>
                 {profil &&
                     <UserData profil={profil} />
                 }
-            </div>
             {profilGroups &&
-            <div>
                 <div className="group-profile">
                 <h1>Grupy</h1>
                 <div className="profil-scroling">
                     {profilGroups.map((group) => (<Group key={group.id} group={group} />))}
                 </div>
                 </div>
-                <div className="group-owner-profile">
-                <h1>Moje Grupy</h1>
-                <div className="profil-scroling">
-                    {profilGroupsOwner.map((group) => (<Group key={group.id} group={group} />))}
-                </div>
-                </div> 
-            </div>
             }
-            <div>
             {profilRides &&
                 <div className="ride-profile">
-                    <h1>Trasy</h1>
+                    <h1>Ustawki</h1>
                     <div className="profil-scroling">
                     {profilRides.map((ride) => (<Ride key={ride.id} ride={ride} />))}
                     </div>
                 </div>
             } 
-            {profilRidesOwner.length > 0 &&
-                <div className="ride-owner-profile">
-                    <h1>Moje Trasy</h1>
-                    <div className="profil-scroling">
-                    {profilRidesOwner.map((ride) => (<Ride key={ride.id} ride={ride} />))}
-                    </div>
-                </div>
-            }
-            </div>
-            <div>
-             {profilEvents.length > 0 &&
+             {profilEvents &&
             <div className="event-profile">
-                <h1>Ustawki</h1>
+                <h1>Wydarzenia</h1>
                 <div className="profil-scroling">
                   {profilEvents.map((event) => (<Event key={event.id} event={event} />))}
                 </div>
             </div>
             }
-            {profilEventsOwer.length > 0 &&
+            {profilRoutes &&
             <div className="event-profile">
-                <h1>Ustawki</h1>
+                <h1>Trasy</h1>
                 <div className="profil-scroling">
-                {profilEventsOwner.map((event) => (<Event key={event.id} event={event} />))}
+                  {profilRoutes.map((route) => (<Route key={route.id} route={route} />))}
                 </div>
             </div>
             }
-            </div>
-            
         </div>
       )
     }

@@ -508,6 +508,19 @@ label {
   border: 1px solid lightgray;
   width: 500px;
 }
+.element-conteiner{
+  position: relative; 
+  margin: 0;
+}
+
+.event-owner-profile{
+  background: #f4f4f4;
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 500px;
+}
 
 .page-conteiner {
   margin: 0 auto;
