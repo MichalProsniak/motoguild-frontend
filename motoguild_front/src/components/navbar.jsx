@@ -3,27 +3,25 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../images/motoguild-start.png";
 import Logout from "./Logout";
 import { useState, useEffect } from "react";
-import { testLogin } from "../helpnigFunctions/ApiCaller"
+import { testLogin } from "../helpnigFunctions/ApiCaller";
 
 function OffcanvasExample() {
-
-
   const [styleUser, setStyleUser] = useState({
-    backgroundImage: "url('https://localhost:3333/api/upload/user/noimage')"
-    ,})
+    backgroundImage: "url('https://localhost:3333/api/upload/user/noimage')",
+  });
 
-    // useEffect(() => {
-    //   async function image(){
-    //     var user = await testLogin
-    //     var photo = await user.image
-    //     return photo
-    //   }
-    //   console.log(image)
-    //   var stringUser=`https://localhost:3333/api/upload/User/${image}`;
+  // useEffect(() => {
+  //   async function image(){
+  //     var user = await testLogin
+  //     var photo = await user.image
+  //     return photo
+  //   }
+  //   console.log(image)
+  //   var stringUser=`https://localhost:3333/api/upload/User/${image}`;
 
-    //   setStyleUser({backgroundImage: `url(${stringUser})`})
+  //   setStyleUser({backgroundImage: `url(${stringUser})`})
 
-    // },[])
+  // },[])
 
   const [isClickedRoutes, setIsClickedRoutes] = useState(false);
   const [classNameRoutes, setClassNameRoutes] = useState("dropdown-menu");
@@ -128,7 +126,7 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickGroups}
               onBlur={() => {
-                setTimeout(() => handleClickGroups(), 100);
+                setTimeout(() => handleClickGroups(), 200);
               }}
             >
               <span className="nav-text-custom">Grupy</span>
@@ -158,7 +156,7 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRides}
               onBlur={() => {
-                setTimeout(() => handleClickRides(), 100);
+                setTimeout(() => handleClickRides(), 200);
               }}
             >
               <span className="nav-text-custom red-bold">Ustawki</span>
@@ -188,7 +186,7 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickRoutes}
               onBlur={() => {
-                setTimeout(() => handleClickRoutes(), 100);
+                setTimeout(() => handleClickRoutes(), 200);
               }}
             >
               <span className="nav-text-custom">Trasy</span>
@@ -217,7 +215,7 @@ function OffcanvasExample() {
               aria-expanded="false"
               onClick={handleClickEvents}
               onBlur={() => {
-                setTimeout(() => handleClickEvents(), 100);
+                setTimeout(() => handleClickEvents(), 200);
               }}
             >
               <span className="nav-text-custom">Wydarzenia</span>
@@ -254,40 +252,41 @@ function OffcanvasExample() {
             </li>
           )}
           {localStorage.getItem("token") ? (
-          <li>
-          <Nav.Link
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              onClick={handleClickProfile}
-              onBlur={() => {
-                setTimeout(() => handleClickProfile(), 100);
-              }}
-            ><span className="nav-text-custom">
-              <div className="group-photo-image-for-list-profile-owner" style={styleUser}></div>
-            </span>
-            </Nav.Link>
-            <div className={classNameProfil} aria-labelledby="navbarDropdown">
-              <Nav.Link className="dropdown-item-custom" href="/profile">
-                <span className="dropdown-item-custom-link">
-                  <span className="nav-text-custom">Profil</span>
-                </span>
+            <li>
+              <Nav.Link
+                className="nav-link"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                onClick={handleClickProfile}
+                onBlur={() => {
+                  setTimeout(() => handleClickProfile(), 200);
+                }}
+              >
+                <div className="navbar-profile-pic" style={styleUser}></div>
               </Nav.Link>
-              <Nav.Link className="dropdown-item-custom" href="/settings">
-                <span className="dropdown-item-custom-link">
-                  <span className="nav-text-custom">Ustawienia</span>
-                </span>
-              </Nav.Link>
-              <Nav.Link className="dropdown-item-custom" href="/">
-                <Logout />
-              </Nav.Link>
-            </div>
-          </li>) : ("")
-          }
+              <div className={classNameProfil} aria-labelledby="navbarDropdown">
+                <Nav.Link className="dropdown-item-custom" href="/profile">
+                  <span className="dropdown-item-custom-link">
+                    <span className="nav-text-custom">Profil</span>
+                  </span>
+                </Nav.Link>
+                <Nav.Link className="dropdown-item-custom" href="/settings">
+                  <span className="dropdown-item-custom-link">
+                    <span className="nav-text-custom">Ustawienia</span>
+                  </span>
+                </Nav.Link>
+                <Nav.Link className="dropdown-item-custom">
+                  <Logout />
+                </Nav.Link>
+              </div>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
     </Navbar>
