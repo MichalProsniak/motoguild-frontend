@@ -3,13 +3,15 @@ import { useLoadScript, Autocomplete } from "@react-google-maps/api";
 import { createNewEvent } from "../helpnigFunctions/ApiCaller.js";
 import EventMap from "./EventMap.jsx";
 import DateFrontToBack from "../helpnigFunctions/DateFrontToBack.js";
+import { Link, useNavigate } from "react-router-dom";
 
 const libraries = ["places"];
 export default function NewEventBody() {
     const originRef = useRef();
     const [isOrigin, setIsPlace] = useState(false);   
     const [allInputsCorrect, setAllInputsCorrect] = useState(true);
-    
+    const navigate = useNavigate();
+
     const [newEvent, setNewEvent] = useState({
         name: "",
         place: "",
@@ -56,6 +58,7 @@ export default function NewEventBody() {
             setAllInputsCorrect(false);
             return;
         }
+        event.preventDefault();
         setAllInputsCorrect(true);
         const newDate = DateFrontToBack(newEvent.startDate, newEvent.startHour);
         const eventToSave = {
@@ -66,7 +69,8 @@ export default function NewEventBody() {
             stopDate: newEvent.stopDate,
             owner: newEvent.owner,
         };
-        await createNewEvent(eventToSave);       
+        const eventId = await createNewEvent(eventToSave);
+        navigate(`/events/${eventId}`);      
     }
 
     function handleSelectPlace() {

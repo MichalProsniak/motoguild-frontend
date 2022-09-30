@@ -564,7 +564,7 @@ export async function createNewEvent(newEvent) {
       body: JSON.stringify(newEvent),
     });
     const data = await res.json();
-    return data;
+    return data.id;
   } catch (error) {
     console.log(error);
   }
