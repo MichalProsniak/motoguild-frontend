@@ -55,11 +55,14 @@ body {
 .user {
   position: relative;
   margin: 0 auto;
-  border: groove;
-  border-color: white;
-  border-radius: 40px;
-  height: 300px;
-  width: 1000px;
+  padding: 20px;
+  background-color: rgba(233, 233, 233, 0.867);
+  box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  height: 200px;
+  width: 1015px;
+  display: flex;
+  flex-direction: column;
 }
 
 .small-message {
@@ -69,12 +72,25 @@ body {
 }
 
 .user-image {
-  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+  align-self: end;
+  height: 150px;
+  width: 150px;
+}
+
+.user-stars {
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
 }
 
 .user-data {
   float: left;
   margin: 0;
+  margin-top: 15px;
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -83,6 +99,7 @@ body {
 .user-data-element {
   color: white;
   text-align: left;
+  font-size: 20px;
 }
 
 .card {
@@ -277,6 +294,16 @@ label {
   background-size: cover;
   border-radius: 50%;
   margin: auto;
+}
+
+.navbar-profile-pic {
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  margin-top: -15px;
+  margin-bottom: -10px;
 }
 
 .ride-participants-list {
@@ -497,7 +524,7 @@ label {
 }
 .group-profile {
   background-color: rgba(233, 233, 233, 0.867);
-  opacity: 0,7;
+  opacity: 0, 7;
   margin-left: 0;
   margin-top: 1%;
   float: left;
@@ -537,7 +564,7 @@ label {
 
 .event-profile {
   background-color: rgba(233, 233, 233, 0.867);
-  opacity: 0,7;
+  opacity: 0, 7;
   float: left;
   padding: 10px;
   border-radius: 10px;
@@ -546,15 +573,16 @@ label {
   margin-top: 1%;
 }
 
-.route-profile{
+.route-profile {
   background-color: rgba(233, 233, 233, 0.867);
-  opacity: 0,7;
+  opacity: 0, 7;
   float: left;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid lightgray;
   width: 500px;
   margin-top: 1%;
+  margin-left: 17px;
 }
 
 .element-conteiner {
@@ -573,6 +601,7 @@ label {
 
 .page-conteiner {
   margin: 4% auto;
+  margin-top: 100px;
   width: 53%;
 }
 
@@ -754,6 +783,7 @@ label {
   display: flex;
   flex-direction: column;
   height: 100%;
+  margin-left: 190px;
 }
 
 .group-apply-button {
