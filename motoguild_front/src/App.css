@@ -378,7 +378,7 @@ label {
 }
 
 .googlemap-slides {
-  width: 50%;
+  width: 60%;
   height: 220px;
   margin: auto;
   border-radius: 10px;
@@ -1505,9 +1505,7 @@ label {
   /* overflow-y: scroll;
   overflow-x: hidden; */
   height: 500px;
-  width: 65%;
-  padding: 10px;
-  padding-right: 15px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -2304,21 +2302,18 @@ label {
   background-color: rgba(233, 233, 233, 0.867);
   box-shadow: 8px 8px 18px -10px rgba(0, 0, 0, 1);
   border-radius: 5px;
-  flex-wrap: wrap;
   margin-top: 50px;
-  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
   padding-bottom: 20px;
   align-self: center;
+  justify-content: center;
 }
 
 .create-event-body > form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-}
-
-.create-event-body > form > div {
-  width: 50%;
 }
 
 .event-standard-input {
