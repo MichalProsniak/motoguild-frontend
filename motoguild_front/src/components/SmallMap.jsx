@@ -53,14 +53,35 @@ export default function SmallMap(props) {
 
   function setCorrectData(result) {
     setDirectionsResponse(result);
-    setDistance(result.routes[0].legs[0].distance.text);
-    setDuration(result.routes[0].legs[0].duration.text);
+    const data = ConvertMapInfo(result);
+    const kilometers = data[0];
+    const time = data[1];
+    setDistance(kilometers);
+    setDuration(time);
     try {
-      props.setMapInfo([
-        result.routes[0].legs[0].distance.text,
-        result.routes[0].legs[0].duration.text,
-      ]);
+      props.setMapInfo([kilometers, time]);
     } catch {}
+  }
+
+  function ConvertMapInfo(result) {
+    let distance = 0;
+    let duration = 0;
+    result.routes[0].legs.map((leg) => {
+      distance += leg.distance.value / 1000;
+      duration += leg.duration.value;
+    });
+    duration = duration / 60;
+    var hours = Math.floor(duration / 60);
+    var minutes = Math.floor(duration % 60);
+    var kilometers = Math.floor(distance);
+    kilometers = kilometers.toString() + " km";
+    var time;
+    if (hours != 0) {
+      time = hours.toString() + " godz " + minutes.toString() + " min";
+    } else {
+      time = minutes.toString() + " min";
+    }
+    return [kilometers, time];
   }
 
   if (props.size === 1) {
